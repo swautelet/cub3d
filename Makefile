@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+         #
+#    By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/02 12:06:28 by npinheir         ###   ########.fr        #
+#    Updated: 2022/06/02 13:36:43 by simonwautel      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = cub3D
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -Iinclude -g
 
 # Folders
 SRC_DIR = ./src/
@@ -24,7 +24,7 @@ LIBFT_DIR = ./libft/
 MINLBX_DIR = ./minilibx_opengl/
 
 # Source files and object files
-SRC_FILES = main.c errors.c cub_file.c utils.c file_extractors.c map_extractor.c
+SRC_FILES = main.c errors.c cub_file.c utils.c file_extractors.c map_extractor.c init_window.c distance.c check_walls.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Paths
