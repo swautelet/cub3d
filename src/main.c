@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/05/31 18:40:35 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:47:34 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,10 @@ int	main(int argc, char **argv)
 	printf("EA : %s\n", map.ea);
 	printf("F : %d\n", map.floor);
 	printf("C : %d\n", map.ceiling);
+	printf("Map max len : %d\n", map.map_len);
+	printf("Map max hight : %d\n", map.map_hight);
+	int	i = 0;
+	while (map.map[i])
+		printf("%s\n", map.map[i++]);
 	return (0);
 }

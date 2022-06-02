@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:35:02 by npinheir          #+#    #+#             */
-/*   Updated: 2022/05/31 20:44:34 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:04:30 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ char	*ft_clean_save(char *str);
 int		ft_strsame(const char *str1, const char *str2);
 
 int		ft_isstrdigit(const char *str);
+
+unsigned int	ft_char_in_str(const char c, const char *str);
 
 #endif

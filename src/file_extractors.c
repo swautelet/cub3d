@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:29:58 by npinheir          #+#    #+#             */
-/*   Updated: 2022/05/31 22:10:18 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:46:04 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,4 @@ void	extract_f_c(t_mapD *map, char **split)
 			map->counter[5] += 1;
 		}
 	}
-}
-
-void	extract_map(t_mapD *map)
-{
-	int		fd;
-	char	*holder;
-	//size_t	max_len;
-	//size_t	max_high;
-
-	holder = NULL;
-	fd = open(map->path, O_RDONLY);
-	if (!fd)
-		error_exit("Failed to open the .cub file ");
-	
 }

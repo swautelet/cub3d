@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:34:50 by npinheir          #+#    #+#             */
-/*   Updated: 2022/05/31 22:08:49 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:46:40 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,18 @@ void	extract_file(t_mapD *map, int fd)
 	while (i < 6)
 		map->counter[i++] = 0;
 
+	map->map_hight = 0;
+	map->map_len = 0;
 	while (get_next_line(fd, &holder))
 	{
+		map_data_check(map, holder);
 		split = ft_split(holder, ' ');
 		extract_sand_rose(map, split);
 		extract_f_c(map, split);
 	}
 	if (counter_check(map->counter))
 		error_exit("Corrupted .cub file ");
-	//extract_map(map);
+	extract_map(map);
 }
 
 

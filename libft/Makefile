@@ -6,7 +6,7 @@
 #    By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/19 23:35:42 by npinheir          #+#    #+#              #
-#    Updated: 2022/05/31 20:44:46 by npinheir         ###   ########.fr        #
+#    Updated: 2022/06/02 12:09:13 by npinheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 			ft_strrchr.c ft_strnstr.c ft_strdup.c ft_putchar_fd.c ft_putstr_fd.c \
 			ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_substr.c ft_strjoin.c \
 			ft_strtrim.c ft_strmapi.c ft_itoa.c ft_split.c get_next_line.c get_next_line_utils.c \
-			ft_strsame.c ft_isstrdigit.c
+			ft_strsame.c ft_isstrdigit.c ft_char_in_str.c
 SRCBONUS = ft_lstadd_front.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 			ft_lstiter.c ft_lstsize.c ft_lstnew.c ft_lstlast.c ft_lstmap.c
 OBJ		= $(SRC:.c=.o)

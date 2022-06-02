@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/05/31 22:00:53 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:08:40 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_mapD
 	int		ceiling;
 	int		*counter;
 	char	**map;
+	unsigned int	map_len;
+	unsigned int	map_hight;
 }	t_mapD;
 
 // Cub File
@@ -44,6 +46,8 @@ void	extract_file(t_mapD *map, int fd);
 void	extract_sand_rose(t_mapD *map, char **split);
 void	extract_f_c(t_mapD *map, char **split);
 void	extract_map(t_mapD *map);
+void	map_data_check(t_mapD *map, const char *holder);
+int		valid_map_line(const char *holder);
 
 // Errors
 void	error_exit(const char *message);
