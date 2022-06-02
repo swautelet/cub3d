@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/02 15:54:30 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:19:55 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 int	keyboard(int keycode, t_param *world)
 {
 	(void)world;
-	printf("Keycode %d\n", keycode);
+	// printf("Keycode %d\n", keycode);
 	if (keycode == 0)
-		world->p_orient -= 2;
+		world->p_orient = (world->p_orient - 2) % 360;
 	if (keycode == 2)
-		world->p_orient += 2;
+		world->p_orient = (world->p_orient + 2) % 360;
 	return (0);
 }
 
@@ -54,9 +54,10 @@ int	draw_view(t_param *world)
 	while (offset >= 0)
 	{
 		dist = calcul_dist_till_wall(world, world->p_orient + offset - (NBRAY / 2));
+		// printf("dist = %f offset = %f\n", dist, offset);
+		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
 		draw_col(world, dist, offset);
-		//printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
-		offset -= 0.1;
+		offset -= 1;
 	}
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
 	return (0);

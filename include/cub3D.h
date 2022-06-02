@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 15:49:41 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:02:48 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum e_bool{
 }t_bool;
 
 # define SIZE 64
-# define NBRAY 120
+# define NBRAY 60
 
 typedef struct s_mapD
 {
@@ -105,5 +105,8 @@ int		check_left_wall(int x, int y, t_param *world);
 int		check_right_wall(int x, int y, t_param *world);
 int		check_up_wall(int x, int y, t_param *world);
 int		check_down_wall(int x, int y, t_param *world);
+
+//key 
+int		keyboard(int keycode, t_param *world);
 
 #endif
