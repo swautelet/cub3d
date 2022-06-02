@@ -6,7 +6,7 @@
 #    By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/02 22:02:47 by simonwautel      ###   ########.fr        #
+#    Updated: 2022/06/02 22:04:05 by simonwautel      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ fclean: clean
 # re rule
 re: fclean all
 
+#autosave rule
 save:
 	git commit -am "$(MAKECMDGOALS)"
 	git push
