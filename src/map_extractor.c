@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 12:45:15 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:54:38 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	valid_map_line(const char *holder)
 	char	*base;
 	size_t	i;
 
-	base = " 01NSEW\n";
+	base = " 01NSEW";
 	i = 0;
 	while (holder[i])
 	{
@@ -58,3 +58,33 @@ void	extract_map(t_mapD *map)
 			map->map[i++] = ft_substr(holder, 0, ft_strlen(holder));
 	}
 }
+
+// void	get_player_position(char **map)
+// {
+// 	size_t	x;
+// 	size_t	y;
+
+// 	x = 0;
+// 	while (map[x])
+// 	{
+// 		y = 0;
+// 		while (map[x][y])
+// 		{
+// 			if (ft_char_in_str(map[x][y], "NSEW"))
+// 			{
+// 				// player.x = x;
+// 				// player.y = y;
+// 				if (map[x][y] == 'N')
+// 					//player.ori = 'N'
+// 				else if (map[x][y] == 'S')
+// 					//player.ori = 'S'
+// 				else if (map[x][y] == 'E')
+// 					//player.ori = 'E'
+// 				else if (map[x][y] == 'W')
+// 					//player.ori = 'W'
+// 			}
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// }

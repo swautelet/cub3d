@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 13:21:24 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/02 15:57:46 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ int	main(int argc, char **argv)
 	world = malloc(sizeof(t_param));
 	if (world)
 	{
-		world->p_x_pos = 25;
-		world->p_y_pos = 3;
+		world->p_x_pos = 25 * SIZE;
+		world->p_y_pos = 3 * SIZE;
 		world->p_orient = 0;
 		world->map = map.map;
 		world->map_height = map.map_hight;
 		world->map_width = map.map_len;
 		world->screen_height = 900;
-		world->screen_width = 600;
+		world->screen_width = 900;
 		world->floor_color = map.floor;
 		world->ceiling_color = map.ceiling;
+		world->wall_color = create_trgb(0, 0, 0, 255);
 		init_window(world);
 		free (world);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 13:45:02 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/02 15:49:41 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum e_bool{
 }t_bool;
 
 # define SIZE 64
+# define NBRAY 120
 
 typedef struct s_mapD
 {
@@ -92,14 +93,14 @@ size_t	len_array_2d(char **split);
 
 // Graphic
 void	init_window(t_param *world);
-void	draw_view(t_param *world);
+int		draw_view(t_param *world);
 void	pixel_to_image(t_data *img, int x, int y, int color);
-void	draw_col(t_param *world, int dist, int offset);
+void	draw_col(t_param *world, double dist, double offset);
 int		create_trgb(int t, int r, int g, int b);
-int		calcul_dist_till_wall(t_param *world, int orientation);
-double	next_vert_wall(t_param *world, int orientation);
-double	next_hor_wall(t_param *world, int orientation);
-double	degre_to_radiant(int degre);
+double	calcul_dist_till_wall(t_param *world, double orientation);
+double	next_vert_wall(t_param *world, double orientation);
+double	next_hor_wall(t_param *world, double orientation);
+double	degre_to_radiant(double degre);
 int		check_left_wall(int x, int y, t_param *world);
 int		check_right_wall(int x, int y, t_param *world);
 int		check_up_wall(int x, int y, t_param *world);
