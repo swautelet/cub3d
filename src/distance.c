@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/02 17:29:30 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/02 18:12:06 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ double	calcul_dist_till_wall(t_param *world, double orientation)
 
 	while (orientation < 0)
 		orientation += 360;
-	printf("orientation = %f\n", orientation);
+	// printf("orientation = %f\n", orientation);
 	vert = next_vert_wall(world, orientation);
-	printf("between\n");
+	// printf("between\n");
 	hor = next_hor_wall(world, orientation);
-	printf("vert = %f hor = %f\n", vert, hor);
+	// printf("vert = %f hor = %f\n", vert, hor);
 	if (vert < hor)
 		return (vert);
 	else
@@ -40,13 +40,13 @@ double	next_vert_wall(t_param *world, double orientation)
 	{
 		next_vert = SIZE - (world->p_x_pos % SIZE);
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
-		printf("here\n");
+		// printf("here\n");
 		while (check_left_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world) == FALSE)
 		{
 			next_vert += SIZE;
 			decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
 		}
-		printf("two\n");
+		// printf("two\n");
 	}
 	else if (orientation < 90 || orientation > 270)
 	{
