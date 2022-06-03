@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 14:21:45 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:58:15 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	keyboard(int keycode, t_param *world)
 {
 	(void)world;
-	// printf("Keycode %d\n", keycode);
+	printf("Keycode %d\n", keycode);
 	if (keycode == 0)
 		world->p_orient = (world->p_orient - 2) % 360;
 	if (keycode == 2)
