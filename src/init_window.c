@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 16:04:06 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 17:04:28 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	keyboard(int keycode, t_param *world)
 	(void)world;
 	// printf("Keycode %d\n", keycode);
 	if (keycode == 0)
-		world->p_orient = (world->p_orient - 2) % 360;
+		world->p_orient = (world->p_orient + 5) % 360;
 	if (keycode == 2)
-		world->p_orient = (world->p_orient + 2) % 360;
+		world->p_orient = (world->p_orient - 5) % 360;
 	if (keycode == 13)
 		move_forward(world);
 	if (keycode == 53)
@@ -70,7 +70,7 @@ int	draw_view(t_param *world)
 		// printf("dist = %f offset = %f\n", dist, offset);
 		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
 		draw_col(world, dist, offset);
-		offset -= 0.05;
+		offset -= 1;
 	}
 	draw_minimap(world);
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
@@ -93,9 +93,9 @@ void	draw_col(t_param *world, double dist, double offset)
 	int	mid;
 	int	i;
 
-	x = (world->screen_width / NBRAY) * offset;
+	x = (world->screen_width / NBRAY) * (offset + 1) * (-1);
 	y = 0;
-	offset_wall = ((world->screen_height - 10) / dist / 2) * 10;
+	offset_wall = ((world->screen_height - 10) / dist);
 	mid = world->screen_height / 2;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= world->screen_height)
@@ -104,19 +104,19 @@ void	draw_col(t_param *world, double dist, double offset)
 		{
 			i = -1;
 			while (++i <= (world->screen_width - 1)/ NBRAY)
-				pixel_to_image(world->img, x, y, world->ceiling_color);
+				pixel_to_image(world->img, x + i, y, world->ceiling_color);
 		}
 		else if (y > mid + offset_wall)
 		{
 			i = -1;
 			while (++i <= (world->screen_width - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, world->floor_color);
+				pixel_to_image(world->img, x + i, y, world->floor_color);
 		}
 		else
 		{
 			i = -1;
 			while (++i <= (world->screen_width - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, world->wall_color);
+				pixel_to_image(world->img, x + i, y, world->wall_color);
 		}
 		y++;
 	}

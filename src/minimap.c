@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 16:00:45 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:50:25 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	draw_player_nose(t_param *world)
 	unsigned int	new_y;
 
 	new_x = world->p_map_x + (NOSE * cos(degre_to_radiant(world->p_orient)));
-	new_y = world->p_map_y + (NOSE * sin(degre_to_radiant(world->p_orient)));
+	new_y = world->p_map_y - (NOSE * sin(degre_to_radiant(world->p_orient)));
 
 	bresenham(world->p_map_x + world->p_size, world->p_map_y + world->p_size, new_x + world->p_size, new_y + world->p_size, world);
 }
@@ -99,8 +99,8 @@ void	draw_player(t_param *world, unsigned int len)
 	world->p_map_x = 0;
 	world->p_map_y = 0;
 	world->p_size = len / 2;
-	world->p_map_x = ((world->p_x_pos / SIZE) + ((world->p_x_pos % SIZE) / SIZE)) * len;
-	world->p_map_y = ((world->p_y_pos / SIZE) + ((world->p_y_pos % SIZE) / SIZE)) * len;
+	world->p_map_x = (((world->p_x_pos / SIZE)) + ((world->p_x_pos % SIZE) / SIZE)) * len;
+	world->p_map_y = (((world->p_y_pos / SIZE)) + ((world->p_y_pos % SIZE) / SIZE)) * len;
 	//printf("p_map_x = ");
 	i = 0;
 	while (i < world->p_size)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 15:36:04 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:49:35 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(int argc, char **argv)
 	if (world)
 	{
 		world->map_data = &map;
-		world->p_x_pos = 25 * SIZE;
-		world->p_y_pos = 3 * SIZE;
+		world->p_x_pos = (map.x_pos * SIZE) + SIZE / 2;
+		world->p_y_pos = (map.y_pos * SIZE) + SIZE / 2;
 		world->p_orient = 0;
 		world->map = map.map;
 		world->map_height = map.map_hight;
