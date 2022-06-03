@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 14:55:22 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:26:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ double	next_vert_wall(t_param *world, double orientation)
 		next_vert = SIZE - (world->p_x_pos % SIZE);
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
 		// printf("here\n");
-		while (check_left_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world) == FALSE)
+		while (check_right_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world) == FALSE)
 		{
 			next_vert += SIZE;
 			decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
@@ -53,7 +53,7 @@ double	next_vert_wall(t_param *world, double orientation)
 	{
 		next_vert = (world->p_x_pos % SIZE) - SIZE;
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
-		while (check_right_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world)== FALSE)
+		while (check_left_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world)== FALSE)
 		{
 			next_vert -= SIZE;
 			decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
@@ -76,7 +76,8 @@ double	next_hor_wall(t_param *world, double orientation)
 	{
 		next_hor = (world->p_y_pos % SIZE) -  SIZE;
 		decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
-		while (check_up_wall(decal + world->p_y_pos, next_hor + world->p_x_pos, world) == FALSE)
+		// printf("look for up \n");
+		while (check_up_wall(next_hor + world->p_y_pos, decal + world->p_x_pos, world) == FALSE)
 		{
 			next_hor -= SIZE;
 			decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
@@ -86,7 +87,8 @@ double	next_hor_wall(t_param *world, double orientation)
 	{
 		next_hor =  SIZE - (world->p_y_pos % SIZE);
 		decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
-		while (check_down_wall(decal + world->p_y_pos, next_hor + world->p_x_pos, world)== FALSE)
+		// printf("look for down \n");
+		while (check_down_wall(next_hor + world->p_y_pos, decal + world->p_x_pos, world)== FALSE)
 		{
 			next_hor += SIZE;
 			decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));

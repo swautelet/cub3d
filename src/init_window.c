@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 17:04:28 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:28:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	draw_view(t_param *world)
 	offset = NBRAY;
 	while (offset >= 0)
 	{
-		// printf("offset = %f\n", offset);
+		// printf("offset = %f", offset);
 		dist = calcul_dist_till_wall(world, world->p_orient + offset - (NBRAY / 2));
 		if ((int)offset == 30)
 		{
@@ -72,6 +72,8 @@ int	draw_view(t_param *world)
 		draw_col(world, dist, offset);
 		offset -= 1;
 	}
+	// dist = calcul_dist_till_wall(world, world->p_orient);
+	// world->p_front = dist;
 	draw_minimap(world);
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
 	return (0);
