@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 15:10:03 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:56:15 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 int	keyboard(int keycode, t_param *world)
 {
 	(void)world;
-	printf("Keycode %d\n", keycode);
+	// printf("Keycode %d\n", keycode);
 	if (keycode == 0)
 		world->p_orient = (world->p_orient - 2) % 360;
 	if (keycode == 2)
 		world->p_orient = (world->p_orient + 2) % 360;
-	// if (keycode == 13)
-		
+	if (keycode == 13)
+		move_forward(world);
 	if (keycode == 53)
 		exit_cub3d(world);
 	return (0);
@@ -60,7 +60,13 @@ int	draw_view(t_param *world)
 	offset = NBRAY;
 	while (offset >= 0)
 	{
+		// printf("offset = %f\n", offset);
 		dist = calcul_dist_till_wall(world, world->p_orient + offset - (NBRAY / 2));
+		if ((int)offset == 30)
+		{
+			// printf("i init p_front\n");
+			world->p_front = dist;
+		}
 		// printf("dist = %f offset = %f\n", dist, offset);
 		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
 		draw_col(world, dist, offset);

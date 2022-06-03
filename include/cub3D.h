@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 15:10:26 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:45:56 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_param{
 	int				p_x_pos;
 	int				p_y_pos;
 	int				p_orient;
+	double			p_front;
 	char			**map;
 	unsigned int	map_height;
 	unsigned int	map_width;
@@ -111,5 +112,8 @@ int		keyboard(int keycode, t_param *world);
 
 //exit
 void	exit_cub3d(t_param *world);
+
+//move
+void	move_forward(t_param *world);
 
 #endif

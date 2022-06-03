@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+         #
+#    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/02 22:04:05 by simonwautel      ###   ########.fr        #
+#    Updated: 2022/06/03 15:32:29 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = ./libft/
 MINLBX_DIR = ./minilibx_opengl/
 
 # Source files and object files
-SRC_FILES = main.c errors.c cub_file.c utils.c file_extractors.c map_extractor.c init_window.c distance.c check_walls.c
+SRC_FILES = main.c errors.c cub_file.c utils.c file_extractors.c map_extractor.c init_window.c distance.c check_walls.c move.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Paths
