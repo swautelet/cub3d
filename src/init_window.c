@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/02 18:17:26 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/03 14:21:45 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	draw_col(t_param *world, double dist, double offset)
 	y = 0;
 	offset_wall = ((world->screen_height - 10) / dist / 2) * 10;
 	mid = world->screen_height / 2;
+	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= world->screen_height)
 	{
 		if (y < mid - offset_wall)
