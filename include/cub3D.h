@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 17:02:48 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/03 15:54:25 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef enum e_bool{
 
 # define SIZE 64
 # define NBRAY 60
+# define SCREEN_HEIGHT 900
+# define SCREEN_WIDTH 900
+# define NOSE 20
 
 typedef struct s_mapD
 {
@@ -45,6 +48,10 @@ typedef struct s_mapD
 	char			**map;
 	unsigned int	map_len;
 	unsigned int	map_hight;
+	int				x_pos;
+	int				y_pos;
+	char			p_ori;
+	
 }	t_mapD;
 
 typedef struct s_data {
@@ -59,6 +66,11 @@ typedef struct s_param{
 	int				p_x_pos;
 	int				p_y_pos;
 	int				p_orient;
+	unsigned int	p_x_mid;
+	unsigned int	p_y_mid;
+	unsigned int	p_map_x;
+	unsigned int	p_map_y;
+	unsigned int	p_size;
 	char			**map;
 	unsigned int	map_height;
 	unsigned int	map_width;
@@ -70,6 +82,7 @@ typedef struct s_param{
 	int				floor_color;
 	int				ceiling_color;
 	int				wall_color;
+	t_mapD			*map_data;
 }t_param;
 
 // Cub File
@@ -90,6 +103,8 @@ void	error_exit(const char *message);
 // Utils
 int		to_hex_int(const char *str);
 size_t	len_array_2d(char **split);
+void	bresenham_1(int x0, int y0, int x1, int y1, t_param * world);
+
 
 // Graphic
 void	init_window(t_param *world);
@@ -105,6 +120,10 @@ int		check_left_wall(int x, int y, t_param *world);
 int		check_right_wall(int x, int y, t_param *world);
 int		check_up_wall(int x, int y, t_param *world);
 int		check_down_wall(int x, int y, t_param *world);
+
+// Minimap
+void	draw_minimap(t_param *world);
+void	draw_player_nose(t_param *world);
 
 //key 
 int		keyboard(int keycode, t_param *world);

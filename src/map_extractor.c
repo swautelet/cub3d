@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 13:54:38 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:38:40 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,36 @@ void	map_data_check(t_mapD *map, const char *holder)
 	}
 }
 
+void	get_player_position(t_mapD *map)
+{
+	size_t	x;
+	size_t	y;
+
+	x = 0;
+	while (map->map[x])
+	{
+		y = 0;
+		while (map->map[x][y])
+		{
+			if (ft_char_in_str(map->map[x][y], "NSEW"))
+			{
+				map->x_pos = y;
+				map->y_pos = x;
+				if (map->map[x][y] == 'N')
+					map->p_ori = 'N';
+				else if (map->map[x][y] == 'S')
+					map->p_ori = 'S';
+				else if (map->map[x][y] == 'E')
+					map->p_ori = 'E';
+				else if (map->map[x][y] == 'W')
+					map->p_ori = 'W';
+			}
+			y++;
+		}
+		x++;
+	}
+}
+
 void	extract_map(t_mapD *map)
 {
 	int		fd;
@@ -55,36 +85,10 @@ void	extract_map(t_mapD *map)
 	while (get_next_line(fd, &holder))
 	{
 		if (valid_map_line(holder) && ft_strlen(holder) > 1)
-			map->map[i++] = ft_substr(holder, 0, ft_strlen(holder));
+		{
+			map->map[i] = ft_calloc(sizeof(char), map->map_len + 1);
+			ft_strlcpy(map->map[i++], holder, ft_strlen(holder) + 1);
+		}
 	}
+	get_player_position(map);
 }
-
-// void	get_player_position(char **map)
-// {
-// 	size_t	x;
-// 	size_t	y;
-
-// 	x = 0;
-// 	while (map[x])
-// 	{
-// 		y = 0;
-// 		while (map[x][y])
-// 		{
-// 			if (ft_char_in_str(map[x][y], "NSEW"))
-// 			{
-// 				// player.x = x;
-// 				// player.y = y;
-// 				if (map[x][y] == 'N')
-// 					//player.ori = 'N'
-// 				else if (map[x][y] == 'S')
-// 					//player.ori = 'S'
-// 				else if (map[x][y] == 'E')
-// 					//player.ori = 'E'
-// 				else if (map[x][y] == 'W')
-// 					//player.ori = 'W'
-// 			}
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }

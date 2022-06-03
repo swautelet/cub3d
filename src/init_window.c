@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/02 18:17:26 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/03 15:02:41 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	draw_view(t_param *world)
 		draw_col(world, dist, offset);
 		offset -= 0.05;
 	}
+	draw_minimap(world);
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
 	return (0);
 }
