@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 15:54:25 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:03:56 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_param{
 	unsigned int	p_map_x;
 	unsigned int	p_map_y;
 	unsigned int	p_size;
+	double			p_front;
 	char			**map;
 	unsigned int	map_height;
 	unsigned int	map_width;
@@ -127,5 +128,11 @@ void	draw_player_nose(t_param *world);
 
 //key 
 int		keyboard(int keycode, t_param *world);
+
+//exit
+void	exit_cub3d(t_param *world);
+
+//move
+void	move_forward(t_param *world);
 
 #endif

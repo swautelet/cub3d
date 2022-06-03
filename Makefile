@@ -6,7 +6,7 @@
 #    By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/03 12:04:20 by npinheir         ###   ########.fr        #
+#    Updated: 2022/06/03 16:03:14 by npinheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MINLBX_DIR = ./minilibx_opengl/
 # Source files and object files
 SRC_FILES = main.c errors.c cub_file.c utils.c file_extractors.c \
 			map_extractor.c init_window.c distance.c check_walls.c\
-			minimap.c
+			minimap.c move.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Paths

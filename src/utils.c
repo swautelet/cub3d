@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 14:50:01 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:04:13 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ size_t	len_array_2d(char **split)
 	while (split[res])
 		res++;
 	return (res);
+}
+
+void	exit_cub3d(t_param *world)
+{
+	mlx_destroy_image(world->video, world->img->img);
+	mlx_destroy_window(world->video, world->window);
+	free(world->img);
+	free(world);
+	exit (0);
 }

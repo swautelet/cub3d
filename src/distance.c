@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/02 18:12:06 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/03 14:55:22 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ double	next_vert_wall(t_param *world, double orientation)
 	int		next_vert;
 
 	next_vert = 0;
-	if ((orientation < 90 || orientation > 270))
+	// printf("orientation = %f\n", orientation);
+	if (orientation < 90 || orientation > 270)
 	{
 		next_vert = SIZE - (world->p_x_pos % SIZE);
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
@@ -48,7 +49,7 @@ double	next_vert_wall(t_param *world, double orientation)
 		}
 		// printf("two\n");
 	}
-	else if (orientation < 90 || orientation > 270)
+	else if (orientation > 90 && orientation < 270)
 	{
 		next_vert = (world->p_x_pos % SIZE) - SIZE;
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
@@ -57,6 +58,7 @@ double	next_vert_wall(t_param *world, double orientation)
 			next_vert -= SIZE;
 			decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
 		}
+	// printf("next vert = %d, decal = %f\n", next_vert, decal);
 	}
 	if (orientation == 270 || orientation == 90)
 		return (DBL_MAX);

@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 15:02:41 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:04:06 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	keyboard(int keycode, t_param *world)
 		world->p_orient = (world->p_orient - 2) % 360;
 	if (keycode == 2)
 		world->p_orient = (world->p_orient + 2) % 360;
+	if (keycode == 13)
+		move_forward(world);
+	if (keycode == 53)
+		exit_cub3d(world);
 	return (0);
 }
 
@@ -56,7 +60,13 @@ int	draw_view(t_param *world)
 	offset = NBRAY;
 	while (offset >= 0)
 	{
+		// printf("offset = %f\n", offset);
 		dist = calcul_dist_till_wall(world, world->p_orient + offset - (NBRAY / 2));
+		if ((int)offset == 30)
+		{
+			// printf("i init p_front\n");
+			world->p_front = dist;
+		}
 		// printf("dist = %f offset = %f\n", dist, offset);
 		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
 		draw_col(world, dist, offset);
@@ -87,6 +97,7 @@ void	draw_col(t_param *world, double dist, double offset)
 	y = 0;
 	offset_wall = ((world->screen_height - 10) / dist / 2) * 10;
 	mid = world->screen_height / 2;
+	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= world->screen_height)
 	{
 		if (y < mid - offset_wall)
