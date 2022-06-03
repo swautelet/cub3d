@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 14:58:15 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:10:03 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	keyboard(int keycode, t_param *world)
 		world->p_orient = (world->p_orient - 2) % 360;
 	if (keycode == 2)
 		world->p_orient = (world->p_orient + 2) % 360;
+	// if (keycode == 13)
+		
+	if (keycode == 53)
+		exit_cub3d(world);
 	return (0);
 }
 

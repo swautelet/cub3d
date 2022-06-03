@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 17:02:48 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/03 15:10:26 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,8 @@ int		check_down_wall(int x, int y, t_param *world);
 
 //key 
 int		keyboard(int keycode, t_param *world);
+
+//exit
+void	exit_cub3d(t_param *world);
 
 #endif

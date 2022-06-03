@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/05/31 20:46:54 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:09:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ size_t	len_array_2d(char **split)
 	while (split[res])
 		res++;
 	return (res);
+}
+
+void	exit_cub3d(t_param *world)
+{
+	mlx_destroy_image(world->video, world->img->img);
+	mlx_destroy_window(world->video, world->window);
+	free(world->img);
+	free(world);
+	exit (0);
 }
