@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 18:12:20 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/04 14:23:10 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	draw_player(t_param *world, unsigned int len)
 	world->p_map_x = 0;
 	world->p_map_y = 0;
 	world->p_size = len / 2;
-	world->p_map_x = (((world->p_x_pos / SIZE)) + ((world->p_x_pos % SIZE) / SIZE)) * len;
-	world->p_map_y = (((world->p_y_pos / SIZE)) + ((world->p_y_pos % SIZE) / SIZE)) * len;
+	world->p_map_x = ((((world->p_x_pos / SIZE) * len) + ((world->p_x_pos % SIZE) * len / SIZE)));
+	world->p_map_y = ((((world->p_y_pos / SIZE) * len) + ((world->p_y_pos % SIZE) * len / SIZE)));
 	//printf("p_map_x = ");
 	i = 0;
 	while (i < world->p_size)
