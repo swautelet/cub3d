@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:17:04 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/07 12:35:35 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:45:23 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int	check_left_wall(int x, int y, t_param *world)
 {
-	if ((y / SIZE) >= (int)world->map_height || (x / SIZE) - 1 >= (int)world->map_width || (x / SIZE) - 1 < 0 || y / SIZE < 0)
+	int	new_x;
+	int	new_y;
+
+	new_y = y / SIZE;
+	new_x = (x / SIZE) - 1;
+	if (new_y >= (int)world->map_height || new_x >= (int)world->map_width || new_x < 0 || new_y < 0)
 		return (TRUE);
-	if (world->map[(y / SIZE)][(x / SIZE) - 1] == '1')
+	if (world->map[new_y][new_x] == '1')
 	{
 		// printf("left found y = %d x = %d\n",(y / SIZE),  (x / SIZE) - 1);
 		return (TRUE);
@@ -27,9 +32,14 @@ int	check_left_wall(int x, int y, t_param *world)
 
 int	check_right_wall(int x, int y, t_param *world)
 {
-	if ((y / SIZE) >= (int)world->map_height || x / SIZE >= (int)world->map_width || (x / SIZE) < 0 || (y / SIZE) < 0)
+	int	new_x;
+	int	new_y;
+
+	new_y = y / SIZE;
+	new_x = x / SIZE;
+	if (new_y >= (int)world->map_height || new_x >= (int)world->map_width || new_x < 0 || new_y < 0)
 		return (TRUE);
-	if (world->map[(y / SIZE)][(x / SIZE)] == '1')
+	if (world->map[new_y][new_x] == '1')
 	{
 		// printf("right found y = %d x = %d\n",(y / SIZE),  (x / SIZE));
 		return (TRUE);
@@ -40,10 +50,20 @@ int	check_right_wall(int x, int y, t_param *world)
 
 int	check_up_wall(int y, int x, t_param *world)
 {
+	int	new_x;
+	int	new_y;
+
 	// printf("test\n");
-	if ((y / SIZE) - 1 >= (int)world->map_height || x / SIZE >= (int)world->map_width || (y / SIZE) - 1 < 0 || x / SIZE < 0)
+	new_y = (y / SIZE) - 1;
+	new_x = x / SIZE;
+	if (new_y >= (int)world->map_height || new_x >= (int)world->map_width || new_y < 0 || new_x < 0)
 		return (TRUE);
-	if (world->map[(y / SIZE) - 1][(x / SIZE)] == '1')
+	if (x % 64 == 0)
+	{
+		if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x - 1] == '1')
+			return (TRUE);
+	}
+	if (world->map[new_y][new_x] == '1')
 	{
 	// printf("up found y = %d x = %d\n",(y / SIZE) - 1,  (x / SIZE));
 		return (TRUE);
@@ -54,9 +74,19 @@ int	check_up_wall(int y, int x, t_param *world)
 
 int	check_down_wall(int y, int x, t_param *world)
 {
-	if ((y / SIZE)>= (int)world->map_height || x / SIZE >= (int)world->map_width || (x / SIZE) < 0 || (y / SIZE) < 0)
+	int	new_x;
+	int	new_y;
+
+	new_y = y / SIZE;
+	new_x = x / SIZE;
+	if (new_y >= (int)world->map_height || new_x >= (int)world->map_width || new_x < 0 || new_y < 0)
 		return (TRUE);
-	if (world->map[(y / SIZE)][(x / SIZE)] == '1')
+	if (x % 64 == 0)
+	{
+		if (world->map[new_y][new_x] == '1' || world->map[new_y][new_x - 1] == '1')
+			return (TRUE);
+	}
+	if (world->map[new_y][new_x] == '1')
 	{
 		// printf("down found y = %d x = %d\n",(y / SIZE),  (x / SIZE));
 		return (TRUE);
