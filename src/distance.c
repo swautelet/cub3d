@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 18:26:38 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:37:37 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ double	next_vert_wall(t_param *world, double orientation)
 	}
 	else if (orientation > 90 && orientation < 270)
 	{
-		next_vert = (world->p_x_pos % SIZE) - SIZE;
+		next_vert = (world->p_x_pos % SIZE) * (-1);
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
 		while (check_left_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world)== FALSE)
 		{
@@ -74,7 +74,7 @@ double	next_hor_wall(t_param *world, double orientation)
 	next_hor = 0;
 	if (orientation > 0 && orientation < 180)
 	{
-		next_hor = (world->p_y_pos % SIZE) -  SIZE;
+		next_hor = (world->p_y_pos % SIZE) * (-1);
 		decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
 		// printf("look for up \n");
 		while (check_up_wall(next_hor + world->p_y_pos, decal + world->p_x_pos, world) == FALSE)

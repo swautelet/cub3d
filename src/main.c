@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 16:49:35 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:45:04 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 	// printf("Player x pos : %d\n", map.x_pos);
 	// printf("Player y pos : %d\n", map.y_pos);
 	// printf("Player orientation : %c\n", map.p_ori);
+	printf("%d\n", (int)1.9999);
 	int	i = 0;
 	while (map.map[i])
 		printf("%s\n", map.map[i++]);

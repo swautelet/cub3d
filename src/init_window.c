@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/07 11:35:38 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:34:19 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	draw_view(t_param *world)
 		// printf("dist = %f offset = %f\n", dist, offset);
 		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
 		draw_col(world, dist, offset);
-		offset -= 1;
+		offset -= 0.5;
 	}
 	// dist = calcul_dist_till_wall(world, world->p_orient);
 	// world->p_front = dist;
