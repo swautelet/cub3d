@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/07 11:27:07 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:34:19 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	paint_map(unsigned int x, unsigned int y, unsigned int len, t_param 
 	unsigned int i;
 	unsigned int j;
 
-	i = 0;
+	i = 1;
 	while (i < len)
 	{
-		j = 0;
+		j = 1;
 		while (j < len)
 		{
 			if (world->map_data->map[x][y] == '1')
@@ -87,7 +87,7 @@ void	draw_player_nose(t_param *world)
 	new_x = world->p_map_x + (world->p_front / 4 * cos(degre_to_radiant(world->p_orient)));
 	new_y = world->p_map_y - (world->p_front / 4 * sin(degre_to_radiant(world->p_orient)));
 
-	bresenham(world->p_map_x + world->p_size, world->p_map_y + world->p_size, new_x + world->p_size, new_y + world->p_size, world);
+	bresenham(world->p_map_x, world->p_map_y, new_x, new_y, world);
 }
 
 void	draw_player(t_param *world, unsigned int len)
@@ -107,7 +107,7 @@ void	draw_player(t_param *world, unsigned int len)
 	{
 		j = 0;
 		while (j < world->p_size)
-			pixel_to_image(world->img, world->p_map_x + (world->p_size / 2) + i, world->p_map_y + (world->p_size / 2) + j++, 0x00000000);
+			pixel_to_image(world->img, world->p_map_x - (world->p_size / 2) + i, world->p_map_y - (world->p_size / 2) + j++, 0x00000000);
 		i++;
 	}
 	world->p_x_mid = world->p_map_x + world->p_size;
