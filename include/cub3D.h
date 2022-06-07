@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:30:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/07 13:30:33 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 00:56:49 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ typedef struct s_mapD
 	int				ceiling;
 	int				*counter;
 	char			**map;
-	unsigned int	map_len;
-	unsigned int	map_hight;
-	int				x_pos;
-	int				y_pos;
-	char			p_ori;
+	unsigned int	map_length;
+	unsigned int	map_height;
+	int				minimap_zoom;
+	int				pos_x;
+	int				pos_y;
+	int				orient;
+	int				ray_mode;
 	
 }	t_mapD;
 
@@ -60,7 +62,7 @@ typedef struct s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}t_data;
+}	t_data;
 
 typedef struct s_param{
 	int				p_x_pos;
@@ -98,6 +100,7 @@ void	extract_f_c(t_mapD *map, char **split);
 void	extract_map(t_mapD *map);
 void	map_data_check(t_mapD *map, const char *holder);
 int		valid_map_line(const char *holder);
+void	map_clean_init(t_mapD *map);
 
 // Errors
 void	error_exit(const char *message);

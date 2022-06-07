@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/07 13:34:19 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 00:59:52 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 int	keyboard(int keycode, t_param *world)
 {
-	(void)world;
-	// printf("Keycode %d\n", keycode);
+	//printf("Keycode %d\n", keycode);
 	if (keycode == 0)
 		world->p_orient = (world->p_orient + 5) % 360;
 	if (keycode == 2)
@@ -29,6 +28,12 @@ int	keyboard(int keycode, t_param *world)
 		move_forward(world);
 	if (keycode == 53)
 		exit_cub3d(world);
+	if (keycode == 24)
+		world->map_data->minimap_zoom++;
+	if (keycode == 27)
+		world->map_data->minimap_zoom--;
+	if (keycode == 15)
+		world->map_data->ray_mode = !world->map_data->ray_mode;
 	draw_view(world);
 	return (0);
 }

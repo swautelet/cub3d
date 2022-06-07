@@ -6,32 +6,32 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/07 12:34:19 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 01:02:54 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-static void	paint_map(unsigned int x, unsigned int y, unsigned int len, t_param *world)
+static void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length, t_param *world)
 {
 	unsigned int i;
 	unsigned int j;
 
-	i = 1;
-	while (i < len)
+	i = 1;	// offset pour afficher une fausse grille
+	while (i < square_length)
 	{
 		j = 1;
-		while (j < len)
+		while (j < square_length)
 		{
 			if (world->map_data->map[x][y] == '1')
-				pixel_to_image(world->img, y * len + i, x * len + j, 0xaaffaa00);
+				pixel_to_image(world->img, y * square_length + i, x * square_length + j, 0xaaffaa00);	// couleur des cases mur
 			else if (world->map_data->map[x][y] == ' ' || !world->map_data->map[x][y])
 			{
 				j++;
 				continue;
 			}
 			else
-				pixel_to_image(world->img, y * len + i, x * len + j, 0xaa00ff00);
+				pixel_to_image(world->img, y * square_length + i, x * square_length + j, 0xaa00ff00);	// couleur des cases terrain
 			j++;
 		}
 		i++;
@@ -84,13 +84,20 @@ void	draw_player_nose(t_param *world)
 	unsigned int	new_x;
 	unsigned int	new_y;
 
-	new_x = world->p_map_x + (world->p_front / 4 * cos(degre_to_radiant(world->p_orient)));
-	new_y = world->p_map_y - (world->p_front / 4 * sin(degre_to_radiant(world->p_orient)));
-
+	if (!world->map_data->ray_mode)
+	{
+		new_x = world->p_map_x + (world->p_front / 7 * cos(degre_to_radiant(world->p_orient)));
+		new_y = world->p_map_y - (world->p_front / 7 * sin(degre_to_radiant(world->p_orient)));
+	}
+	else
+	{
+		new_x = world->p_map_x + (20 * cos(degre_to_radiant(world->p_orient)));
+		new_y = world->p_map_y - (20 * sin(degre_to_radiant(world->p_orient)));
+	}
 	bresenham(world->p_map_x, world->p_map_y, new_x, new_y, world);
 }
 
-void	draw_player(t_param *world, unsigned int len)
+void	draw_player(t_param *world, unsigned int square_length)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -98,16 +105,16 @@ void	draw_player(t_param *world, unsigned int len)
 
 	world->p_map_x = 0;
 	world->p_map_y = 0;
-	world->p_size = len / 2;
-	world->p_map_x = ((((world->p_x_pos / SIZE) * len) + ((world->p_x_pos % SIZE) * len / SIZE)));
-	world->p_map_y = ((((world->p_y_pos / SIZE) * len) + ((world->p_y_pos % SIZE) * len / SIZE)));
+	world->p_size = square_length / 2;
+	world->p_map_x = ((((world->p_x_pos / SIZE) * square_length) + ((world->p_x_pos % SIZE) * square_length / SIZE)));
+	world->p_map_y = ((((world->p_y_pos / SIZE) * square_length) + ((world->p_y_pos % SIZE) * square_length / SIZE)));
 	//printf("p_map_x = ");
 	i = 0;
 	while (i < world->p_size)
 	{
 		j = 0;
 		while (j < world->p_size)
-			pixel_to_image(world->img, world->p_map_x - (world->p_size / 2) + i, world->p_map_y - (world->p_size / 2) + j++, 0x00000000);
+			pixel_to_image(world->img, world->p_map_x - (world->p_size / 3) + i, world->p_map_y - (world->p_size / 3) + j++, 0x00000000);
 		i++;
 	}
 	world->p_x_mid = world->p_map_x + world->p_size;
@@ -117,23 +124,21 @@ void	draw_player(t_param *world, unsigned int len)
 
 void	draw_minimap(t_param *world)
 {
-	unsigned int	len;
+	unsigned int	square_length; // longueur des cotes des carres de la minimap
 	unsigned int	i;
 	unsigned int	j;
-	// printf("Max len of minimap chunk : %d\n", map_len_chunk);
-	// printf("Max height of minimap chunk : %d\n", map_hight_chunk);
-	if (world->map_data->map_len > world->map_data->map_hight)
-		len = world->map_data->map_len / 2;
+
+	if (world->map_data->map_length > world->map_data->map_height)
+		square_length = (SCREEN_WIDTH / 3) / world->map_data->map_length + world->map_data->minimap_zoom;
 	else
-		len = world->map_data->map_hight / 2;
+		square_length = (SCREEN_HEIGHT / 3) / world->map_data->map_height + world->map_data->minimap_zoom;
 	i = 0;
-	//printf("len = %d\n", len);
-	while (i < world->map_data->map_hight)
+	while (i < world->map_data->map_height)
 	{
 		j = 0;
-		while (j < world->map_data->map_len)
-			paint_map(i, j++, len, world);
+		while (j < world->map_data->map_length)
+			paint_square_map(i, j++, square_length, world);
 		i++;
 	}
-	draw_player(world, len);
+	draw_player(world, square_length);
 }

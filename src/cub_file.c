@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:34:50 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 12:46:40 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 00:57:01 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		extention_check(const char *path)
 {
 	/*	Checks if the extension (.cub) is valid.	*/
+	
 	char	*extention;
 	size_t	len;
 
@@ -53,9 +54,6 @@ void	extract_file(t_mapD *map, int fd)
 		error_exit("Malloc error ");
 	while (i < 6)
 		map->counter[i++] = 0;
-
-	map->map_hight = 0;
-	map->map_len = 0;
 	while (get_next_line(fd, &holder))
 	{
 		map_data_check(map, holder);
@@ -68,13 +66,36 @@ void	extract_file(t_mapD *map, int fd)
 	extract_map(map);
 }
 
+void	map_clean_init(t_mapD *map)
+{
+	/*	Clean initialization	*/
+	
+	map->path = NULL;
+	map->no = NULL;
+	map->so = NULL;
+	map->we = NULL;
+	map->ea = NULL;
+	map->floor = 0;
+	map->ceiling = 0;
+	map->counter = NULL;
+	map->map = NULL;
+	map->map_length = 0;
+	map->map_height = 0;
+	map->minimap_zoom = 0;
+	map->pos_x = 0;
+	map->pos_y = 0;
+	map->orient = 0;
+	map->ray_mode = 0;
+}
 
 t_mapD	cub_file_check_and_fill(char *path)
 {
 	/*	Handels the entire extraction based on the the .cub file path.	*/
+	
 	int		fd;
 	t_mapD	map;
 
+	map_clean_init(&map);
 	map.path = path;
 	if ((fd = open(path, O_DIRECTORY)) != -1)
 		error_exit("This is a directory ");
