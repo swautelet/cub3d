@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 18:28:11 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/07 11:35:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	keyboard(int keycode, t_param *world)
 		move_forward(world);
 	if (keycode == 53)
 		exit_cub3d(world);
+	draw_view(world);
 	return (0);
 }
 
@@ -40,13 +41,14 @@ void	init_window(t_param *world)
 		world->video = mlx_init();
 		world->window = mlx_new_window(world->video, world->screen_width, world->screen_height, "test");
 		world->img->img = mlx_new_image(world->video, world->screen_width, world->screen_height);
+		world->clean = mlx_new_image(world->video, world->screen_width, world->screen_height);
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
 		world->img->addr = mlx_get_data_addr(world->img->img, &world->img->bits_per_pixel, &world->img->line_length, &world->img->endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L<<0, keyboard, world);
-		mlx_loop_hook(world->video, draw_view, world);
+		// mlx_loop_hook(world->video, draw_view, world);
 		mlx_loop(world->video);
 	}
 	free (world->img);
@@ -58,6 +60,7 @@ int	draw_view(t_param *world)
 	double	dist;
 
 	offset = NBRAY;
+	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	while (offset >= 0)
 	{
 		// printf("offset = %f", offset);
@@ -97,7 +100,7 @@ void	draw_col(t_param *world, double dist, double offset)
 
 	x = (world->screen_width / NBRAY) * (offset + 1) * (-1);
 	y = 0;
-	offset_wall = ((world->screen_height - 10) / dist);
+	offset_wall = ((world->screen_height / 2) / (dist / 10));
 	mid = world->screen_height / 2;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= world->screen_height)

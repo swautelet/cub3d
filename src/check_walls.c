@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:17:04 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/03 18:44:39 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/07 11:37:07 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_left_wall(int x, int y, t_param *world)
 		return (TRUE);
 	if (world->map[(y / SIZE)][(x / SIZE) - 1] == '1')
 	{
-		// printf("left found y = %d x = %d\n",(y / SIZE) - 1,  (x / SIZE));
+		printf("left found y = %d x = %d\n",(y / SIZE),  (x / SIZE) - 1);
 		return (TRUE);
 	}
 	else
@@ -31,7 +31,7 @@ int	check_right_wall(int x, int y, t_param *world)
 		return (TRUE);
 	if (world->map[(y / SIZE)][(x / SIZE)] == '1')
 	{
-		// printf("right found y = %d x = %d\n",(y / SIZE),  (x / SIZE));
+		printf("right found y = %d x = %d\n",(y / SIZE),  (x / SIZE));
 		return (TRUE);
 	}
 	else
@@ -45,7 +45,7 @@ int	check_up_wall(int y, int x, t_param *world)
 		return (TRUE);
 	if (world->map[(y / SIZE) - 1][(x / SIZE)] == '1')
 	{
-	// printf("up found y = %d x = %d\n",(y / SIZE) - 1,  (x / SIZE));
+	printf("up found y = %d x = %d\n",(y / SIZE) - 1,  (x / SIZE));
 		return (TRUE);
 	}
 	else
@@ -58,7 +58,7 @@ int	check_down_wall(int y, int x, t_param *world)
 		return (TRUE);
 	if (world->map[(y / SIZE)][(x / SIZE)] == '1')
 	{
-		// printf("down found y = %d x = %d\n",(y / SIZE),  (x / SIZE));
+		printf("down found y = %d x = %d\n",(y / SIZE),  (x / SIZE));
 		return (TRUE);
 	}
 	else
