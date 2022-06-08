@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/08 00:59:52 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:18:48 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,39 @@
 
 int	keyboard(int keycode, t_param *world)
 {
+	/*	All action that can possibly be made by the player	*/
+
 	//printf("Keycode %d\n", keycode);
 	if (keycode == 0)
-		world->p_orient = (world->p_orient + 5) % 360;
+		world->orient = (world->orient + 5) % 360;
 	if (keycode == 2)
-		world->p_orient = (world->p_orient - 5) % 360;
+		world->orient = (world->orient - 5) % 360;
 	if (keycode == 13)
 		move_forward(world);
 	if (keycode == 53)
 		exit_cub3d(world);
-	if (keycode == 24)
-		world->map_data->minimap_zoom++;
-	if (keycode == 27)
-		world->map_data->minimap_zoom--;
-	if (keycode == 15)
-		world->map_data->ray_mode = !world->map_data->ray_mode;
 	draw_view(world);
 	return (0);
 }
 
 void	init_window(t_param *world)
 {
+	/*	Initialize a window and sets the hooks	*/
+
 	world->img = malloc(sizeof(t_data));
 	if (world->img)
 	{
 		world->video = mlx_init();
-		world->window = mlx_new_window(world->video, world->screen_width, world->screen_height, "test");
-		world->img->img = mlx_new_image(world->video, world->screen_width, world->screen_height);
-		world->clean = mlx_new_image(world->video, world->screen_width, world->screen_height);
+		world->window = mlx_new_window(world->video, SCREEN_WIDTH, SCREEN_HEIGHT, "test");
+		world->img->img = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
+		world->clean = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
 		world->img->addr = mlx_get_data_addr(world->img->img, &world->img->bits_per_pixel, &world->img->line_length, &world->img->endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L<<0, keyboard, world);
-		// mlx_loop_hook(world->video, draw_view, world);
+		mlx_loop_hook(world->video, draw_view, world);
 		mlx_loop(world->video);
 	}
 	free (world->img);
@@ -61,6 +59,8 @@ void	init_window(t_param *world)
 
 int	draw_view(t_param *world)
 {
+	/*	Function that will output the visuals	*/
+
 	double	offset;
 	double	dist;
 
@@ -69,11 +69,11 @@ int	draw_view(t_param *world)
 	while (offset >= 0)
 	{
 		// printf("offset = %f", offset);
-		dist = calcul_dist_till_wall(world, world->p_orient + offset - (NBRAY / 2));
+		dist = calcul_dist_till_wall(world, world->orient + offset - (NBRAY / 2));
 		if ((int)offset == 30)
 		{
 			// printf("i init p_front\n");
-			world->p_front = dist;
+			world->player_front = dist;
 		}
 		// printf("dist = %f offset = %f\n", dist, offset);
 		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
@@ -87,14 +87,6 @@ int	draw_view(t_param *world)
 	return (0);
 }
 
-void	pixel_to_image(t_data *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
 void	draw_col(t_param *world, double dist, double offset)
 {
 	int	x;
@@ -103,36 +95,31 @@ void	draw_col(t_param *world, double dist, double offset)
 	int	mid;
 	int	i;
 
-	x = (world->screen_width / NBRAY) * (offset + 1) * (-1);
+	x = (SCREEN_WIDTH / NBRAY) * (offset + 1) * (-1);
 	y = 0;
-	offset_wall = ((world->screen_height / 2) / (dist / 10));
-	mid = world->screen_height / 2;
+	offset_wall = ((SCREEN_HEIGHT / 2) / (dist / 30));
+	mid = SCREEN_HEIGHT / 2;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
-	while (y <= world->screen_height)
+	while (y <= SCREEN_HEIGHT)
 	{
 		if (y < mid - offset_wall)
 		{
 			i = -1;
-			while (++i <= (world->screen_width - 1)/ NBRAY)
+			while (++i <= (SCREEN_WIDTH - 1)/ NBRAY)
 				pixel_to_image(world->img, x + i, y, world->ceiling_color);
 		}
 		else if (y > mid + offset_wall)
 		{
 			i = -1;
-			while (++i <= (world->screen_width - 1) / NBRAY)
+			while (++i <= (SCREEN_WIDTH - 1) / NBRAY)
 				pixel_to_image(world->img, x + i, y, world->floor_color);
 		}
 		else
 		{
 			i = -1;
-			while (++i <= (world->screen_width - 1) / NBRAY)
+			while (++i <= (SCREEN_WIDTH - 1) / NBRAY)
 				pixel_to_image(world->img, x + i, y, world->wall_color);
 		}
 		y++;
 	}
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
 }

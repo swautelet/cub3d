@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/07 13:37:37 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:09:53 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ double	next_vert_wall(t_param *world, double orientation)
 	// printf("orientation = %f\n", orientation);
 	if (orientation < 90 || orientation > 270)
 	{
-		next_vert = SIZE - (world->p_x_pos % SIZE);
+		next_vert = SIZE - (world->px_x_pos % SIZE);
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
 		// printf("here\n");
-		while (check_right_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world) == FALSE)
+		while (check_right_wall(next_vert + world->px_x_pos, decal + world->px_y_pos, world) == FALSE)
 		{
 			next_vert += SIZE;
 			decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
@@ -51,9 +51,9 @@ double	next_vert_wall(t_param *world, double orientation)
 	}
 	else if (orientation > 90 && orientation < 270)
 	{
-		next_vert = (world->p_x_pos % SIZE) * (-1);
+		next_vert = (world->px_x_pos % SIZE) * (-1);
 		decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
-		while (check_left_wall(next_vert + world->p_x_pos, decal + world->p_y_pos, world)== FALSE)
+		while (check_left_wall(next_vert + world->px_x_pos, decal + world->px_y_pos, world)== FALSE)
 		{
 			next_vert -= SIZE;
 			decal = (-1 * next_vert * tan(degre_to_radiant(orientation)));
@@ -74,10 +74,10 @@ double	next_hor_wall(t_param *world, double orientation)
 	next_hor = 0;
 	if (orientation > 0 && orientation < 180)
 	{
-		next_hor = (world->p_y_pos % SIZE) * (-1);
+		next_hor = (world->px_y_pos % SIZE) * (-1);
 		decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
 		// printf("look for up \n");
-		while (check_up_wall(next_hor + world->p_y_pos, decal + world->p_x_pos, world) == FALSE)
+		while (check_up_wall(next_hor + world->px_y_pos, decal + world->px_x_pos, world) == FALSE)
 		{
 			next_hor -= SIZE;
 			decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
@@ -85,10 +85,10 @@ double	next_hor_wall(t_param *world, double orientation)
 	}
 	else if (orientation > 180)
 	{
-		next_hor =  SIZE - (world->p_y_pos % SIZE);
+		next_hor =  SIZE - (world->px_y_pos % SIZE);
 		decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
 		// printf("look for down \n");
-		while (check_down_wall(next_hor + world->p_y_pos, decal + world->p_x_pos, world)== FALSE)
+		while (check_down_wall(next_hor + world->px_y_pos, decal + world->px_x_pos, world)== FALSE)
 		{
 			next_hor += SIZE;
 			decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
@@ -100,7 +100,3 @@ double	next_hor_wall(t_param *world, double orientation)
 		return (sqrt(pow(next_hor, 2) + pow(decal, 2)));
 }
 
-double	degre_to_radiant(double degre)
-{
-	return (M_PI * degre / 180);
-}

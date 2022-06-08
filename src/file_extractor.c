@@ -1,57 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_extractors.c                                  :+:      :+:    :+:   */
+/*   file_extractor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:29:58 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 12:46:04 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:57:06 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	extract_sand_rose(t_mapD *map, char **split)
+void	extract_sand_rose(t_param *world, char **split)
 {
+	/*	Gets the textures for every directions	*/
+
 	if (len_array_2d(split) == 2)
 	{
 		if (ft_strsame(split[0], "NO"))
 		{
-			map->no = split[1];
-			map->counter[0] += 1;
+			world->no = split[1];
+			world->counter[0] += 1;
 		}
 		else if (ft_strsame(split[0], "SO"))
 		{
-			map->so = split[1];
-			map->counter[1] += 1;
+			world->so = split[1];
+			world->counter[1] += 1;
 		}
 		else if (ft_strsame(split[0], "WE"))
 		{
-			map->we = split[1];
-			map->counter[2] += 1;
+			world->we = split[1];
+			world->counter[2] += 1;
 		}
 		else if (ft_strsame(split[0], "EA"))
 		{
-			map->ea = split[1];
-			map->counter[3] += 1;
+			world->ea = split[1];
+			world->counter[3] += 1;
 		}
 	}
 }
 
-void	extract_f_c(t_mapD *map, char **split)
+void	extract_f_c(t_param *world, char **split)
 {
+	/*	Gets the textures for the ceiling and floor	*/
+
 	if (len_array_2d(split) == 2)
 	{
 		if (ft_strsame(split[0], "F"))
 		{
-			map->floor = to_hex_int(split[1]);
-			map->counter[4] += 1;
+			world->floor_color = to_hex_int(split[1], world);
+			world->counter[4] += 1;
 		}
 		else if (ft_strsame(split[0], "C"))
 		{
-			map->ceiling = to_hex_int(split[1]);
-			map->counter[5] += 1;
+			world->ceiling_color = to_hex_int(split[1], world);
+			world->counter[5] += 1;
 		}
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/03 16:04:13 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:13:52 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	to_hex_int(const char *str)
+int	to_hex_int(const char *str, t_param *world)
 {
 	char	**split;
 	int	r;
@@ -21,7 +21,7 @@ int	to_hex_int(const char *str)
 
 	split = ft_split(str, ',');
 	if (!(ft_isstrdigit(split[0]) && ft_isstrdigit(split[1]) && ft_isstrdigit(split[2])))
-		error_exit("Corrupted .cub file ");
+		error_exit("Corrupted .cub file ", world);
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
@@ -44,5 +44,63 @@ void	exit_cub3d(t_param *world)
 	mlx_destroy_window(world->video, world->window);
 	free(world->img);
 	free(world);
-	exit (0);
+	exit(0);
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	pixel_to_image(t_data *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+double	degre_to_radiant(double degre)
+{
+	return (M_PI * degre / 180);
+}
+
+/*	Algorithme de Bresenham, celle-ci dessine les lignes entre
+	deux points.	*/
+
+void	bresenham(int x0, int y0, int x1, int y1, t_param * world)
+{
+	int	dx, dy, sx, sy, err, e2;
+
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
+	if (x0 < x1)
+		sx = 1;
+	else
+		sx = -1;
+	if (y0 < y1)
+		sy = 1;
+	else
+		sy = -1;
+	if (dx > dy)
+		err = dx / 2;
+	else
+		err = -dy / 2;
+	while (1)
+	{
+		pixel_to_image(world->img, x0, y0, 0x00000000);
+		if (x0 == x1 && y0 == y1)
+			break ;
+		e2 = err;
+		if (e2 > -dx)
+		{
+			err -= dy;
+			x0 += sx;
+		}
+		if (e2 < dy)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
 }

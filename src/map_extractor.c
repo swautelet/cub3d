@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 00:28:35 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:49:25 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	valid_map_line(const char *holder)
 {
+	/*	Finds out if the map line is valid	*/
+
 	char	*base;
 	size_t	i;
 
@@ -28,39 +30,42 @@ int	valid_map_line(const char *holder)
 	return (1);
 }
 
-void	map_data_check(t_mapD *map, const char *holder)
+void	map_data_check(t_param *world, const char *holder)
 {
+	/*	Verify if every "map" line is valid and gets the amounts of lines and columns	*/
 	if (valid_map_line(holder) && ft_strlen(holder) > 1)
 	{
-		map->map_height++;
-		if (ft_strlen(holder) > map->map_length)
-			map->map_length = ft_strlen(holder); // il manque une ligne si le fichier ne se termine pas par une ligne vide
+		world->map_height++;
+		if (ft_strlen(holder) > world->map_width)
+			world->map_width = ft_strlen(holder); // il manque une ligne si le fichier ne se termine pas par une ligne vide
 	}
 }
 
-void	get_player_position(t_mapD *map)
+void	get_player_position(t_param *world)
 {
+	/*	Gets the player position in the map	*/
+
 	size_t	x;
 	size_t	y;
 
 	x = 0;
-	while (map->map[x])
+	while (world->map[x])
 	{
 		y = 0;
-		while (map->map[x][y])
+		while (world->map[x][y])
 		{
-			if (ft_char_in_str(map->map[x][y], "NSEW"))
+			if (ft_char_in_str(world->map[x][y], "NSEW"))
 			{
-				map->pos_x = y;
-				map->pos_y = x;
-				if (map->map[x][y] == 'N')
-					map->orient = 90;
-				else if (map->map[x][y] == 'S')
-					map->orient = 270;
-				else if (map->map[x][y] == 'E')
-					map->orient = 0;
-				else if (map->map[x][y] == 'W')
-					map->orient = 180;
+				world->map_x_pos = y;
+				world->map_y_pos = x;
+				if (world->map[x][y] == 'N')
+					world->orient = 90;
+				else if (world->map[x][y] == 'S')
+					world->orient = 270;
+				else if (world->map[x][y] == 'E')
+					world->orient = 0;
+				else if (world->map[x][y] == 'W')
+					world->orient = 180;
 			}
 			y++;
 		}
@@ -68,27 +73,31 @@ void	get_player_position(t_mapD *map)
 	}
 }
 
-void	extract_map(t_mapD *map)
+void	extract_map(t_param *world)
 {
+
+	/*	Extract the entire map datas	*/
+
 	int		fd;
 	char	*holder;
 	size_t	i;
 
 	holder = NULL;
 	i = 0;
-	map->map = malloc(sizeof(char *) * map->map_height + 1);
-	if (!map->map)
-		error_exit("Malloc error ");
-	fd = open(map->path, O_RDONLY);
+	world->map = malloc(sizeof(char *) * world->map_height + 1);
+	if (!world->map)
+		error_exit("Malloc error ", world);
+	fd = open(world->path, O_RDONLY);
 	if (!fd)
-		error_exit("Failed to open the .cub file ");
+		error_exit("Failed to open the .cub file ", world);
 	while (get_next_line(fd, &holder))
 	{
 		if (valid_map_line(holder) && ft_strlen(holder) > 1)
 		{
-			map->map[i] = ft_calloc(sizeof(char), map->map_length + 1);
-			ft_strlcpy(map->map[i++], holder, ft_strlen(holder) + 1);
+			world->map[i] = ft_calloc(sizeof(char), world->map_width + 1);
+			ft_strlcpy(world->map[i++], holder, ft_strlen(holder) + 1);
 		}
 	}
-	get_player_position(map);
+	world->map[i] = NULL;
+	get_player_position(world);
 }
