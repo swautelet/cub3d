@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 12:49:25 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:25:07 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,47 @@ void	get_player_position(t_param *world)
 	}
 }
 
+void	fill_spaces(t_param * world)
+{
+	/*	Replaces all the spaces in the map by walls	*/
+
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < world->map_height)
+	{
+		j = 0;
+		while (j < world->map_width)
+		{
+			if (world->map[i][j] == ' ')
+				world->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
+
+void	last_map_check(t_param *world)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < world->map_height)
+	{
+		if (world->map[i][0] != '1' || world->map[i][world->map_width - 1] != '1')
+			error_exit("Corrupted .cub file ", world);
+		i++;
+	}
+	i = 0;
+	while (i < world->map_width)
+	{
+		if (world->map[0][i] != '1' || world->map[world->map_height - 1][i] != '1')
+			error_exit("Corrupted .cub file ", world);
+		i++;
+	}
+}
+
 void	extract_map(t_param *world)
 {
 
@@ -93,11 +134,10 @@ void	extract_map(t_param *world)
 	while (get_next_line(fd, &holder))
 	{
 		if (valid_map_line(holder) && ft_strlen(holder) > 1)
-		{
-			world->map[i] = ft_calloc(sizeof(char), world->map_width + 1);
-			ft_strlcpy(world->map[i++], holder, ft_strlen(holder) + 1);
-		}
+			world->map[i++] = ft_strjoin(holder, space_string(world->map_width - ft_strlen(holder), world));
 	}
 	world->map[i] = NULL;
+	fill_spaces(world);
+	last_map_check(world);
 	get_player_position(world);
 }

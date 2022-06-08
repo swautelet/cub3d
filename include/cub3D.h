@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 14:22:16 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:15:58 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	map_data_check(t_param *world, const char *holder);
 int		valid_map_line(const char *holder);
 void	extract_map(t_param *world);
 void	get_player_position(t_param *world);
+void	fill_spaces(t_param * world);
+void	last_map_check(t_param *world);
 
 // File extractor
 void	extract_sand_rose(t_param *world, char **split);
@@ -120,9 +122,10 @@ void	pixel_to_image(t_data *img, int x, int y, int color);
 void	exit_cub3d(t_param *world);
 double	degre_to_radiant(double degre);
 void	bresenham(int x0, int y0, int x1, int y1, t_param * world);
+char	*space_string(size_t len, t_param * world);
 
 // Errors
-void	error_exit(const char *message, t_param *world);
+void	error_exit(char *message, t_param *world);
 
 
 

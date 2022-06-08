@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 14:16:40 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:48:22 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	init_world(t_param *world)
 	world->counter = NULL;
 }
 
-static void	output_tests(t_param *world)
-{
-	/*	Outputs some verification tests	*/
+// static void	output_tests(t_param *world)
+// {
+// 	/*	Outputs some verification tests	*/
 
-	int	i = 0;
-	while (world->map[i])
-		printf("%s\n", world->map[i++]);
-	printf("Player (%d;%d), orientation : %d\n", world->map_x_pos, world->map_y_pos, world->orient);
-	printf("Player (%d;%d), orientation : %d\n", world->px_x_pos, world->px_y_pos, world->orient);
-}
+// 	int	i = 0;
+// 	while (world->map[i])
+// 		printf("%s\n", world->map[i++]);
+// 	printf("Player (%d;%d), orientation : %d\n", world->map_x_pos, world->map_y_pos, world->orient);
+// 	printf("Player (%d;%d), orientation : %d\n", world->px_x_pos, world->px_y_pos, world->orient);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 		world->px_x_pos = (world->map_x_pos * SIZE) + SIZE / 2;
 		world->px_y_pos = (world->map_y_pos * SIZE) + SIZE / 2;
 		world->wall_color = create_trgb(0, 0, 0, 255);
-		output_tests(world);
+		//output_tests(world);
 		init_window(world);
 		//free(world);
 	}

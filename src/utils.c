@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 14:13:52 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:02:56 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,19 @@ void	bresenham(int x0, int y0, int x1, int y1, t_param * world)
 			y0 += sy;
 		}
 	}
+}
+
+char	*space_string(size_t len, t_param * world)
+{
+	char	*res;
+	size_t	i;
+
+	i = 0;
+	res = malloc(sizeof(char) * len + 1);
+	if (!res)
+		error_exit("Malloc error ", world);
+	while (i < len)
+		res[i++] = '1';
+	res[i] = '\0';
+	return (res);
 }
