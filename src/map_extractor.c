@@ -6,11 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 13:43:01 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:00:09 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 int	valid_map_line(const char *holder)
 {

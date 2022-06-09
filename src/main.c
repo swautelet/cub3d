@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 11:48:29 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:00:14 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 void	init_world(t_param *world)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:29:50 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 15:41:28 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:00:29 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 void	error_exit(char *message, t_param *world)
 {

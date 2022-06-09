@@ -6,11 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 13:33:08 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:00:02 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length, t_param *world)
 {

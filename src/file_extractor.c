@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file_extractor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:29:58 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 12:57:06 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:00:24 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 void	extract_sand_rose(t_param *world, char **split)
 {

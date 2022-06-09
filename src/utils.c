@@ -6,11 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 13:32:09 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:59:53 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 int	to_hex_int(const char *str, t_param *world)
 {

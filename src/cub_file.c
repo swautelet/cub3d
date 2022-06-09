@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:34:50 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 12:44:51 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:00:37 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 int		extention_check(const char *path)
 {
