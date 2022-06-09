@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_extractor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 16:25:07 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:38:35 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,14 @@ void	last_map_check(t_param *world)
 	i = 0;
 	while (i < world->map_height)
 	{
-		if (world->map[i][0] != '1' || world->map[i][world->map_width - 1] != '1')
+		if (world->map[i][0] != '1' || (world->map[i][world->map_width - 1] != '1' && world->map[i][world->map_width - 1] != 'v'))
 			error_exit("Corrupted .cub file ", world);
 		i++;
 	}
 	i = 0;
 	while (i < world->map_width)
 	{
-		if (world->map[0][i] != '1' || world->map[world->map_height - 1][i] != '1')
+		if ((world->map[0][i] != 'v' && world->map[0][i] != '1') || (world->map[world->map_height - 1][i] != '1' && world->map[world->map_height - 1][i] != 'v'))
 			error_exit("Corrupted .cub file ", world);
 		i++;
 	}

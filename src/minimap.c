@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 14:13:45 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:33:08 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length
 				j++;
 				continue;
 			}
-			else
+			else if (world->map[x][y] != 'v')
 				pixel_to_image(world->img, y * square_length + i, x * square_length + j, 0x00808080);	// couleur des cases terrain
 			j++;
 		}

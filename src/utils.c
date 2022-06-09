@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 16:02:56 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:32:09 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	*space_string(size_t len, t_param * world)
 	if (!res)
 		error_exit("Malloc error ", world);
 	while (i < len)
-		res[i++] = '1';
+		res[i++] = 'v';
 	res[i] = '\0';
 	return (res);
 }
