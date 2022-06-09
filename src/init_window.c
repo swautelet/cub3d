@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/09 15:10:09 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:14:51 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		{
 			// i = -1;
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[NO], x_wall, (y -((SCREEN_HEIGHT / 2) - offset_wall)) * ((world->texture[NO].endian) / (offset_wall * 2))));
+				pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[NO], x_wall, (y -((SCREEN_HEIGHT / 2) - offset_wall)) * ((world->texture[NO].y_size) / (offset_wall * 2))));
 		}
 		y++;
 	}
