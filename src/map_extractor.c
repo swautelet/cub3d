@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 16:25:07 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:58:47 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ void	get_player_position(t_param *world)
 
 	size_t	x;
 	size_t	y;
+	int		found;
 
 	x = 0;
+	found = 0;
 	while (world->map[x])
 	{
 		y = 0;
@@ -66,11 +68,14 @@ void	get_player_position(t_param *world)
 					world->orient = 0;
 				else if (world->map[x][y] == 'W')
 					world->orient = 180;
+				found++;
 			}
 			y++;
 		}
 		x++;
 	}
+	if (world->orient == 1000 || found > 1)
+		error_exit("Corrupted .cub file ", world);
 }
 
 void	fill_spaces(t_param * world)
