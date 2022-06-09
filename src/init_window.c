@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/09 16:29:03 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:56:46 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ void	init_window(t_param *world)
 		world->img->img = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
 		world->clean = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
 		world->texture[NO].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[NO].x_size), &(world->texture[NO].y_size));
-		// world->texture[SO].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[SO].line_length), &(world->texture[SO].endian));
-		// world->texture[WE].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[WE].line_length), &(world->texture[WE].endian));
-		// world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[EA].line_length), &(world->texture[EA].endian));
+		world->texture[SO].img = mlx_xpm_file_to_image(world->video, world->so, &(world->texture[SO].x_size), &(world->texture[SO].y_size));
+		world->texture[WE].img = mlx_xpm_file_to_image(world->video, world->we, &(world->texture[WE].x_size), &(world->texture[WE].y_size));
+		world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->ea, &(world->texture[EA].x_size), &(world->texture[EA].y_size));
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
 		world->img->addr = mlx_get_data_addr(world->img->img, &world->img->bits_per_pixel, &world->img->line_length, &world->img->endian);
 		world->texture[NO].addr = mlx_get_data_addr(world->texture[NO].img, &world->texture[NO].bits_per_pixel, &world->texture[NO].line_length, &world->texture[NO].endian);
-		// world->texture[SO].addr = mlx_get_data_addr(world->texture[SO].img, &world->texture[SO].bits_per_pixel, &world->texture[SO].line_length, &world->texture[SO].endian);
-		// world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
-		// world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
+		world->texture[SO].addr = mlx_get_data_addr(world->texture[SO].img, &world->texture[SO].bits_per_pixel, &world->texture[SO].line_length, &world->texture[SO].endian);
+		world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
+		world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L<<0, keyboard, world);
 		mlx_loop_hook(world->video, draw_view, world);
@@ -132,12 +132,12 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		{
 			// i = -1;
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-			x_texture = x_wall / 64 * world->texture[NO].x_size;
-			y_texture += (double)(world->texture[NO].y_size) / (double)((offset_wall * 2));
-			if (y_texture > world->texture[NO].y_size)
-				y_texture = world->texture[NO].y_size - 1;
+			x_texture = x_wall * world->texture[world->flag_wall].x_size / 64;
+			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
+			if (y_texture > world->texture[world->flag_wall].y_size)
+				y_texture = world->texture[world->flag_wall].y_size - 1;
 		// printf("%f\n", (double)(offset_wall * 2) );
-			pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[NO], x_texture, y_texture));
+			pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
 		}
 		y++;
 	}

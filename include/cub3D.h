@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 15:09:27 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:59:33 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@
 
 # define SIZE 64
 # define ANGLEVISION 60
-# define ECAR 0.05
+# define ECAR 0.005
 # define NBRAY ANGLEVISION / ECAR
 # define SCREEN_HEIGHT 900
 # define SCREEN_WIDTH 900
 # define NOSE 20
+# define MOVE 8
 
 typedef enum e_bool
 {
@@ -64,6 +65,7 @@ typedef struct s_param
 	int				map_x_pos;	// Player x position in the map
 	int				map_y_pos;	// Player y position in the map
 	int				player_size;	// Length of side of square representing player
+	int				flag_wall;
 	double			player_front;	// The ray laaunched just in front of the player
 	double			player_left;
 	double			player_right;
@@ -147,3 +149,4 @@ void	error_exit(char *message, t_param *world);
 
 //to_do
 // check texture existe
+// finish movements
