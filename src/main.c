@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/08 16:48:22 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:48:29 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_world(t_param *world)
 
 	world->px_x_pos = 0;
 	world->px_y_pos = 0;
-	world->orient = 0;
+	world->orient = 1000;
 	world->map_x_pos = 0;
 	world->map_y_pos = 0;
 	world->player_size = 0;
