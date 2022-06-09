@@ -6,7 +6,7 @@
 #    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/09 14:52:33 by swautele         ###   ########.fr        #
+#    Updated: 2022/06/09 15:13:37 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ re: fclean all
 
 #autosave rule
 save:
-	git commit -am "$(MAKECMDGOALS)"
+	git commit -am "$(MAKECMDGOALS)" 
 	git push
 
 # phony
