@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/09 15:26:14 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:29:03 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,15 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	int	y;
 	int	offset_wall;
 	int	mid;
+	int	x_texture;
+	double	y_texture;
 	// int	i;
 
 	x = (SCREEN_WIDTH / ANGLEVISION) * (offset);
 	y = 0;
 	offset_wall = ((SCREEN_HEIGHT / 2) / (dist / 30));
 	mid = SCREEN_HEIGHT / 2;
+	y_texture = 0;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= SCREEN_HEIGHT)
 	{
@@ -119,7 +122,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
 				pixel_to_image(world->img, x, y, world->ceiling_color);
 		}
-		else if (y > mid + offset_wall)
+		else if (y >= mid + offset_wall)
 		{
 			// i = -1;
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
@@ -129,7 +132,12 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		{
 			// i = -1;
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[NO], x_wall * world->texture[NO].line_length / 64, ((y -((SCREEN_HEIGHT / 2) - offset_wall)) / (offset_wall * 2)) * ((world->texture[NO].y_size) / (offset_wall * 2))));
+			x_texture = x_wall / 64 * world->texture[NO].x_size;
+			y_texture += (double)(world->texture[NO].y_size) / (double)((offset_wall * 2));
+			if (y_texture > world->texture[NO].y_size)
+				y_texture = world->texture[NO].y_size - 1;
+		// printf("%f\n", (double)(offset_wall * 2) );
+			pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[NO], x_texture, y_texture));
 		}
 		y++;
 	}
