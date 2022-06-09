@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/08 14:09:53 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:38:49 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ double	calcul_dist_till_wall(t_param *world, double orientation)
 {
 	double	vert;
 	double	hor;
+	double	dest;
 
 	while (orientation < 0)
 		orientation += 360;
@@ -25,9 +26,11 @@ double	calcul_dist_till_wall(t_param *world, double orientation)
 	hor = next_hor_wall(world, orientation);
 	// printf("vert = %f hor = %f\n", vert, hor);
 	if (vert < hor)
-		return (vert);
+		dest = vert;
 	else
-		return (hor);
+		dest = hor;
+	dest = dest * cos(degre_to_radiant(world->orient - orientation));
+	return (dest);
 }
 
 double	next_vert_wall(t_param *world, double orientation)

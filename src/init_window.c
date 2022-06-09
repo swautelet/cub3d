@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/08 14:18:48 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:23:23 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,21 @@ int	draw_view(t_param *world)
 	double	offset;
 	double	dist;
 
-	offset = NBRAY;
+	offset = ANGLEVISION;
 	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	while (offset >= 0)
 	{
 		// printf("offset = %f", offset);
-		dist = calcul_dist_till_wall(world, world->orient + offset - (NBRAY / 2));
+		dist = calcul_dist_till_wall(world, world->orient - offset + (ANGLEVISION / 2));
 		if ((int)offset == 30)
 		{
 			// printf("i init p_front\n");
 			world->player_front = dist;
 		}
 		// printf("dist = %f offset = %f\n", dist, offset);
-		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (NBRAY / 2));
+		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (ANGLEVISION / 2));
 		draw_col(world, dist, offset);
-		offset -= 0.5;
+		offset -= ECAR;
 	}
 	// dist = calcul_dist_till_wall(world, world->p_orient);
 	// world->p_front = dist;
@@ -93,9 +93,9 @@ void	draw_col(t_param *world, double dist, double offset)
 	int	y;
 	int	offset_wall;
 	int	mid;
-	int	i;
+	// int	i;
 
-	x = (SCREEN_WIDTH / NBRAY) * (offset + 1) * (-1);
+	x = (SCREEN_WIDTH / ANGLEVISION) * (offset);
 	y = 0;
 	offset_wall = ((SCREEN_HEIGHT / 2) / (dist / 30));
 	mid = SCREEN_HEIGHT / 2;
@@ -104,21 +104,21 @@ void	draw_col(t_param *world, double dist, double offset)
 	{
 		if (y < mid - offset_wall)
 		{
-			i = -1;
-			while (++i <= (SCREEN_WIDTH - 1)/ NBRAY)
-				pixel_to_image(world->img, x + i, y, world->ceiling_color);
+			// i = -1;
+			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
+				pixel_to_image(world->img, x, y, world->ceiling_color);
 		}
 		else if (y > mid + offset_wall)
 		{
-			i = -1;
-			while (++i <= (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x + i, y, world->floor_color);
+			// i = -1;
+			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
+				pixel_to_image(world->img, x, y, world->floor_color);
 		}
 		else
 		{
-			i = -1;
-			while (++i <= (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x + i, y, world->wall_color);
+			// i = -1;
+			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
+				pixel_to_image(world->img, x, y, world->wall_color);
 		}
 		y++;
 	}
