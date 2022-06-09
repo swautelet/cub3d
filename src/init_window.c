@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/09 12:23:23 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:10:09 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,25 @@ void	init_window(t_param *world)
 	/*	Initialize a window and sets the hooks	*/
 
 	world->img = malloc(sizeof(t_data));
+	world->texture = malloc(sizeof(t_data) * 4);
 	if (world->img)
 	{
 		world->video = mlx_init();
 		world->window = mlx_new_window(world->video, SCREEN_WIDTH, SCREEN_HEIGHT, "test");
 		world->img->img = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
 		world->clean = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
+		world->texture[NO].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[NO].x_size), &(world->texture[NO].y_size));
+		// world->texture[SO].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[SO].line_length), &(world->texture[SO].endian));
+		// world->texture[WE].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[WE].line_length), &(world->texture[WE].endian));
+		// world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[EA].line_length), &(world->texture[EA].endian));
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
 		world->img->addr = mlx_get_data_addr(world->img->img, &world->img->bits_per_pixel, &world->img->line_length, &world->img->endian);
+		world->texture[NO].addr = mlx_get_data_addr(world->texture[NO].img, &world->texture[NO].bits_per_pixel, &world->texture[NO].line_length, &world->texture[NO].endian);
+		// world->texture[SO].addr = mlx_get_data_addr(world->texture[SO].img, &world->texture[SO].bits_per_pixel, &world->texture[SO].line_length, &world->texture[SO].endian);
+		// world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
+		// world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L<<0, keyboard, world);
 		mlx_loop_hook(world->video, draw_view, world);
@@ -63,13 +72,15 @@ int	draw_view(t_param *world)
 
 	double	offset;
 	double	dist;
+	double	x_wall;
 
 	offset = ANGLEVISION;
 	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
+	x_wall = 0;
 	while (offset >= 0)
 	{
 		// printf("offset = %f", offset);
-		dist = calcul_dist_till_wall(world, world->orient - offset + (ANGLEVISION / 2));
+		dist = calcul_dist_till_wall(world, world->orient - offset + (ANGLEVISION / 2), &x_wall);
 		if ((int)offset == 30)
 		{
 			// printf("i init p_front\n");
@@ -77,7 +88,7 @@ int	draw_view(t_param *world)
 		}
 		// printf("dist = %f offset = %f\n", dist, offset);
 		// printf("dist = %f offset = %f ray = %f\n", dist, offset, world->p_orient + offset - (ANGLEVISION / 2));
-		draw_col(world, dist, offset);
+		draw_col(world, dist, offset, x_wall);
 		offset -= ECAR;
 	}
 	// dist = calcul_dist_till_wall(world, world->p_orient);
@@ -87,7 +98,7 @@ int	draw_view(t_param *world)
 	return (0);
 }
 
-void	draw_col(t_param *world, double dist, double offset)
+void	draw_col(t_param *world, double dist, double offset, double x_wall)
 {
 	int	x;
 	int	y;
@@ -118,7 +129,7 @@ void	draw_col(t_param *world, double dist, double offset)
 		{
 			// i = -1;
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, world->wall_color);
+				pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[NO], x_wall, (y -((SCREEN_HEIGHT / 2) - offset_wall)) * ((world->texture[NO].endian) / (offset_wall * 2))));
 		}
 		y++;
 	}

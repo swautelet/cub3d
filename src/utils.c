@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:33:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 13:59:53 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:01:17 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ size_t	len_array_2d(char **split)
 void	exit_cub3d(t_param *world)
 {
 	mlx_destroy_image(world->video, world->img->img);
+	mlx_destroy_image(world->video, world->clean);
+	mlx_destroy_image(world->video, world->texture[0].img);
+	// mlx_destroy_image(world->video, world->texture[1].img);
+	// mlx_destroy_image(world->video, world->texture[2].img);
+	// mlx_destroy_image(world->video, world->texture[3].img);
 	mlx_destroy_window(world->video, world->window);
+	free(world->texture);
 	free(world->img);
 	free(world);
 	exit(0);

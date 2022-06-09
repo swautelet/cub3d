@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 12:41:44 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:09:27 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef	struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		y_size;
+	int		x_size;
 }	t_data;
 
 typedef struct s_param
@@ -81,14 +83,14 @@ typedef struct s_param
 	char			*so;
 	char			*we;
 	char			*ea;
-	t_data			texture[4];
+	t_data			*texture;
 	int				*counter;	// Helps doing parsing
 }	t_param;
 
 // Drawing
 void	init_window(t_param *world);
 int		draw_view(t_param *world);
-void	draw_col(t_param *world, double dist, double offset);
+void	draw_col(t_param *world, double dist, double offset, double x_wall);
 
 // Hooks
 int		keyboard(int keycode, t_param *world);
@@ -100,15 +102,15 @@ void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length
 void	draw_player_nose(t_param *world);
 
 // Distance
-double	calcul_dist_till_wall(t_param *world, double orientation);
-double	next_vert_wall(t_param *world, double orientation);
-double	next_hor_wall(t_param *world, double orientation);
+double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall);
+double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall);
+double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall);
 
 // Walls
-int	check_left_wall(int x, int y, t_param *world);
-int	check_right_wall(int x, int y, t_param *world);
-int	check_up_wall(int y, int x, t_param *world);
-int	check_down_wall(int y, int x, t_param *world);
+int		check_left_wall(int x, int y, t_param *world);
+int		check_right_wall(int x, int y, t_param *world);
+int		check_up_wall(int y, int x, t_param *world);
+int		check_down_wall(int y, int x, t_param *world);
 
 // .cub file
 void	cub_file_check_and_fill(t_param *world, char *path);
@@ -120,7 +122,7 @@ void	map_data_check(t_param *world, const char *holder);
 int		valid_map_line(const char *holder);
 void	extract_map(t_param *world);
 void	get_player_position(t_param *world);
-void	fill_spaces(t_param * world);
+void	fill_spaces(t_param *world);
 void	last_map_check(t_param *world);
 
 // File extractor
@@ -134,12 +136,14 @@ int		create_trgb(int t, int r, int g, int b);
 void	pixel_to_image(t_data *img, int x, int y, int color);
 void	exit_cub3d(t_param *world);
 double	degre_to_radiant(double degre);
-void	bresenham(int x0, int y0, int x1, int y1, t_param * world);
-char	*space_string(size_t len, t_param * world);
+void	bresenham(int x0, int y0, int x1, int y1, t_param *world);
+char	*space_string(size_t len, t_param *world);
+int		get_color_from_img(t_data *img, int x, int y);
 
 // Errors
 void	error_exit(char *message, t_param *world);
 
-
-
 #endif
+
+//to_do
+// check texture existe

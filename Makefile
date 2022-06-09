@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+         #
+#    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/08 14:10:21 by npinheir         ###   ########.fr        #
+#    Updated: 2022/06/09 14:52:33 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ MINLBX_DIR = ./minilibx_opengl/
 
 # Source files and object files
 SRC_FILES = main.c errors.c cub_file.c utils.c file_extractor.c \
-			map_extractor.c minimap.c init_window.c move.c distance.c check_walls.c
+			map_extractor.c minimap.c init_window.c move.c distance.c check_walls.c \
+			get_texture.c
 			 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
