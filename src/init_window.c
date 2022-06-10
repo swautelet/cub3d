@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/10 15:01:59 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:07:41 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	draw_view(t_param *world)
 	while (offset >= 0)
 	{
 		// printf("offset = %f", offset);
-		dist = calcul_dist_till_wall(world, world->orient - offset + (ANGLEVISION / 2), &x_wall);
-		if ((int)offset == 30)
+		dist = calcul_dist_till_wall(world, world->orient - offset + MID, &x_wall);
+		if ((int)offset == MID)
 		{
 			// printf("i init p_front\n");
 			world->player_front = dist;
@@ -126,7 +126,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	x = SCREEN_WIDTH * offset / ANGLEVISION;
 	y = 0;
 	offset_wall = SCREEN_HEIGHT * 15 / dist;
-	mid = SCREEN_HEIGHT / 2;
+	mid = HALF_SCREEN;
 	y_texture = 0;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= SCREEN_HEIGHT)
@@ -147,7 +147,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		{
 			// i = -1;
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-			x_texture = x_wall * world->texture[world->flag_wall].x_size / 64;
+			x_texture = x_wall * world->texture[world->flag_wall].x_size / SIZE;
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
 			if (y_texture > world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;

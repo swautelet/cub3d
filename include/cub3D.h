@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/10 15:03:02 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:07:14 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@
 # define SCREEN_WIDTH 1200
 # define NOSE 20
 # define MOVE 8
+# define MID ANGLEVISION / 2
 # define LIMIT MOVE * 3
+# define HALF_SCREEN SCREEN_HEIGHT / 2
 
 typedef enum e_bool
 {
