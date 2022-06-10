@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/10 12:06:34 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:31:15 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,25 @@ int	keyboard(int keycode, t_param *world)
 {
 	/*	All action that can possibly be made by the player	*/
 
-	//printf("Keycode %d\n", keycode);
+	// printf("Keycode %d\n", keycode);
 	if (keycode == 0)
 		world->orient = (world->orient + 5) % 360;
 	if (keycode == 2)
-		world->orient = (world->orient - 5) % 360;
-	if (keycode == 13)
+	{
+		world->orient = world->orient - 5;
+		if (world->orient < 0)
+			world->orient += 360;
+	}
+	if (keycode == 13 || keycode == 126)
 		move_forward(world);
 	if (keycode == 53)
 		exit_cub3d(world);
+	if (keycode == 123)
+		move_left(world);
+	if (keycode == 124)
+		move_right(world);
+	if (keycode == 1 || keycode == 125)
+		move_back(world);
 	draw_view(world);
 	return (0);
 }
@@ -91,6 +101,10 @@ int	draw_view(t_param *world)
 		draw_col(world, dist, offset, x_wall);
 		offset -= ECAR;
 	}
+	world->player_left = calcul_dist_till_wall(world, world->orient + 90, &x_wall);
+	// printf("player_left = %f	left = %d", world->player_left, world->orient + 90);
+	world->player_right = calcul_dist_till_wall(world, world->orient - 90, &x_wall);
+	world->player_back = calcul_dist_till_wall(world, world->orient + 180, &x_wall);
 	// dist = calcul_dist_till_wall(world, world->p_orient);
 	// world->p_front = dist;
 	draw_minimap(world);

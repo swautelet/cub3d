@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/10 12:27:58 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:13:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define SCREEN_WIDTH 1200
 # define NOSE 20
 # define MOVE 8
+# define LIMIT MOVE * 2
 
 typedef enum e_bool
 {
@@ -97,6 +98,9 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall);
 // Hooks
 int		keyboard(int keycode, t_param *world);
 void	move_forward(t_param *world);
+void	move_left(t_param *world);
+void	move_right(t_param *world);
+void	move_back(t_param *world);
 
 // Minimap
 void	draw_minimap(t_param *world);
