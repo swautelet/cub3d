@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/09 17:01:42 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:27:58 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall);
 double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall);
 
 // Walls
-int		check_left_wall(int x, int y, t_param *world);
-int		check_right_wall(int x, int y, t_param *world);
-int		check_up_wall(int y, int x, t_param *world);
-int		check_down_wall(int y, int x, t_param *world);
+int		check_left_wall(double x, double y, t_param *world);
+int		check_right_wall(double x, double y, t_param *world);
+int		check_up_wall(double y, double x, t_param *world);
+int		check_down_wall(double y, double x, t_param *world);
 
 // .cub file
 void	cub_file_check_and_fill(t_param *world, char *path);
