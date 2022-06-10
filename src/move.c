@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:13:27 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/10 13:32:26 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:15:39 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	move_right(t_param *world)
 	int	dir;
 
 	dir = world->orient - 90;
-	if (world->player_front > LIMIT)
+	if (world->player_right > LIMIT)
 	{
 		if (dir == 0)
 			world->px_x_pos += MOVE;
@@ -89,7 +89,7 @@ void	move_back(t_param *world)
 	int	dir;
 
 	dir = world->orient + 180;
-	if (world->player_front > LIMIT)
+	if (world->player_back > LIMIT)
 	{
 		if (dir == 0)
 			world->px_x_pos += MOVE;

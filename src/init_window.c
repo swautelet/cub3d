@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/10 13:31:15 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:19:52 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ int	draw_view(t_param *world)
 		offset -= ECAR;
 	}
 	world->player_left = calcul_dist_till_wall(world, world->orient + 90, &x_wall);
-	// printf("player_left = %f	left = %d", world->player_left, world->orient + 90);
 	world->player_right = calcul_dist_till_wall(world, world->orient - 90, &x_wall);
-	world->player_back = calcul_dist_till_wall(world, world->orient + 180, &x_wall);
+	// printf("player_back = %f	back = %d", world->player_back, world->orient + 90);
+	world->player_back = calcul_dist_till_wall(world, world->orient - 180, &x_wall);
 	// dist = calcul_dist_till_wall(world, world->p_orient);
 	// world->p_front = dist;
 	draw_minimap(world);
