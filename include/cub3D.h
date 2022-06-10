@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/10 13:51:13 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:03:02 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int		to_hex_int(const char *str, t_param *world);
 size_t	len_array_2d(char **split);
 int		create_trgb(int t, int r, int g, int b);
 void	pixel_to_image(t_data *img, int x, int y, int color);
-void	exit_cub3d(t_param *world);
+int		exit_cub3d(t_param *world);
 double	degre_to_radiant(double degre);
 void	bresenham(int x0, int y0, int x1, int y1, t_param *world);
 char	*space_string(size_t len, t_param *world);

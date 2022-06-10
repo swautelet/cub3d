@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/10 14:19:52 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:01:59 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	keyboard(int keycode, t_param *world)
 
 	// printf("Keycode %d\n", keycode);
 	if (keycode == 0)
-		world->orient = (world->orient + 5) % 360;
+		world->orient = (world->orient + 9) % 360;
 	if (keycode == 2)
 	{
-		world->orient = world->orient - 5;
+		world->orient = world->orient - 9;
 		if (world->orient < 0)
 			world->orient += 360;
 	}
@@ -40,7 +40,7 @@ int	keyboard(int keycode, t_param *world)
 		move_right(world);
 	if (keycode == 1 || keycode == 125)
 		move_back(world);
-	draw_view(world);
+	// draw_view(world);
 	return (0);
 }
 
@@ -70,6 +70,7 @@ void	init_window(t_param *world)
 		world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L<<0, keyboard, world);
+		mlx_hook(world->window, 17, 1L<<5, exit_cub3d, world);
 		mlx_loop_hook(world->video, draw_view, world);
 		mlx_loop(world->video);
 	}
@@ -122,9 +123,9 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	double	y_texture;
 	// int	i;
 
-	x = (SCREEN_WIDTH / ANGLEVISION) * (offset);
+	x = SCREEN_WIDTH * offset / ANGLEVISION;
 	y = 0;
-	offset_wall = ((SCREEN_HEIGHT / 2) / (dist / 30));
+	offset_wall = SCREEN_HEIGHT * 15 / dist;
 	mid = SCREEN_HEIGHT / 2;
 	y_texture = 0;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
