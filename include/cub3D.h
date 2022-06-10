@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/10 13:13:38 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:51:13 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define SCREEN_WIDTH 1200
 # define NOSE 20
 # define MOVE 8
-# define LIMIT MOVE * 2
+# define LIMIT MOVE * 3
 
 typedef enum e_bool
 {
@@ -105,7 +105,7 @@ void	move_back(t_param *world);
 // Minimap
 void	draw_minimap(t_param *world);
 void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length, t_param *world);
-void	draw_player_nose(t_param *world);
+void	draw_player_nose(t_param *world, unsigned int square_length);
 
 // Distance
 double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall);
@@ -153,4 +153,3 @@ void	error_exit(char *message, t_param *world);
 
 //to_do
 // check texture existe
-// finish movements
