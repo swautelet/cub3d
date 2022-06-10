@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/09 16:56:46 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:06:34 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	int	y;
 	int	offset_wall;
 	int	mid;
-	int	x_texture;
+	double	x_texture;
 	double	y_texture;
 	// int	i;
 
@@ -136,9 +136,9 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
 			if (y_texture > world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;
-		// printf("%f\n", (double)(offset_wall * 2) );
 			pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
 		}
 		y++;
 	}
+// printf("%f\n", x_wall);
 }

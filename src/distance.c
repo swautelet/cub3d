@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/09 16:49:43 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:18:47 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall)
 		else
 			world->flag_wall = SO;
 	}
+	// printf("%f et %f\n", hor_x_wall, vert_x_wall);
 	dest = dest * cos(degre_to_radiant(world->orient - orientation));
 	return (dest);
 }
@@ -82,7 +83,7 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall)
 		}
 	// printf("next vert = %d, decal = %f\n", next_vert, decal);
 	}
-	*vert_x_wall = (int)(decal + world->px_y_pos) % 64;
+	*vert_x_wall = fmod((decal + world->px_y_pos), 64);
 	if (orientation == 270 || orientation == 90)
 		return (DBL_MAX);
 	else
@@ -91,8 +92,8 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall)
 
 double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall)
 {
-	int	decal;
-	int	next_hor;
+	double	decal;
+	int		next_hor;
 
 	next_hor = 0;
 	decal = 0;
@@ -118,7 +119,7 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall)
 			decal = -1 * (next_hor * (1 / tan(degre_to_radiant(orientation))));
 		}
 	}
-	*hor_x_wall = (decal + world->px_x_pos) % 64;
+	*hor_x_wall = fmod((decal + world->px_x_pos), 64);
 	if (orientation == 0 || orientation == 180)
 		return (DBL_MAX);
 	else
