@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/10 15:07:41 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:44:31 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
 			x_texture = x_wall * world->texture[world->flag_wall].x_size / SIZE;
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
-			if (y_texture > world->texture[world->flag_wall].y_size)
+			if (y_texture >= world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;
 			pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
 		}
