@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/10 15:07:14 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 12:34:10 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_param
 	void			*clean;	// Something clean ??
 	int				floor_color;	
 	int				ceiling_color;
-	int				wall_color;
+	// int				wall_color;
 	char			*path;	// Path to the .cub file
 	char			*no;	// Path to textures
 	char			*so;
