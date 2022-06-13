@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/13 12:41:14 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:04:00 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@ void	init_window(t_param *world)
 	if (world->img)
 	{
 		world->video = mlx_init();
-		world->window = mlx_new_window(world->video, SCREEN_WIDTH, SCREEN_HEIGHT, "test");
-		world->img->img = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
-		world->clean = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
 		world->texture[NO].img = mlx_xpm_file_to_image(world->video, world->no, &(world->texture[NO].x_size), &(world->texture[NO].y_size));
 		world->texture[SO].img = mlx_xpm_file_to_image(world->video, world->so, &(world->texture[SO].x_size), &(world->texture[SO].y_size));
 		world->texture[WE].img = mlx_xpm_file_to_image(world->video, world->we, &(world->texture[WE].x_size), &(world->texture[WE].y_size));
 		world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->ea, &(world->texture[EA].x_size), &(world->texture[EA].y_size));
+		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img)
+			error_exit("Img doesn't exists", world);
+		world->window = mlx_new_window(world->video, SCREEN_WIDTH, SCREEN_HEIGHT, "test");
+		world->img->img = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
+		world->clean = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// printf("fuck\n");
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
