@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/13 15:41:41 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:32:32 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	keyboard(int keycode, t_param *world)
 
 	// printf("Keycode %d\n", keycode);
 	if (keycode == 0)
-		world->orient = (world->orient + 9) % 360;
+		world->orient = (world->orient + 5) % 360;
 	if (keycode == 2)
 	{
-		world->orient = world->orient - 9;
+		world->orient = world->orient - 5;
 		if (world->orient < 0)
 			world->orient += 360;
 	}
