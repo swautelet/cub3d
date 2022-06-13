@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/10 13:51:03 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 12:23:21 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length
 	unsigned int i;
 	unsigned int j;
 
-	i = 1;	// offset pour afficher une fausse grille
+	i = 0;	// offset pour afficher une fausse grille
 	while (i < square_length)
 	{
-		j = 1;
+		j = 0;
 		while (j < square_length)
 		{
 			if (world->map[x][y] == '1')
@@ -47,7 +47,7 @@ void	draw_player_nose(t_param *world, unsigned int square_length)
 	unsigned int	new_y;
 
 	new_x = world->map_x_pos + (world->player_front * square_length / (SIZE) * cos(degre_to_radiant(world->orient)));
-	new_y = world->map_y_pos - (world->player_front * square_length/ (SIZE) * sin(degre_to_radiant(world->orient)));
+	new_y = world->map_y_pos - (world->player_front * square_length / (SIZE) * sin(degre_to_radiant(world->orient)));
 	bresenham(world->map_x_pos, world->map_y_pos, new_x, new_y, world);
 }
 
