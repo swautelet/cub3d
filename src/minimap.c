@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/13 12:23:21 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 12:54:52 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	draw_player_nose(t_param *world, unsigned int square_length)
 
 	new_x = world->map_x_pos + (world->player_front * square_length / (SIZE) * cos(degre_to_radiant(world->orient)));
 	new_y = world->map_y_pos - (world->player_front * square_length / (SIZE) * sin(degre_to_radiant(world->orient)));
+	if (new_x < (unsigned int)world->map_x_pos)
+		new_x++;
+	if (new_y < (unsigned int)world->map_y_pos)
+		new_y++;
 	bresenham(world->map_x_pos, world->map_y_pos, new_x, new_y, world);
 }
 
