@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/13 13:04:00 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:18:56 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	int	mid;
 	double	x_texture;
 	double	y_texture;
-	// int	i;
+	int	i;
 
 	x = SCREEN_WIDTH * offset / ANGLEVISION;
 	y = 0;
@@ -136,25 +136,25 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	{
 		if (y < mid - offset_wall)
 		{
-			// i = -1;
-			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, world->ceiling_color);
+			i = -1;
+			while (++i < 2)
+				pixel_to_image(world->img, x + i, y, world->ceiling_color);
 		}
 		else if (y >= mid + offset_wall)
 		{
-			// i = -1;
-			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
-				pixel_to_image(world->img, x, y, world->floor_color);
+			i = -1;
+			while (++i < 2)
+				pixel_to_image(world->img, x + i, y, world->floor_color);
 		}
 		else
 		{
-			// i = -1;
-			// while (++i < (SCREEN_WIDTH - 1) / NBRAY)
 			x_texture = x_wall * world->texture[world->flag_wall].x_size / SIZE;
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
 			if (y_texture >= world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;
-			pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
+			i = -1;
+			while (++i < 2)
+				pixel_to_image(world->img, x + i, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
 		}
 		y++;
 	}
