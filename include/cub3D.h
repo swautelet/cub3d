@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/13 12:34:10 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:09:44 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,4 +154,4 @@ void	error_exit(char *message, t_param *world);
 #endif
 
 //to_do
-// check texture existe
+// check map is closed
