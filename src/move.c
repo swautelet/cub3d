@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:13:27 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/13 15:41:06 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 18:15:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	move_forward(t_param *world)
 {
 	/*	Makes the player move foreward	*/
 
-	// printf("i try to move p_front = %f\n", world->p_front);
-	//printf("i moved to %d %d and p_orient = %d p_front = %f\n", world->p_y_pos, world->p_x_pos, world->p_orient,  world->p_front);
 	if (world->player_front > world->limit)
 	{
 		if (world->orient == 0)
@@ -33,7 +31,6 @@ void	move_forward(t_param *world)
 			world->px_x_pos += cos(degre_to_radiant(world->orient)) * 8;
 			world->px_y_pos -= sin(degre_to_radiant(world->orient)) * 8;
 		}
-		// draw_view(world);
 	}
 }
 
@@ -42,7 +39,6 @@ void	move_left(t_param *world)
 	int	dir;
 
 	dir = world->orient + 90;
-	// printf("%d et %f\n", dir, world->player_left);
 	if (world->player_left > world->limit)
 	{
 		if (dir == 0)
