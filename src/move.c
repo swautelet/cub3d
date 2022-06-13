@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:13:27 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/10 14:15:39 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:41:06 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	move_forward(t_param *world)
 
 	// printf("i try to move p_front = %f\n", world->p_front);
 	//printf("i moved to %d %d and p_orient = %d p_front = %f\n", world->p_y_pos, world->p_x_pos, world->p_orient,  world->p_front);
-	if (world->player_front > LIMIT)
+	if (world->player_front > world->limit)
 	{
 		if (world->orient == 0)
 			world->px_x_pos += MOVE;
@@ -43,7 +43,7 @@ void	move_left(t_param *world)
 
 	dir = world->orient + 90;
 	// printf("%d et %f\n", dir, world->player_left);
-	if (world->player_left > LIMIT)
+	if (world->player_left > world->limit)
 	{
 		if (dir == 0)
 			world->px_x_pos += MOVE;
@@ -66,7 +66,7 @@ void	move_right(t_param *world)
 	int	dir;
 
 	dir = world->orient - 90;
-	if (world->player_right > LIMIT)
+	if (world->player_right > world->limit)
 	{
 		if (dir == 0)
 			world->px_x_pos += MOVE;
@@ -89,7 +89,7 @@ void	move_back(t_param *world)
 	int	dir;
 
 	dir = world->orient + 180;
-	if (world->player_back > LIMIT)
+	if (world->player_back > world->limit)
 	{
 		if (dir == 0)
 			world->px_x_pos += MOVE;

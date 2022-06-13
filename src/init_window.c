@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/13 15:18:56 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:41:41 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	init_window(t_param *world)
 		world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->ea, &(world->texture[EA].x_size), &(world->texture[EA].y_size));
 		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img)
 			error_exit("Img doesn't exists", world);
-		world->window = mlx_new_window(world->video, SCREEN_WIDTH, SCREEN_HEIGHT, "test");
-		world->img->img = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
-		world->clean = mlx_new_image(world->video, SCREEN_WIDTH, SCREEN_HEIGHT);
+		world->window = mlx_new_window(world->video, world->nbray, SCREEN_HEIGHT, "test");
+		world->img->img = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
+		world->clean = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
 	// printf("fuck\n");
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
@@ -94,8 +94,8 @@ int	draw_view(t_param *world)
 	while (offset >= 0)
 	{
 		// printf("offset = %f", offset);
-		dist = calcul_dist_till_wall(world, world->orient - offset + MID, &x_wall);
-		if ((int)offset == MID)
+		dist = calcul_dist_till_wall(world, world->orient - offset + world->mid, &x_wall);
+		if ((int)offset == world->mid)
 		{
 			// printf("i init p_front\n");
 			world->player_front = dist;
@@ -124,27 +124,29 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	int	mid;
 	double	x_texture;
 	double	y_texture;
-	int	i;
+	// int	i;
+	// int	col_width;
 
-	x = SCREEN_WIDTH * offset / ANGLEVISION;
+	// col_width = SCREEN_WIDTH / NBRAY;
+	x = world->nbray * offset / ANGLEVISION;
 	y = 0;
 	offset_wall = SCREEN_HEIGHT * 15 / dist;
-	mid = HALF_SCREEN;
+	mid = world->half_screen;
 	y_texture = 0;
 	// printf("mid = %d, offset_wall = %d dist = %f\n", mid, offset_wall, dist);
 	while (y <= SCREEN_HEIGHT)
 	{
 		if (y < mid - offset_wall)
 		{
-			i = -1;
-			while (++i < 2)
-				pixel_to_image(world->img, x + i, y, world->ceiling_color);
+			// i = -1;
+			// while (++i < col_width)
+				pixel_to_image(world->img, x, y, world->ceiling_color);
 		}
 		else if (y >= mid + offset_wall)
 		{
-			i = -1;
-			while (++i < 2)
-				pixel_to_image(world->img, x + i, y, world->floor_color);
+			// i = -1;
+			// while (++i < col_width)
+				pixel_to_image(world->img, x, y, world->floor_color);
 		}
 		else
 		{
@@ -152,9 +154,9 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
 			if (y_texture >= world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;
-			i = -1;
-			while (++i < 2)
-				pixel_to_image(world->img, x + i, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
+			// i = -1;
+			// while (++i < col_width)
+				pixel_to_image(world->img, x, y, get_color_from_img(&world->texture[world->flag_wall], x_texture, y_texture));
 		}
 		y++;
 	}

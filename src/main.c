@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/13 12:41:19 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:42:17 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	init_world(t_param *world)
 	world->we = NULL;
 	world->ea = NULL;
 	world->counter = NULL;
+	world->nbray = ANGLEVISION / ECAR;
+	world->mid = ANGLEVISION / 2;
+	world->limit = MOVE * 3;
+	world->half_screen = SCREEN_HEIGHT / 2;
 }
 
 // static void	output_tests(t_param *world)

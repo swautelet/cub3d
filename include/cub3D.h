@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/13 15:20:09 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:44:28 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@
 # define SIZE 64
 # define ANGLEVISION 60
 # define ECAR 0.05
-# define NBRAY ANGLEVISION / ECAR
+// # define NBRAY ANGLEVISION / ECAR // ANGLEVISION / ECAR
 # define SCREEN_HEIGHT 1200
-# define SCREEN_WIDTH 2400
+// # define SCREEN_WIDTH NBRAY
 # define NOSE 20
 # define MOVE 8
-# define MID ANGLEVISION / 2
-# define LIMIT MOVE * 3
-# define HALF_SCREEN SCREEN_HEIGHT / 2
+// # define MID ANGLEVISION / 2 // ANGLEVISION / 2
+// # define LIMIT MOVE * 3 // MOVE * 3
+// # define HALF_SCREEN SCREEN_HEIGHT / 2 // SCREEN_HEIGHT / 2
 
 typedef enum e_bool
 {
@@ -69,6 +69,10 @@ typedef struct s_param
 	int				map_y_pos;	// Player y position in the map
 	int				player_size;	// Length of side of square representing player
 	int				flag_wall;
+	int				nbray;		//value to replace macro fo the norm
+	int				mid;
+	int				limit;
+	int				half_screen; 	// till here
 	double			player_front;	// The ray laaunched just in front of the player
 	double			player_left;
 	double			player_right;
