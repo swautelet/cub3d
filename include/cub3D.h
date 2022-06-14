@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 18:19:17 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:23:25 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define SCREEN_HEIGHT 1200
 // # define SCREEN_WIDTH NBRAY
 # define NOSE 20
-# define MOVE 0.1
+# define MOVE 0.2
 # define ROTATE 9
 // # define MID ANGLEVISION / 2 // ANGLEVISION / 2
 // # define LIMIT MOVE * 3 // MOVE * 3
