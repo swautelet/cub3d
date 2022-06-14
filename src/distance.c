@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/14 18:25:37 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:21:40 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,29 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall)
 
 	next_vert = 0;
 	decal = 0;
-	tan_orientation = -tan(degre_to_radiant(orientation));
+	tan_orientation = tan(degre_to_radiant(orientation));
 	if (orientation < 90 || orientation > 270) //look to right
 	{
 		next_vert = 1 - fmod(world->px_x_pos, 1);
-		decal = -tan_orientation * next_vert;
-		if (orientation >= 0)
-			decal--;
+		decal = (-1 * next_vert * tan_orientation);
+		// if (orientation >= 0)
+		// 	decal--;
 		while (check_right_wall(decal + world->px_y_pos, world->px_x_pos + next_vert, world) == FALSE)
 		{
 			next_vert += 1;
-			decal += tan_orientation;
+			decal = (-1 * next_vert * tan_orientation);
 		}
 	}
 	else if (orientation > 90 && orientation < 270) // look to left
 	{
-		next_vert = -fmod(world->px_x_pos, 1);
-		decal = tan_orientation * next_vert;
-		if (orientation < 180)
-			decal--;
+		next_vert = fmod(world->px_x_pos, 1) * (-1);
+		decal = (-1 * next_vert * tan_orientation);
+		// if (orientation < 180)
+		// 	decal--;
 		while (check_left_wall(world->px_y_pos + decal, world->px_x_pos + next_vert, world)== FALSE)
 		{
 			next_vert -= 1;
-			decal -= tan_orientation;
+			decal = (-1 * next_vert * tan_orientation);
 		}
 	}
 	*vert_x_wall = fmod((decal + world->px_y_pos), 1);
@@ -103,10 +103,10 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall)
 	decal = 0;
 	cotan_orientation = (1 / tan(degre_to_radiant(orientation)));
 	// if (orientation == 90.000)
-		printf("cotan  = %f orientation = %f\n", cotan_orientation, orientation);
+		// printf("cotan  = %f orientation = %f\n", cotan_orientation, orientation);
 	if (orientation > 0 && orientation < 180)
 	{
-		next_hor = -1 * (fmod(world->px_y_pos, 1));
+		next_hor = fmod(world->px_y_pos, 1) * (-1);
 		decal = cotan_orientation * (-next_hor);
 		while (check_up_wall(next_hor + world->px_y_pos, decal + world->px_x_pos, world) == FALSE) // look up
 		{
@@ -117,11 +117,11 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall)
 	else if (orientation > 180)
 	{
 		next_hor = 1 - fmod(world->px_y_pos, 1);
-		decal = -cotan_orientation * next_hor;
+		decal = -1 * (next_hor * cotan_orientation);
 		while (check_down_wall(next_hor + world->px_y_pos, decal + world->px_x_pos, world)== FALSE) // look down
 		{
 			next_hor += 1;
-			decal -= cotan_orientation;
+			decal = -1 * (next_hor * cotan_orientation);
 		}
 	}
 	*hor_x_wall = fmod((decal + world->px_x_pos), 1);
