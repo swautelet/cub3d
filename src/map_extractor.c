@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_extractor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/13 12:30:40 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 15:04:06 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	valid_map_line(const char *holder)
 
 void	map_data_check(t_param *world, const char *holder)
 {
+	
 	/*	Verify if every "map" line is valid and gets the amounts of lines and columns	*/
 	if (valid_map_line(holder) && ft_strlen(holder) > 1)
 	{
@@ -39,6 +40,7 @@ void	map_data_check(t_param *world, const char *holder)
 		if (ft_strlen(holder) > world->map_width)
 			world->map_width = ft_strlen(holder); // il manque une ligne si le fichier ne se termine pas par une ligne vide
 	}
+	
 }
 
 void	get_player_position(t_param *world)
@@ -136,10 +138,20 @@ void	extract_map(t_param *world)
 	fd = open(world->path, O_RDONLY);
 	if (!fd)
 		error_exit("Failed to open the .cub file ", world);
+	//printf("world map start : %d\n", world->map_start);
+	while (i < world->map_start - 1)
+	{
+		get_next_line(fd, &holder);
+		i++;
+	}
+	i = 0;
+	//printf("map width : %d\n", world->map_width);
 	while (get_next_line(fd, &holder))
 	{
 		if (valid_map_line(holder) && ft_strlen(holder) > 1)
 			world->map[i++] = ft_strjoin(holder, space_string(world->map_width - ft_strlen(holder), world));
+		else if (!valid_map_line(holder))
+			error_exit("Corrupted .cub file ", world);
 	}
 	world->map[i] = NULL;
 	fill_spaces(world);

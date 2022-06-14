@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/13 18:30:27 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 15:32:16 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	keyboard(int keycode, t_param *world)
 {
 	/*	All action that can possibly be made by the player	*/
 
-	if (keycode == 0)
-		world->orient = (world->orient + 5) % 360;
-	if (keycode == 2)
+	if (keycode == 123)
+		world->orient = (world->orient + 9) % 360;
+	if (keycode == 124)
 	{
-		world->orient = world->orient - 5;
+		world->orient = world->orient - 9;
 		if (world->orient < 0)
 			world->orient += 360;
 	}
@@ -33,9 +33,9 @@ int	keyboard(int keycode, t_param *world)
 		move_forward(world);
 	if (keycode == 53)
 		exit_cub3d(world);
-	if (keycode == 123)
+	if (keycode == 0)
 		move_left(world);
-	if (keycode == 124)
+	if (keycode == 2)
 		move_right(world);
 	if (keycode == 1 || keycode == 125)
 		move_back(world);
