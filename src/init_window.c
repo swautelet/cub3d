@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/14 15:32:16 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:39:52 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	keyboard(int keycode, t_param *world)
 	/*	All action that can possibly be made by the player	*/
 
 	if (keycode == 123)
-		world->orient = (world->orient + 9) % 360;
+		world->orient = (world->orient + ROTATE) % 360;
 	if (keycode == 124)
 	{
-		world->orient = world->orient - 9;
+		world->orient = world->orient - ROTATE;
 		if (world->orient < 0)
 			world->orient += 360;
 	}
@@ -112,7 +112,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	int	y;
 	int	offset_wall;
 	int	mid;
-	double	x_texture;
+	int	x_texture;
 	double	y_texture;
 	// int	i;
 	// int	col_width;
@@ -120,7 +120,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	// col_width = SCREEN_WIDTH / NBRAY;
 	x = world->nbray * offset / ANGLEVISION;
 	y = 0;
-	offset_wall = SCREEN_HEIGHT * 15 / dist;
+	offset_wall = SCREEN_HEIGHT / dist;
 	mid = world->half_screen;
 	y_texture = 0;
 	if (offset_wall * 2 > SCREEN_HEIGHT)
@@ -141,7 +141,9 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		}
 		else
 		{
-			x_texture = x_wall * world->texture[world->flag_wall].x_size / SIZE;
+			x_texture = x_wall * (double)world->texture[world->flag_wall].x_size;
+			if (x_texture > world->texture[world->flag_wall].x_size)
+				printf("x texture = %d et world->texture[world->flag_wall].x_size = %d \n", x_texture, world->texture[world->flag_wall].x_size);
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
 			if (y_texture >= world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;

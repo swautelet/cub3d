@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/13 18:23:42 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 16:10:30 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	main(int argc, char **argv)
 	{
 		init_world(world);
 		cub_file_check_and_fill(world, argv[1]);
-		world->px_x_pos = (world->map_x_pos * SIZE) + SIZE / 2;
-		world->px_y_pos = (world->map_y_pos * SIZE) + SIZE / 2;
+		world->px_x_pos = (world->map_x_pos) + 0.5;
+		world->px_y_pos = (world->map_y_pos) + 0.5;
 		// world->wall_color = create_trgb(0, 0, 0, 255);
 		//output_tests(world);
 		init_window(world);

@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:13:27 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/13 18:15:11 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 16:34:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	move_forward(t_param *world)
 			world->px_y_pos += MOVE;
 		else
 		{
-			world->px_x_pos += cos(degre_to_radiant(world->orient)) * 8;
-			world->px_y_pos -= sin(degre_to_radiant(world->orient)) * 8;
+			world->px_x_pos += cos(degre_to_radiant(world->orient)) * MOVE;
+			world->px_y_pos -= sin(degre_to_radiant(world->orient)) * MOVE;
 		}
 	}
 }
@@ -51,8 +51,8 @@ void	move_left(t_param *world)
 			world->px_y_pos += MOVE;
 		else
 		{
-			world->px_x_pos += cos(degre_to_radiant(dir)) * 8;
-			world->px_y_pos -= sin(degre_to_radiant(dir)) * 8;
+			world->px_x_pos += cos(degre_to_radiant(dir)) * MOVE;
+			world->px_y_pos -= sin(degre_to_radiant(dir)) * MOVE;
 		}
 	}
 }
@@ -74,8 +74,8 @@ void	move_right(t_param *world)
 			world->px_y_pos += MOVE;
 		else
 		{
-			world->px_x_pos += cos(degre_to_radiant(dir)) * 8;
-			world->px_y_pos -= sin(degre_to_radiant(dir)) * 8;
+			world->px_x_pos += cos(degre_to_radiant(dir)) * MOVE;
+			world->px_y_pos -= sin(degre_to_radiant(dir)) * MOVE;
 		}
 	}
 }
@@ -97,8 +97,8 @@ void	move_back(t_param *world)
 			world->px_y_pos += MOVE;
 		else
 		{
-			world->px_x_pos += cos(degre_to_radiant(dir)) * 8;
-			world->px_y_pos -= sin(degre_to_radiant(dir)) * 8;
+			world->px_x_pos += cos(degre_to_radiant(dir)) * MOVE;
+			world->px_y_pos -= sin(degre_to_radiant(dir)) * MOVE;
 		}
 	}
 }

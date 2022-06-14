@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 15:31:28 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/14 16:29:09 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	draw_player_nose(t_param *world, unsigned int square_length)
 	unsigned int	new_x;
 	unsigned int	new_y;
 
-	new_x = world->map_x_pos + (world->player_front * square_length / (SIZE) * cos(degre_to_radiant(world->orient)));
-	new_y = world->map_y_pos - (world->player_front * square_length / (SIZE) * sin(degre_to_radiant(world->orient)));
+	new_x = world->map_x_pos + (world->player_front * square_length) * cos(degre_to_radiant(world->orient));
+	new_y = world->map_y_pos - (world->player_front * square_length) * sin(degre_to_radiant(world->orient));
 	if (new_x < (unsigned int)world->map_x_pos)
 		new_x++;
 	if (new_y < (unsigned int)world->map_y_pos)
@@ -63,8 +63,8 @@ void	draw_player(t_param *world, unsigned int square_length)
 	int	j;
 
 	world->player_size = square_length / 2;
-	world->map_x_pos = ((((world->px_x_pos / SIZE) * square_length) + ((world->px_x_pos % SIZE) * square_length / SIZE)));
-	world->map_y_pos = ((((world->px_y_pos / SIZE) * square_length) + ((world->px_y_pos % SIZE) * square_length / SIZE)));
+	world->map_x_pos = ((world->px_x_pos) * square_length);
+	world->map_y_pos = ((world->px_y_pos) * square_length);
 	//printf("p_map_x = ");
 	i = 0;
 	while (i < world->player_size)

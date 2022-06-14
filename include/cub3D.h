@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 15:31:41 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/14 18:19:17 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@
 
 # define SIZE 64
 # define ANGLEVISION 60
-# define ECAR 0.025
+# define ECAR 0.05
 // # define NBRAY ANGLEVISION / ECAR // ANGLEVISION / ECAR
 # define SCREEN_HEIGHT 1200
 // # define SCREEN_WIDTH NBRAY
 # define NOSE 20
-# define MOVE 8
+# define MOVE 0.1
+# define ROTATE 9
 // # define MID ANGLEVISION / 2 // ANGLEVISION / 2
 // # define LIMIT MOVE * 3 // MOVE * 3
 // # define HALF_SCREEN SCREEN_HEIGHT / 2 // SCREEN_HEIGHT / 2
@@ -62,16 +63,16 @@ typedef	struct s_data
 
 typedef struct s_param
 {
-	int				px_x_pos;	// Player x position in pixels
-	int				px_y_pos;	// Player y position in pixels
+	double			px_x_pos;	// Player x position in pixels
+	double			px_y_pos;	// Player y position in pixels
 	int				orient;		// Player orientation
 	int				map_x_pos;	// Player x position in the map
 	int				map_y_pos;	// Player y position in the map
 	int				player_size;	// Length of side of square representing player
 	int				flag_wall;
 	int				nbray;		//value to replace macro fo the norm
-	int				mid;
-	int				limit;
+	double			mid;
+	double			limit;
 	int				half_screen; 	// till here
 	double			player_front;	// The ray laaunched just in front of the player
 	double			player_left;
@@ -120,8 +121,8 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall);
 double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall);
 
 // Walls
-int		check_left_wall(double x, double y, t_param *world);
-int		check_right_wall(double x, double y, t_param *world);
+int		check_left_wall(double y, double x, t_param *world);
+int		check_right_wall(double y, double x, t_param *world);
 int		check_up_wall(double y, double x, t_param *world);
 int		check_down_wall(double y, double x, t_param *world);
 
