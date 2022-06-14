@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/14 19:21:40 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:10:51 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall)
 		while (check_right_wall(decal + world->px_y_pos, world->px_x_pos + next_vert, world) == FALSE)
 		{
 			next_vert += 1;
-			decal = (-1 * next_vert * tan_orientation);
+			decal -= ( tan_orientation);
 		}
 	}
 	else if (orientation > 90 && orientation < 270) // look to left
@@ -83,7 +83,7 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall)
 		while (check_left_wall(world->px_y_pos + decal, world->px_x_pos + next_vert, world)== FALSE)
 		{
 			next_vert -= 1;
-			decal = (-1 * next_vert * tan_orientation);
+			decal += tan_orientation;
 		}
 	}
 	*vert_x_wall = fmod((decal + world->px_y_pos), 1);
@@ -121,7 +121,7 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall)
 		while (check_down_wall(next_hor + world->px_y_pos, decal + world->px_x_pos, world)== FALSE) // look down
 		{
 			next_hor += 1;
-			decal = -1 * (next_hor * cotan_orientation);
+			decal -=  ( cotan_orientation);
 		}
 	}
 	*hor_x_wall = fmod((decal + world->px_x_pos), 1);
