@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 17:59:57 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:25:38 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall)
 		if (sub_door_vert == 3)
 			world->flag_wall = DO;
 		else if (orientation < 90 || orientation > 270)
+		{
 			world->flag_wall = EA;
+		}
 		else
+		{
 			world->flag_wall = WE;
+		}
 	}
 	else
 	{
@@ -68,9 +72,11 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall, i
 	double	decal;
 	double	next_vert;
 	double	tan_orientation;
+	int		found_key;
 
 	next_vert = 0;
 	decal = 0;
+	found_key = 0;
 	tan_orientation = tan(degre_to_radiant(orientation));
 	if (orientation < 90 || orientation > 270) //look to right
 	{
@@ -83,6 +89,8 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall, i
 			next_vert += 1;
 			decal -= tan_orientation;
 		}
+		if (found_key == 1)
+			*sub_door_vert += 10;
 	}
 	else if (orientation > 90 && orientation < 270) // look to left
 	{
@@ -95,6 +103,8 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall, i
 			next_vert -= 1;
 			decal += tan_orientation;
 		}
+		if (found_key == 1)
+			*sub_door_vert += 10;
 	}
 	*vert_x_wall = fmod((decal + world->px_y_pos), 1);
 	if (orientation == 270 || orientation == 90)
@@ -108,9 +118,11 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall, int
 	double	decal;
 	double	next_hor;
 	double	cotan_orientation;
+	int		found_key;
 
 	next_hor = 0;
 	decal = 0;
+	found_key = 0;
 	cotan_orientation = (1 / tan(degre_to_radiant(orientation)));
 	// if (orientation == 90.000)
 		// printf("cotan  = %f orientation = %f\n", cotan_orientation, orientation);
@@ -123,6 +135,8 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall, int
 			next_hor -= 1;
 			decal += cotan_orientation;
 		}
+		if (found_key == 1)
+			*sub_door_hor += 10;
 	}
 	else if (orientation > 180)
 	{
@@ -133,6 +147,8 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall, int
 			next_hor += 1;
 			decal -= cotan_orientation;
 		}
+		if (found_key == 1)
+			*sub_door_hor += 10;
 	}
 	*hor_x_wall = fmod((decal + world->px_x_pos), 1);
 	if (orientation == 0 || orientation == 180)

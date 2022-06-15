@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:17:04 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 19:42:03 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:41:10 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ int	check_left_wall(double y, double x, t_param *world)
 		return (TRUE);
 	if (world->map[new_y][new_x] == 'K')
 	{
+		// world->keyfound = TRUE;
 		world->dist_key = sqrt(pow(y - world->px_y_pos, 2) + pow(x - world->px_x_pos, 2));
 		world->x_wallkey = fmod(y, 1);
+		// printf("i foudn q key dist = %f\n", world->dist_key);
+		// return (4);
 	}
 	if (world->map[new_y][new_x] == '1')
 	{
@@ -48,8 +51,11 @@ int	check_right_wall(double y, double x, t_param *world)
 		return (TRUE);
 	if (world->map[new_y][new_x] == 'K')
 	{
+		// world->keyfound = TRUE;
 		world->dist_key = sqrt(pow(y - world->px_y_pos, 2) + pow(x - world->px_x_pos, 2));
 		world->x_wallkey = fmod(y, 1);
+		// printf("i foudn q key dist = %f\n", world->dist_key);
+		// return (4);
 	}
 	if (world->map[new_y][new_x] == '1')
 	{
@@ -73,8 +79,11 @@ int	check_up_wall(double y, double x, t_param *world)
 		return (TRUE);
 	if (world->map[new_y][new_x] == 'K')
 	{
+		// world->keyfound = TRUE;
 		world->dist_key = sqrt(pow(y - world->px_y_pos, 2) + pow(x - world->px_x_pos, 2));
 		world->x_wallkey = fmod(x, 1);
+		// printf("i foudn q key dist = %f\n", world->dist_key);
+		// return (4);
 	}
 	if (world->map[new_y][new_x] == '1')
 	{
@@ -98,8 +107,11 @@ int	check_down_wall(double y, double x, t_param *world)
 		return (TRUE);
 	if (world->map[new_y][new_x] == 'K')
 	{
+		// world->keyfound = TRUE;
 		world->dist_key = sqrt(pow(y - world->px_y_pos, 2) + pow(x - world->px_x_pos, 2));
 		world->x_wallkey = fmod(x, 1);
+		// printf("i foudn q key dist = %f\n", world->dist_key);
+		// return (4);
 	}
 	if (world->map[new_y][new_x] == '1')
 	{

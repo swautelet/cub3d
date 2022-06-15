@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 19:33:23 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:29:46 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_world(t_param *world)
 	world->flag_rotateright = FALSE;
 	world->flag_rotateleft = FALSE;
 	world->dist_key = -1;
+	world->keyfound = FALSE;
 }
 
 // static void	output_tests(t_param *world)

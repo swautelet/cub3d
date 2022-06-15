@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 19:57:50 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:40:09 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ void	init_window(t_param *world)
 	/*	Initialize a window and sets the hooks	*/
 
 	world->img = malloc(sizeof(t_data));
-	world->key = malloc(sizeof(t_data));
-	world->texture = malloc(sizeof(t_data) * 5);
-	if (!world->img || !world->key || !world->texture)
+	// world->key = malloc(sizeof(t_data));
+	world->texture = malloc(sizeof(t_data) * 6);
+	if (!world->img || !world->texture)
 		error_exit("malloc error", world);
 	if (world->img)
 	{
@@ -134,23 +134,23 @@ void	init_window(t_param *world)
 		world->texture[WE].img = mlx_xpm_file_to_image(world->video, world->we, &(world->texture[WE].x_size), &(world->texture[WE].y_size));
 		world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->ea, &(world->texture[EA].x_size), &(world->texture[EA].y_size));
 		world->texture[DO].img = mlx_xpm_file_to_image(world->video, world->door, &(world->texture[DO].x_size), &(world->texture[DO].y_size));
-		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img || !world->texture[DO].img)
+		world->texture[KE].img = mlx_xpm_file_to_image(world->video, "./texture/keyblade.xpm", &(world->texture[KE].x_size), &(world->texture[KE].y_size));
+		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img || !world->texture[DO].img || ! world->texture[KE].img)
 			error_exit("Img doesn't exists", world);
 		world->window = mlx_new_window(world->video, world->nbray, SCREEN_HEIGHT, "test");
 		world->img->img = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
-		world->key->img = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
 		world->clean = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
 		world->img->addr = mlx_get_data_addr(world->img->img, &world->img->bits_per_pixel, &world->img->line_length, &world->img->endian);
-		world->key->addr = mlx_get_data_addr(world->key->img, &world->key->bits_per_pixel, &world->key->line_length, &world->key->endian);
-		colorise(world->key, world->nbray, SCREEN_HEIGHT);
+		// colorise(world->key, world->nbray, SCREEN_HEIGHT);
 		world->texture[NO].addr = mlx_get_data_addr(world->texture[NO].img, &world->texture[NO].bits_per_pixel, &world->texture[NO].line_length, &world->texture[NO].endian);
 		world->texture[SO].addr = mlx_get_data_addr(world->texture[SO].img, &world->texture[SO].bits_per_pixel, &world->texture[SO].line_length, &world->texture[SO].endian);
 		world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
 		world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
 		world->texture[DO].addr = mlx_get_data_addr(world->texture[DO].img, &world->texture[DO].bits_per_pixel, &world->texture[DO].line_length, &world->texture[DO].endian);
+		world->texture[KE].addr = mlx_get_data_addr(world->texture[KE].img, &world->texture[KE].bits_per_pixel, &world->texture[KE].line_length, &world->texture[KE].endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L << 0, keyboard_press, world);
 		mlx_hook(world->window, 3, 1L << 1, keyboard_release, world);
@@ -177,7 +177,6 @@ int	draw_view(t_param *world)
 	offset = ANGLEVISION;
 	keyboard(world);
 	x_wall = 0;
-	colorise(world->key, world->nbray, SCREEN_HEIGHT);
 	while (offset >= 0)
 	{
 		dist = calcul_dist_till_wall(world, world->orient - offset + world->mid, &x_wall);
@@ -186,8 +185,8 @@ int	draw_view(t_param *world)
 			world->flag_frontdoor = (char)world->flag_wall;
 			world->player_front = dist;
 		}
-		draw_key(world, offset);
 		draw_col(world, dist, offset, x_wall);
+		draw_key(world, offset);
 		offset -= ECAR;
 	}
 	// printf("player left = %f", world->player_left);
@@ -195,7 +194,7 @@ int	draw_view(t_param *world)
 	world->player_right = calcul_dist_till_wall(world, world->orient - 90, &x_wall);
 	world->player_back = calcul_dist_till_wall(world, world->orient - 180, &x_wall);
 	draw_minimap(world);
-	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
+	// mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
 	// mlx_put_image_to_window(world->video, world->window, world->key->img, 0, 0);
 	return (0);
@@ -209,9 +208,13 @@ void	draw_key(t_param *world, double offset)
 	int	mid;
 	int	x_texture;
 	double	y_texture;
+	unsigned int 	color;
+	// t_bool	found;
 
 	if (world->dist_key < 0)
 		return ;
+	// found = FALSE;
+	// printf("dist key = %f\n", world->dist_key);
 	x = world->nbray * offset / ANGLEVISION;
 	key_size = SCREEN_HEIGHT * 0.5 / world->dist_key;
 	mid = world->half_screen;
@@ -223,18 +226,27 @@ void	draw_key(t_param *world, double offset)
 	{
 		if (y > mid - key_size && y < mid + key_size)
 		{
-			x_texture = world->x_wallkey * (double)world->texture[world->flag_wall].x_size;
+			x_texture = world->x_wallkey * world->texture[KE].x_size;
 			// if (x_texture > world->texture[world->flag_wall].x_size)
 			// 	printf("x texture = %d et world->texture[world->flag_wall].x_size = %d \n", x_texture, world->texture[world->flag_wall].x_size);
-			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((key_size * 2));
-			if (y_texture >= world->texture[world->flag_wall].y_size)
-				y_texture = world->texture[world->flag_wall].y_size - 1;
-			// i = -1;
-			// while (++i < col_width)
-			pixel_to_image(world->img, x, y, get_color_from_img(world->key, x_texture, y_texture));
+			y_texture += (double)(world->texture[KE].y_size) / (double)((key_size * 2));
+			if (y_texture >= world->texture[KE].y_size)
+				y_texture = world->texture[KE].y_size - 1;
+			// color = get_color_from_img(&world->texture[KE], x_texture, y_texture);
+			if ((color = get_color_from_img(&world->texture[KE], x_texture, y_texture)) != 0xff000000)
+			{
+				// found = TRUE;
+				pixel_to_image(world->img, x, y, color);
+			}
+			// printf("color = %x\n", color);
 		}
 		y++;
 	}
+	// if (found == FALSE && x_texture > world->texture[KE].x_size / 2)
+	// {
+	// 	world->keyfound = FALSE;
+		world->dist_key = -1;
+	// }
 }
 
 void	draw_col(t_param *world, double dist, double offset, double x_wall)
@@ -284,5 +296,5 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		}
 		y++;
 	}
-	world->dist_key = -1;
+	// world->dist_key = -1;
 }

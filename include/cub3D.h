@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 19:47:20 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:29:24 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 # define SIZE 64
 # define ANGLEVISION 60
-# define ECAR 0.025
+# define ECAR 0.05
 // # define NBRAY ANGLEVISION / ECAR // ANGLEVISION / ECAR
-# define SCREEN_HEIGHT 1200
+# define SCREEN_HEIGHT 600
 // # define SCREEN_WIDTH NBRAY
 # define NOSE 20
 # define MOVE 0.1
@@ -49,6 +49,7 @@ typedef enum e_dir{
 	WE = 2,
 	EA = 3,
 	DO = 4,
+	KE = 5,
 }	t_dir;
 
 typedef	struct s_data
@@ -81,13 +82,14 @@ typedef struct s_param
 	double			player_back;
 	double			dist_key;
 	double			x_wallkey;
+	t_bool			keyfound;
 	char			**map;	// Actual map
 	unsigned int	map_height;	// Amount of lines in the map
 	unsigned int	map_width;	// Amount of columns in the map
 	void			*video;	// MLX instance
 	void			*window;	// MLX window
 	t_data			*img;	// MLX image
-	t_data			*key;
+	// t_data			*key;
 	void			*clean;	// Something clean ??
 	int				floor_color;	
 	int				ceiling_color;

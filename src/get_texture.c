@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:53:32 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/09 16:05:43 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:15:31 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
