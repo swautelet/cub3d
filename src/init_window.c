@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/14 20:12:54 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:04:15 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	keyboard(int keycode, t_param *world)
 {
 	/*	All action that can possibly be made by the player	*/
 
+	// printf("keycode = %d\n", keycode);
 	if (keycode == 123)
 		world->orient = (world->orient + ROTATE) % 360;
 	if (keycode == 124)
@@ -42,8 +43,17 @@ int	keyboard(int keycode, t_param *world)
 	return (0);
 }
 
+int	mouse_gest(int x, int y, t_param *world)
+{
+	(void)world;
+	printf("y = %d x = %d\n", y, x);
+	return (0);
+}
+
 void	init_window(t_param *world)
 {
+	// int	x;
+	// int	y;
 	/*	Initialize a window and sets the hooks	*/
 
 	world->img = malloc(sizeof(t_data));
@@ -71,6 +81,11 @@ void	init_window(t_param *world)
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L << 0, keyboard, world);
 		mlx_hook(world->window, 17, 1L << 5, exit_cub3d, world);
+		// mlx_mouse_move(world->video, 0, 0);
+		// mlx_mouse_get_pos(world->video, &x, &y);
+		// mlx_do_key_autorepeaton(world->video);
+		// mlx_mouse_hook(world->video, &mouse_gest, world);
+		// printf(" x=  y = \n");
 		mlx_loop_hook(world->video, draw_view, world);
 		mlx_loop(world->video);
 	}
@@ -98,6 +113,7 @@ int	draw_view(t_param *world)
 		draw_col(world, dist, offset, x_wall);
 		offset -= ECAR;
 	}
+	printf("player left = %f", world->player_left);
 	world->player_left = calcul_dist_till_wall(world, world->orient + 90, &x_wall);
 	world->player_right = calcul_dist_till_wall(world, world->orient - 90, &x_wall);
 	world->player_back = calcul_dist_till_wall(world, world->orient - 180, &x_wall);
@@ -120,7 +136,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 	// col_width = SCREEN_WIDTH / NBRAY;
 	x = world->nbray * offset / ANGLEVISION;
 	y = 0;
-	offset_wall = SCREEN_HEIGHT * 0.3 / dist;
+	offset_wall = SCREEN_HEIGHT * 0.5 / dist;
 	mid = world->half_screen;
 	y_texture = 0;
 	if (offset_wall * 2 > SCREEN_HEIGHT)
@@ -142,8 +158,8 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		else
 		{
 			x_texture = x_wall * (double)world->texture[world->flag_wall].x_size;
-			if (x_texture > world->texture[world->flag_wall].x_size)
-				printf("x texture = %d et world->texture[world->flag_wall].x_size = %d \n", x_texture, world->texture[world->flag_wall].x_size);
+			// if (x_texture > world->texture[world->flag_wall].x_size)
+			// 	printf("x texture = %d et world->texture[world->flag_wall].x_size = %d \n", x_texture, world->texture[world->flag_wall].x_size);
 			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((offset_wall * 2));
 			if (y_texture >= world->texture[world->flag_wall].y_size)
 				y_texture = world->texture[world->flag_wall].y_size - 1;

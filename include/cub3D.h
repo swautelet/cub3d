@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 20:22:58 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:55:16 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall);
 
 // Hooks
 int		keyboard(int keycode, t_param *world);
+int		mouse_gest(int x, int y, t_param *world);
 void	move_forward(t_param *world);
 void	move_left(t_param *world);
 void	move_right(t_param *world);

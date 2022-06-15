@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/14 20:10:51 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:06:32 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall)
 
 	hor_x_wall = 0;
 	vert_x_wall = 0;
+	printf(" orientation = %f\n", orientation);
 	while (orientation < 0)
 		orientation += 360;
 	if (orientation >= 360)
@@ -47,7 +48,7 @@ double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall)
 			world->flag_wall = SO;
 	}
 	if (world->orient - orientation != 90 && world->orient - orientation != 270 && world->orient - orientation != -90 && world->orient - orientation != -270)
-		dest = dest * cos(degre_to_radiant(world->orient - orientation));
+		dest = dest * cos(degre_to_radiant((double)world->orient - orientation));
 	if (dest < 0)
 		dest = dest * (-1);
 	return (dest);
@@ -71,7 +72,7 @@ double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall)
 		while (check_right_wall(decal + world->px_y_pos, world->px_x_pos + next_vert, world) == FALSE)
 		{
 			next_vert += 1;
-			decal -= ( tan_orientation);
+			decal -= tan_orientation;
 		}
 	}
 	else if (orientation > 90 && orientation < 270) // look to left
@@ -121,7 +122,7 @@ double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall)
 		while (check_down_wall(next_hor + world->px_y_pos, decal + world->px_x_pos, world)== FALSE) // look down
 		{
 			next_hor += 1;
-			decal -=  ( cotan_orientation);
+			decal -=  cotan_orientation;
 		}
 	}
 	*hor_x_wall = fmod((decal + world->px_x_pos), 1);
