@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 14:55:16 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:18:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define SCREEN_HEIGHT 1200
 // # define SCREEN_WIDTH NBRAY
 # define NOSE 20
-# define MOVE 0.2
-# define ROTATE 5
+# define MOVE 0.05
+# define ROTATE 2
 // # define MID ANGLEVISION / 2 // ANGLEVISION / 2
 // # define LIMIT MOVE * 3 // MOVE * 3
 // # define HALF_SCREEN SCREEN_HEIGHT / 2 // SCREEN_HEIGHT / 2
@@ -96,6 +96,12 @@ typedef struct s_param
 	t_data			*texture;
 	int				*counter;	// Helps doing parsing
 	unsigned int	map_start;
+	t_bool			flag_front;
+	t_bool			flag_back;
+	t_bool			flag_right;
+	t_bool			flag_left;
+	t_bool			flag_rotateright;
+	t_bool			flag_rotateleft;
 }	t_param;
 
 // Drawing
@@ -104,7 +110,9 @@ int		draw_view(t_param *world);
 void	draw_col(t_param *world, double dist, double offset, double x_wall);
 
 // Hooks
-int		keyboard(int keycode, t_param *world);
+int		keyboard_press(int keycode, t_param *world);
+int		keyboard_release(int keycode, t_param *world);
+int		keyboard(t_param *world);
 int		mouse_gest(int x, int y, t_param *world);
 void	move_forward(t_param *world);
 void	move_left(t_param *world);

@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 19:23:44 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:43:35 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ void	init_world(t_param *world)
 	world->mid = ANGLEVISION / 2;
 	world->limit = MOVE * 2;
 	world->half_screen = SCREEN_HEIGHT / 2;
+	world->flag_front = FALSE;
+	world->flag_left = FALSE;
+	world->flag_right = FALSE;
+	world->flag_back = FALSE;
+	world->flag_rotateright = FALSE;
+	world->flag_rotateleft = FALSE;
 }
 
 // static void	output_tests(t_param *world)

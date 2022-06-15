@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 15:31:55 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:15:01 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,62 @@
 //orientation de 180 a 270 bas droite de pi a 1.5 pi radian
 //orientation de 270 a 360 bas gauche de 1.5 pi radian a  2 pi radian
 
-int	keyboard(int keycode, t_param *world)
+int	keyboard(t_param *world)
 {
-	/*	All action that can possibly be made by the player	*/
-
-	// printf("keycode = %d\n", keycode);
-	if (keycode == 123)
+	if (world->flag_rotateleft == TRUE)
 		world->orient = (world->orient + ROTATE) % 360;
-	if (keycode == 124)
+	if (world->flag_rotateright == TRUE)
 	{
 		world->orient = world->orient - ROTATE;
 		if (world->orient < 0)
 			world->orient += 360;
 	}
-	if (keycode == 13 || keycode == 126)
+	if (world->flag_front == TRUE)
 		move_forward(world);
+	if (world->flag_left == TRUE)
+		move_left(world);
+	if (world->flag_right == TRUE)
+		move_right(world);
+	if (world->flag_back == TRUE)
+		move_back(world);
+	return (0);
+}
+
+int	keyboard_press(int keycode, t_param *world)
+{
+	/*	All action that can possibly be made by the player	*/
+
+	// printf("keycode = %d\n", keycode);
+	if (keycode == 123)
+		world->flag_rotateleft = TRUE;
+	if (keycode == 124)
+		world->flag_rotateright = TRUE;
+	if (keycode == 13 || keycode == 126)
+		world->flag_front = TRUE;
 	if (keycode == 53)
 		exit_cub3d(world);
 	if (keycode == 0)
-		move_left(world);
+		world->flag_left = TRUE;
 	if (keycode == 2)
-		move_right(world);
+		world->flag_right = TRUE;
 	if (keycode == 1 || keycode == 125)
-		move_back(world);
+		world->flag_back = TRUE;
+	return (0);
+}
+int	keyboard_release(int keycode, t_param *world)
+{
+	if (keycode == 123)
+		world->flag_rotateleft = FALSE;
+	if (keycode == 124)
+		world->flag_rotateright = FALSE;
+	if (keycode == 13 || keycode == 126)
+		world->flag_front = FALSE;
+	if (keycode == 0)
+		world->flag_left = FALSE;
+	if (keycode == 2)
+		world->flag_right = FALSE;
+	if (keycode == 1 || keycode == 125)
+		world->flag_back = FALSE;
 	return (0);
 }
 
@@ -79,7 +112,8 @@ void	init_window(t_param *world)
 		world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
 		world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
 		draw_view(world);
-		mlx_hook(world->window, 2, 1L << 0, keyboard, world);
+		mlx_hook(world->window, 2, 1L << 0, keyboard_press, world);
+		mlx_hook(world->window, 3, 1L << 1, keyboard_release, world);
 		mlx_hook(world->window, 17, 1L << 5, exit_cub3d, world);
 		// mlx_mouse_move(world->video, 0, 0);
 		// mlx_mouse_get_pos(world->video, &x, &y);
@@ -101,6 +135,7 @@ int	draw_view(t_param *world)
 	double	x_wall;
 
 	offset = ANGLEVISION;
+	keyboard(world);
 	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	x_wall = 0;
 	while (offset >= 0)

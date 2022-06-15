@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:13:27 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/15 15:01:29 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:19:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	move_left(t_param *world)
 	int	dir;
 
 	dir = world->orient + 90;
-	printf("player left = %f\n", world->player_left);
+	// printf("player left = %f\n", world->player_left);
 	if (world->player_left > world->limit)
 	{
 		if (dir == 0)
@@ -63,7 +63,7 @@ void	move_right(t_param *world)
 	int	dir;
 
 	dir = world->orient - 90;
-	printf("player right = %f\n", world->player_right);
+	// printf("player right = %f\n", world->player_right);
 	if (world->player_right > world->limit)
 	{
 		if (dir == 0)
