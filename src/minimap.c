@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 20:43:27 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:38:45 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	draw_minimap(t_param *world)
 	if (world->map_width > world->map_height)
 		square_length = (world->nbray / 3) / world->map_width;
 	else
-		square_length = (world->nbray / 3) / world->map_height ;
+		square_length = (SCREEN_HEIGHT / 3) / world->map_height ;
 	i = 0;
 	while (i < world->map_height)
 	{
