@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 15:06:32 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:31:59 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall)
 
 	hor_x_wall = 0;
 	vert_x_wall = 0;
-	printf(" orientation = %f\n", orientation);
+	// printf(" orientation = %f\n", orientation);
 	while (orientation < 0)
 		orientation += 360;
 	if (orientation >= 360)
