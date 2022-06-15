@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 16:38:45 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:00:45 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length
 		while (j < square_length)
 		{
 			if (world->map[x][y] == '1')
-				pixel_to_image(world->img, y * square_length + i, x * square_length + j, 0x00ffffff);	// couleur des cases mur
+				pixel_to_image(world->img, y * square_length + i, x * square_length + j, create_trgb(100, 255, 255, 255));	// couleur des cases mur
 			else if (world->map[x][y] == ' ' || !world->map[x][y])
 			{
 				j++;
 				continue;
 			}
 			else if (world->map[x][y] != 'v')
-				pixel_to_image(world->img, y * square_length + i, x * square_length + j, 0x00808080);	// couleur des cases terrain
+				pixel_to_image(world->img, y * square_length + i, x * square_length + j, create_trgb(100, 128, 128, 128));	// couleur des cases terrain
 			j++;
 		}
 		i++;
@@ -46,8 +46,11 @@ void	draw_player_nose(t_param *world, unsigned int square_length)
 	unsigned int	new_x;
 	unsigned int	new_y;
 
-	new_x = world->map_x_pos + (world->player_front * square_length) * cos(degre_to_radiant(world->orient));
-	new_y = world->map_y_pos - (world->player_front * square_length) * sin(degre_to_radiant(world->orient));
+	if (square_length < 1)
+		square_length = 1;
+	new_x = world->map_x_pos + square_length * cos(degre_to_radiant(world->orient));
+	new_y = world->map_y_pos - square_length * sin(degre_to_radiant(world->orient));
+	
 	if (new_x < (unsigned int)world->map_x_pos)
 		new_x++;
 	if (new_y < (unsigned int)world->map_y_pos)
@@ -77,7 +80,7 @@ void	draw_player(t_param *world, unsigned int square_length)
 		i++;
 	}
 	//world->p_x_mid = world->p_map_x + world->p_size;
-	// draw_player_nose(world, square_length);
+	draw_player_nose(world, square_length);
 }
 
 void	draw_minimap(t_param *world)

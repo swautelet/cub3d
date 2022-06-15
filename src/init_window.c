@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 16:15:01 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:31:01 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,30 @@ int	keyboard(t_param *world)
 	return (0);
 }
 
+void	open_door(t_param *world)
+{
+	if (world->player_front < 2 && world->flag_frontdoor)
+	{
+		if (world->orient >= 45 && world->orient < 135 && world->map[(int)world->px_y_pos - 1][(int)world->px_x_pos] == 'D')
+			world->map[(int)world->px_y_pos - 1][(int)world->px_x_pos] = '0';
+		else if (world->orient >= 135 && world->orient < 225 && world->map[(int)world->px_y_pos][(int)world->px_x_pos - 1] == 'D')
+			world->map[(int)world->px_y_pos][(int)world->px_x_pos - 1] = '0';
+		else if (world->orient >= 225 && world->orient < 315 && world->map[(int)world->px_y_pos + 1][(int)world->px_x_pos] == 'D')
+			world->map[(int)world->px_y_pos + 1][(int)world->px_x_pos] = '0';
+		else if ((world->orient >= 315 || world->orient < 45) && world->map[(int)world->px_y_pos][(int)world->px_x_pos + 1] == 'D')
+			world->map[(int)world->px_y_pos][(int)world->px_x_pos + 1] = '0';
+		// world->map[(int)((int)world->px_y_pos - world->player_front * sin(degre_to_radiant(world->orient)))][(int)((int)world->px_x_pos + world->player_front * cos(degre_to_radiant(world->orient)))] = '0';
+	}
+	
+}
+
 int	keyboard_press(int keycode, t_param *world)
 {
 	/*	All action that can possibly be made by the player	*/
 
-	// printf("keycode = %d\n", keycode);
+	//printf("keycode = %d\n", keycode);
+	if (keycode == 14)
+		open_door(world);
 	if (keycode == 123)
 		world->flag_rotateleft = TRUE;
 	if (keycode == 124)
@@ -90,7 +109,7 @@ void	init_window(t_param *world)
 	/*	Initialize a window and sets the hooks	*/
 
 	world->img = malloc(sizeof(t_data));
-	world->texture = malloc(sizeof(t_data) * 4);
+	world->texture = malloc(sizeof(t_data) * 5);
 	if (world->img)
 	{
 		world->video = mlx_init();
@@ -98,7 +117,8 @@ void	init_window(t_param *world)
 		world->texture[SO].img = mlx_xpm_file_to_image(world->video, world->so, &(world->texture[SO].x_size), &(world->texture[SO].y_size));
 		world->texture[WE].img = mlx_xpm_file_to_image(world->video, world->we, &(world->texture[WE].x_size), &(world->texture[WE].y_size));
 		world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->ea, &(world->texture[EA].x_size), &(world->texture[EA].y_size));
-		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img)
+		world->texture[DO].img = mlx_xpm_file_to_image(world->video, world->door, &(world->texture[DO].x_size), &(world->texture[DO].y_size));
+		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img || !world->texture[DO].img)
 			error_exit("Img doesn't exists", world);
 		world->window = mlx_new_window(world->video, world->nbray, SCREEN_HEIGHT, "test");
 		world->img->img = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
@@ -111,6 +131,7 @@ void	init_window(t_param *world)
 		world->texture[SO].addr = mlx_get_data_addr(world->texture[SO].img, &world->texture[SO].bits_per_pixel, &world->texture[SO].line_length, &world->texture[SO].endian);
 		world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
 		world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
+		world->texture[DO].addr = mlx_get_data_addr(world->texture[DO].img, &world->texture[DO].bits_per_pixel, &world->texture[DO].line_length, &world->texture[DO].endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L << 0, keyboard_press, world);
 		mlx_hook(world->window, 3, 1L << 1, keyboard_release, world);
@@ -136,13 +157,13 @@ int	draw_view(t_param *world)
 
 	offset = ANGLEVISION;
 	keyboard(world);
-	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	x_wall = 0;
 	while (offset >= 0)
 	{
 		dist = calcul_dist_till_wall(world, world->orient - offset + world->mid, &x_wall);
 		if ((int)offset == world->mid)
 		{
+			world->flag_frontdoor = (char)world->flag_wall;
 			world->player_front = dist;
 		}
 		draw_col(world, dist, offset, x_wall);
@@ -153,6 +174,7 @@ int	draw_view(t_param *world)
 	world->player_right = calcul_dist_till_wall(world, world->orient - 90, &x_wall);
 	world->player_back = calcul_dist_till_wall(world, world->orient - 180, &x_wall);
 	draw_minimap(world);
+	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
 	return (0);
 }

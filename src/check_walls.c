@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:17:04 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/14 18:15:38 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:10:28 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	check_left_wall(double y, double x, t_param *world)
 		// printf("found left wall on %f %f\n", y, x);
 		return (TRUE);
 	}
+	else if (world->map[new_y][new_x] == 'D')
+		return (3);
 	else
 		return (FALSE);
 }
@@ -44,6 +46,8 @@ int	check_right_wall(double y, double x, t_param *world)
 		// printf("found right wall on %f %f\n", y, x);
 		return (TRUE);
 	}
+	else if (world->map[new_y][new_x] == 'D')
+		return (3);
 	else
 		return (FALSE);
 }
@@ -67,6 +71,8 @@ int	check_up_wall(double y, double x, t_param *world)
 		// printf("found up wall on %d %d\n", new_y, new_x);
 		return (TRUE);
 	}
+	else if (world->map[new_y][new_x] == 'D')
+		return (3);
 	else
 		return (FALSE);
 }
@@ -90,6 +96,8 @@ int	check_down_wall(double y, double x, t_param *world)
 		// printf("found down wall on %f %f\n", y, x);
 		return (TRUE);
 	}
+	else if (world->map[new_y][new_x] == 'D')
+		return (3);
 	else
 		return (FALSE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 16:35:58 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:18:58 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef enum e_dir{
 	SO = 1,
 	WE = 2,
 	EA = 3,
+	DO = 4,
 }	t_dir;
 
 typedef	struct s_data
@@ -93,6 +94,7 @@ typedef struct s_param
 	char			*so;
 	char			*we;
 	char			*ea;
+	char			*door;
 	t_data			*texture;
 	int				*counter;	// Helps doing parsing
 	unsigned int	map_start;
@@ -102,6 +104,7 @@ typedef struct s_param
 	t_bool			flag_left;
 	t_bool			flag_rotateright;
 	t_bool			flag_rotateleft;
+	char			flag_frontdoor;
 }	t_param;
 
 // Drawing
@@ -126,8 +129,8 @@ void	draw_player_nose(t_param *world, unsigned int square_length);
 
 // Distance
 double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall);
-double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall);
-double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall);
+double	next_vert_wall(t_param *world, double orientation, double *vert_x_wall, int *sub_door_vert);
+double	next_hor_wall(t_param *world, double orientation, double *hor_x_wall, int *sub_door_hor);
 
 // Walls
 int		check_left_wall(double y, double x, t_param *world);

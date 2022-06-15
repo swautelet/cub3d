@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 15:04:06 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:13:15 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	valid_map_line(const char *holder)
 	char	*base;
 	size_t	i;
 
-	base = " 01NSEW";
+	base = " 01NSEWD";
 	i = 0;
 	while (holder[i])
 	{
