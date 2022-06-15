@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 19:23:25 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:22:58 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 
 # define SIZE 64
 # define ANGLEVISION 60
-# define ECAR 0.05
+# define ECAR 0.025
 // # define NBRAY ANGLEVISION / ECAR // ANGLEVISION / ECAR
 # define SCREEN_HEIGHT 1200
 // # define SCREEN_WIDTH NBRAY
 # define NOSE 20
 # define MOVE 0.2
-# define ROTATE 9
+# define ROTATE 5
 // # define MID ANGLEVISION / 2 // ANGLEVISION / 2
 // # define LIMIT MOVE * 3 // MOVE * 3
 // # define HALF_SCREEN SCREEN_HEIGHT / 2 // SCREEN_HEIGHT / 2

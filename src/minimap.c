@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 16:29:09 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:43:27 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,22 @@ void	draw_player(t_param *world, unsigned int square_length)
 	int	i;
 	int	j;
 
-	world->player_size = square_length / 2;
+	world->player_size = square_length / 3;
 	world->map_x_pos = ((world->px_x_pos) * square_length);
 	world->map_y_pos = ((world->px_y_pos) * square_length);
+	if (world->player_size == 0)
+		world->player_size = 1;
 	//printf("p_map_x = ");
 	i = 0;
 	while (i < world->player_size)
 	{
 		j = 0;
 		while (j < world->player_size)
-			pixel_to_image(world->img, world->map_x_pos - (world->player_size / 3) + i, world->map_y_pos - (world->player_size / 3) + j++, 0x00000000);
+			pixel_to_image(world->img, world->map_x_pos - (world->player_size / 2) + i, world->map_y_pos - (world->player_size / 2) + j++, 0x00000000);
 		i++;
 	}
 	//world->p_x_mid = world->p_map_x + world->p_size;
-	draw_player_nose(world, square_length);
+	// draw_player_nose(world, square_length);
 }
 
 void	draw_minimap(t_param *world)
