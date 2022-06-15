@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 18:31:01 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:57:50 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,24 @@ int	keyboard_release(int keycode, t_param *world)
 	return (0);
 }
 
-int	mouse_gest(int x, int y, t_param *world)
+void	colorise(t_data *img, int x, int y)
 {
-	(void)world;
-	printf("y = %d x = %d\n", y, x);
-	return (0);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < x)
+	{
+		j = 0;
+		while (j < y)
+		{
+			pixel_to_image(img, i, j, 6710886);
+			j++;
+		}
+		i++;
+	}
+	// printf("%d\n", get_color_from_img(img, 0, 0));
 }
 
 void	init_window(t_param *world)
@@ -109,7 +122,10 @@ void	init_window(t_param *world)
 	/*	Initialize a window and sets the hooks	*/
 
 	world->img = malloc(sizeof(t_data));
+	world->key = malloc(sizeof(t_data));
 	world->texture = malloc(sizeof(t_data) * 5);
+	if (!world->img || !world->key || !world->texture)
+		error_exit("malloc error", world);
 	if (world->img)
 	{
 		world->video = mlx_init();
@@ -122,11 +138,14 @@ void	init_window(t_param *world)
 			error_exit("Img doesn't exists", world);
 		world->window = mlx_new_window(world->video, world->nbray, SCREEN_HEIGHT, "test");
 		world->img->img = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
+		world->key->img = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
 		world->clean = mlx_new_image(world->video, world->nbray, SCREEN_HEIGHT);
 		world->img->bits_per_pixel = 0;
 		world->img->line_length = 0;
 		world->img->endian = 0;
 		world->img->addr = mlx_get_data_addr(world->img->img, &world->img->bits_per_pixel, &world->img->line_length, &world->img->endian);
+		world->key->addr = mlx_get_data_addr(world->key->img, &world->key->bits_per_pixel, &world->key->line_length, &world->key->endian);
+		colorise(world->key, world->nbray, SCREEN_HEIGHT);
 		world->texture[NO].addr = mlx_get_data_addr(world->texture[NO].img, &world->texture[NO].bits_per_pixel, &world->texture[NO].line_length, &world->texture[NO].endian);
 		world->texture[SO].addr = mlx_get_data_addr(world->texture[SO].img, &world->texture[SO].bits_per_pixel, &world->texture[SO].line_length, &world->texture[SO].endian);
 		world->texture[WE].addr = mlx_get_data_addr(world->texture[WE].img, &world->texture[WE].bits_per_pixel, &world->texture[WE].line_length, &world->texture[WE].endian);
@@ -158,6 +177,7 @@ int	draw_view(t_param *world)
 	offset = ANGLEVISION;
 	keyboard(world);
 	x_wall = 0;
+	colorise(world->key, world->nbray, SCREEN_HEIGHT);
 	while (offset >= 0)
 	{
 		dist = calcul_dist_till_wall(world, world->orient - offset + world->mid, &x_wall);
@@ -166,6 +186,7 @@ int	draw_view(t_param *world)
 			world->flag_frontdoor = (char)world->flag_wall;
 			world->player_front = dist;
 		}
+		draw_key(world, offset);
 		draw_col(world, dist, offset, x_wall);
 		offset -= ECAR;
 	}
@@ -176,7 +197,44 @@ int	draw_view(t_param *world)
 	draw_minimap(world);
 	mlx_put_image_to_window(world->video, world->window, world->clean, 0, 0);
 	mlx_put_image_to_window(world->video, world->window, world->img->img, 0, 0);
+	// mlx_put_image_to_window(world->video, world->window, world->key->img, 0, 0);
 	return (0);
+}
+
+void	draw_key(t_param *world, double offset)
+{
+	int	x;
+	int	y;
+	int	key_size;
+	int	mid;
+	int	x_texture;
+	double	y_texture;
+
+	if (world->dist_key < 0)
+		return ;
+	x = world->nbray * offset / ANGLEVISION;
+	key_size = SCREEN_HEIGHT * 0.5 / world->dist_key;
+	mid = world->half_screen;
+	y_texture = 0;
+	y = 0;
+	if (key_size * 2 > SCREEN_HEIGHT)
+		y_texture = ((key_size * 2) - SCREEN_HEIGHT) * (double)(world->texture[world->flag_wall].y_size) / (double)((key_size * 2)) / 2;
+	while (y <= SCREEN_HEIGHT)
+	{
+		if (y > mid - key_size && y < mid + key_size)
+		{
+			x_texture = world->x_wallkey * (double)world->texture[world->flag_wall].x_size;
+			// if (x_texture > world->texture[world->flag_wall].x_size)
+			// 	printf("x texture = %d et world->texture[world->flag_wall].x_size = %d \n", x_texture, world->texture[world->flag_wall].x_size);
+			y_texture += (double)(world->texture[world->flag_wall].y_size) / (double)((key_size * 2));
+			if (y_texture >= world->texture[world->flag_wall].y_size)
+				y_texture = world->texture[world->flag_wall].y_size - 1;
+			// i = -1;
+			// while (++i < col_width)
+			pixel_to_image(world->img, x, y, get_color_from_img(world->key, x_texture, y_texture));
+		}
+		y++;
+	}
 }
 
 void	draw_col(t_param *world, double dist, double offset, double x_wall)
@@ -226,4 +284,5 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall)
 		}
 		y++;
 	}
+	world->dist_key = -1;
 }

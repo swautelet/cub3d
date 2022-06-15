@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_extractor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:55:03 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 18:13:15 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:54:46 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	valid_map_line(const char *holder)
 	char	*base;
 	size_t	i;
 
-	base = " 01NSEWD";
+	base = " 01NSEWDK";
 	i = 0;
 	while (holder[i])
 	{

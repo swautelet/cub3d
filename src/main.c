@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:19:31 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 17:56:02 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:33:23 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	init_world(t_param *world)
 	world->flag_back = FALSE;
 	world->flag_rotateright = FALSE;
 	world->flag_rotateleft = FALSE;
+	world->dist_key = -1;
 }
 
 // static void	output_tests(t_param *world)

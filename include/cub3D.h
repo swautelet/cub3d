@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 18:18:58 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:47:20 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,15 @@ typedef struct s_param
 	double			player_left;
 	double			player_right;
 	double			player_back;
+	double			dist_key;
+	double			x_wallkey;
 	char			**map;	// Actual map
 	unsigned int	map_height;	// Amount of lines in the map
 	unsigned int	map_width;	// Amount of columns in the map
 	void			*video;	// MLX instance
 	void			*window;	// MLX window
 	t_data			*img;	// MLX image
+	t_data			*key;
 	void			*clean;	// Something clean ??
 	int				floor_color;	
 	int				ceiling_color;
@@ -111,6 +114,7 @@ typedef struct s_param
 void	init_window(t_param *world);
 int		draw_view(t_param *world);
 void	draw_col(t_param *world, double dist, double offset, double x_wall);
+void	draw_key(t_param *world, double offset);
 
 // Hooks
 int		keyboard_press(int keycode, t_param *world);
