@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 17:00:45 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/16 10:55:42 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ void	paint_square_map(unsigned int x, unsigned int y, unsigned int square_length
 		{
 			if (world->map[x][y] == '1')
 				pixel_to_image(world->img, y * square_length + i, x * square_length + j, create_trgb(100, 255, 255, 255));	// couleur des cases mur
-			else if (world->map[x][y] == ' ' || !world->map[x][y])
-			{
-				j++;
-				continue;
-			}
-			else if (world->map[x][y] != 'v')
+			// else if (world->map[x][y] == ' ' || !world->map[x][y])
+			// {
+			// 	j++;
+			// 	continue;
+			// }
+			else if (world->map[x][y] == '0' || ft_char_in_str(world->map[x][y], "NSEW"))
 				pixel_to_image(world->img, y * square_length + i, x * square_length + j, create_trgb(100, 128, 128, 128));	// couleur des cases terrain
+			else if (world->map[x][y] == 'D')
+				pixel_to_image(world->img, y * square_length + i, x * square_length + j, create_trgb(100, 139, 69, 19));
+			else if (world->map[x][y] == 'K')
+				pixel_to_image(world->img, y * square_length + i, x * square_length + j, create_trgb(100, 212, 175, 55));
 			j++;
 		}
 		i++;

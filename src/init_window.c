@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:13:03 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/15 22:40:09 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/16 11:25:22 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	keyboard(t_param *world)
 
 void	open_door(t_param *world)
 {
-	if (world->player_front < 2 && world->flag_frontdoor)
+	if (world->player_front < 2 && world->flag_frontdoor && world->keyfound)
 	{
 		if (world->orient >= 45 && world->orient < 135 && world->map[(int)world->px_y_pos - 1][(int)world->px_x_pos] == 'D')
 			world->map[(int)world->px_y_pos - 1][(int)world->px_x_pos] = '0';
@@ -52,7 +52,11 @@ void	open_door(t_param *world)
 			world->map[(int)world->px_y_pos][(int)world->px_x_pos + 1] = '0';
 		// world->map[(int)((int)world->px_y_pos - world->player_front * sin(degre_to_radiant(world->orient)))][(int)((int)world->px_x_pos + world->player_front * cos(degre_to_radiant(world->orient)))] = '0';
 	}
-	
+	if (world->map[(int)world->px_y_pos][(int)world->px_x_pos] == 'K')
+	{
+		world->map[(int)world->px_y_pos][(int)world->px_x_pos] = '0';
+		world->keyfound = TRUE;
+	}
 }
 
 int	keyboard_press(int keycode, t_param *world)
@@ -135,6 +139,7 @@ void	init_window(t_param *world)
 		world->texture[EA].img = mlx_xpm_file_to_image(world->video, world->ea, &(world->texture[EA].x_size), &(world->texture[EA].y_size));
 		world->texture[DO].img = mlx_xpm_file_to_image(world->video, world->door, &(world->texture[DO].x_size), &(world->texture[DO].y_size));
 		world->texture[KE].img = mlx_xpm_file_to_image(world->video, "./texture/keyblade.xpm", &(world->texture[KE].x_size), &(world->texture[KE].y_size));
+		//world->texture[EN].img = mlx_xpm_file_to_image(world->video, "./texture/victory.xpm", &(world->texture[EN].x_size), &(world->texture[EN].y_size));
 		if (!world->texture[NO].img || !world->texture[SO].img || !world->texture[WE].img || !world->texture[EA].img || !world->texture[DO].img || ! world->texture[KE].img)
 			error_exit("Img doesn't exists", world);
 		world->window = mlx_new_window(world->video, world->nbray, SCREEN_HEIGHT, "test");
@@ -151,6 +156,7 @@ void	init_window(t_param *world)
 		world->texture[EA].addr = mlx_get_data_addr(world->texture[EA].img, &world->texture[EA].bits_per_pixel, &world->texture[EA].line_length, &world->texture[EA].endian);
 		world->texture[DO].addr = mlx_get_data_addr(world->texture[DO].img, &world->texture[DO].bits_per_pixel, &world->texture[DO].line_length, &world->texture[DO].endian);
 		world->texture[KE].addr = mlx_get_data_addr(world->texture[KE].img, &world->texture[KE].bits_per_pixel, &world->texture[KE].line_length, &world->texture[KE].endian);
+		//world->texture[EN].addr = mlx_get_data_addr(world->texture[EN].img, &world->texture[EN].bits_per_pixel, &world->texture[EN].line_length, &world->texture[EN].endian);
 		draw_view(world);
 		mlx_hook(world->window, 2, 1L << 0, keyboard_press, world);
 		mlx_hook(world->window, 3, 1L << 1, keyboard_release, world);

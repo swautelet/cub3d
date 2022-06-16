@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:12 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/15 22:29:24 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/06/16 13:32:14 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef enum e_dir{
 	EA = 3,
 	DO = 4,
 	KE = 5,
+	EN = 6,
 }	t_dir;
 
 typedef	struct s_data
@@ -179,8 +180,9 @@ void	error_exit(char *message, t_param *world);
 #endif
 
 //to_do
-// check map is closed
 // gnl leaks
 // free on error
-// bonne touches
+// norm
+// key
+
 
