@@ -6,11 +6,41 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:34:40 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:50:24 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:16:36 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	check_map_end(t_param *world, size_t i)
+{
+	int	diff;
+	int	j;
+
+	diff = 0;
+	if (i < world->map_height - 1)
+	{
+		if (ft_strlen(world->map[i]) != ft_strlen(world->map[i + 1]))
+			diff = ft_strlen(world->map[i]) - ft_strlen(world->map[i + 1]);
+		//printf("line %zu : %zu, line %zu :%zu, Diff : %d\n",i, ft_strlen(world->map[i]), i + 1, ft_strlen(world->map[i + 1]), diff);
+		if (world->map[i][ft_strlen(world->map[i]) - 1] != '1' && world->map[i][ft_strlen(world->map[i]) - 1] != 'v')
+			error_exit("Corrupted .cub file", world);
+		j = 0;
+		while (j < diff - 1)
+		{
+			if (world->map[i][ft_strlen(world->map[i + 1]) + j] != '1')
+				error_exit("Corrupted .cub file", world);
+			j++;
+		}
+		j = 0;
+		while (j < (-1 * diff))
+		{
+			if (world->map[i + 1][ft_strlen(world->map[i]) + j] != '1')
+				error_exit("Corrupted .cub file", world);
+			j++;
+		}
+	}
+}
 
 void	last_map_check(t_param *world)
 {
