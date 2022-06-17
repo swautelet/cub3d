@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:58:15 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:23:20 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:17:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	free_world(t_param *world)
 	free(world->counter);
 	free(world->img);
 	free(world->texture);
+	free(world->calque);
 	free(world);
 }

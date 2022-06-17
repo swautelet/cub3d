@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:00:37 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 02:03:13 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:16:34 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ typedef struct s_param
 	void			*instance;
 	void			*window;
 	t_img			*img;	// Malloc
-	t_img			*texture;
-	void			*clean_img;
+	t_img			*texture; // Malloc
+	t_img			*calque;	// Malloc
 
 
 	int				nb_ray;

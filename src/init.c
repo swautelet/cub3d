@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:08:01 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 02:05:41 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:17:46 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	init_mlx(t_param *world)
 {
 	world->img = malloc(sizeof(t_img));
 	world->texture = malloc(sizeof(t_img) * 6);
-	if (!world->img || !world->texture)
+	world->calque = malloc(sizeof(t_img));
+	if (!world->img || !world->texture || !world->calque)
 		error_exit("Malloc error", world, NULL, -1);
 	world->instance = mlx_init();
 	world->window = mlx_new_window(world->instance, world->nb_ray,
@@ -97,6 +98,6 @@ void	init_world(t_param *world)
 	world->window = NULL;
 	world->img = NULL;
 	world->texture = NULL;
-	world->clean_img = NULL;
+	world->calque = NULL;
 	world->nb_ray = ANGLEVISION / ECAR;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lets_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:11:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 13:12:14 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:20:00 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	keyboard_press(int keycode, t_param *world)
 
 void	lets_cub(t_param *world)
 {
-	(void)world;
 	init_mlx(world);
 	mlx_hook(world->window, 2, 1L << 0, keyboard_press, world);
 	mlx_loop(world->instance);
