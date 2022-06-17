@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:55:23 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:54:00 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:20:10 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	clean_close_mlx(t_param *world)
 {
 	if (world->img)
 		mlx_destroy_image(world->instance, world->img->img);
-	if (world->clean_img)
-		mlx_destroy_image(world->instance, world->clean_img);
+	if (world->calque)
+		mlx_destroy_image(world->instance, world->calque);
 	if (world->window)
 		mlx_destroy_window(world->instance, world->window);
 }
