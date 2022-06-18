@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:16:02 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 11:44:11 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:07:59 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*space_string(size_t len, t_param *world)
 	if (!res)
 		error_exit("Space string malloc error ", world, NULL, -1);
 	while (i < len)
-		res[i++] = 'v';
+		res[i++] = '\0';
 	res[i] = '\0';
 	return (res);
 }

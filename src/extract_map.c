@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 13:25:55 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:21:12 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,19 @@ void	fill_spaces(t_param *world)
 
 void	process_map(t_param *world, int *fd, char **holder)
 {
-	char	*end_line;
-	int		i;
+	int	i;
 
-	end_line = NULL;
 	i = 0;
 	*holder = get_next_line(*fd);
 	while (*holder)
 	{
-		end_line = space_string(world->map_width - ft_strlen(*holder), world);
 		if (valid_map_line(*holder) && ft_strlen(*holder) > 1)
-			world->map[i++] = ft_strjoin(*holder, end_line);
+		{
+			world->map[i++] = ft_calloc(sizeof(char), world->map_width);
+			ft_strlcpy(world->map[i - 1], *holder, ft_strlen(*holder) + 1);
+		}
 		else if (!valid_map_line(*holder))
-			error_exit("Not a valid map line", world, end_line, -1);
-		free(end_line);
+			error_exit("Not a valid map line", world, *holder, -1);
 		free(*holder);
 		*holder = get_next_line(*fd);
 	}
