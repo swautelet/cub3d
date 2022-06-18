@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 14:21:12 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:37:47 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,11 @@ void	extract_map(t_param *world)
 	char	*holder;
 
 	holder = NULL;
+	printf("map heitght = %d\n", world->map_height);
 	world->map = malloc(sizeof(char *) * world->map_height + 1);
 	if (!world->map)
 		error_exit("Map malloc error", world, NULL, -1);
+	world->map[0] = NULL;
 	fd = open(world->path, O_RDONLY);
 	if (fd == -1)
 		error_exit("Failed to open the .cub file", world, NULL, -1);
