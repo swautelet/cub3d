@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_ft.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:36:50 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/26 19:21:22 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:20:33 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function outputs the string ’s’
-	to the given file descriptor.	*/
 
 void	ft_putstr_fd(char *s, int fd)
 {

@@ -6,18 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 18:21:05 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/28 18:58:17 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:19:37 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function iterates the list ’lst’ and
-	applies the function ’f’ to the content of
-	each element. Creates a new list resulting
-	of the successive applications of the function
-	’f’. The ’del’ function is used to delete the
-	content of an element if needed.	*/
 
 static void	ft_letsmap(t_list **lst, t_list **new_lst, void *(*f)(void *),
 				void (*del)(void *))
@@ -27,7 +20,6 @@ static void	ft_letsmap(t_list **lst, t_list **new_lst, void *(*f)(void *),
 	while (*lst)
 	{
 		new_elem = ft_lstnew(f((*lst)->content));
-		// Malloc protection + clearing
 		if (!new_elem)
 		{
 			ft_lstclear(lst, del);
@@ -44,11 +36,9 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_lst;
 
-	// Basic protection
 	if (!lst || !f || !del)
 		return (NULL);
 	new_lst = ft_lstnew(f(lst->content));
-	// Malloc protection + cleaning
 	if (!new_lst)
 	{
 		ft_lstclear(&lst, del);

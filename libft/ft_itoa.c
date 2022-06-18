@@ -6,15 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 08:23:54 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/26 19:20:58 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:18:57 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function allocates and returns a string
-	representing the integer received as an argument.
-	Negative numbers must be handled.	*/
 
 static int	ft_intlen(unsigned int n)
 {
@@ -54,7 +50,6 @@ char	*ft_itoa(int n)
 	nb = neg_check(n, &len);
 	len += ft_intlen(nb);
 	res = malloc(sizeof(char) * len + 1);
-	// Mallox protection
 	if (!res)
 		return (NULL);
 	i = 0;

@@ -6,15 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 18:13:06 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/22 14:56:42 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:19:59 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function compares byte string s1 against
-	byte string s2. Both strings are assumed to
-	be n bytes long.	*/
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -23,7 +19,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*str2;
 
 	i = 0;
-	// Casting for comparison
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
 	while (i < n)

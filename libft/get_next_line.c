@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:00:23 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 00:30:44 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:17:05 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*result;
-	ssize_t		size; 
+	ssize_t		size;
 
 	if (fd < 0 || fd > FOPEN_MAX)
 		return (NULL);
