@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 13:22:06 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:23:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define ANGLEVISION 60
 # define ECAR 0.035
-# define SCREEN_HEIGHT 600
+# define SCREEN_HEIGHT 900
 # define MOVE 0.1
 # define ROTATE 5
 

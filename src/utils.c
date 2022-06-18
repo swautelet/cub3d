@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:43:08 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 13:21:01 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:28:59 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	counter_check(int *counter)
 
 void	check_max_int(long long int check, t_param *world)
 {
-	if (check > 2147483647 || check < 0)
-		error_exit("Corrupted .cub file ", world, NULL, -1);
+	if (check > 255 || check < 0)
+		error_exit("Invalid Floor or ceiling color ", world, NULL, -1);
 }
 
 int	to_hex_int(const char *str, t_param *world)
