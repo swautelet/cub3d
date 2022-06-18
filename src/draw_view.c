@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:13:47 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/18 12:12:09 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:20:18 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	draw_view(t_param *world)
 	x_wall = 0;
 	animate(world);
 	colorise(world->calque, world->calque->x_size, world->calque->y_size);
+	world->flag_first_ray = TRUE;
 	while (offset >= 0)
 	{
 		dist = calcul_dist_till_wall(world, world->orient
@@ -66,6 +67,7 @@ int	draw_view(t_param *world)
 		if (world->keyfound == TRUE)
 			draw_key(world, offset, dist);
 		offset -= ECAR;
+		world->flag_first_ray = FALSE;
 	}
 	set_dist(world, x_wall);
 	return (0);

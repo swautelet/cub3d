@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 12:08:11 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:19:35 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@
 # define SCREEN_HEIGHT 1200
 # define MOVE 0.1
 # define ROTATE 5
+
+typedef struct s_key{
+	int				x;
+	int				y;
+	int				key_size;
+	int				mid;
+	double			x_texture;
+	double			y_texture;
+	unsigned int	color;
+}	t_key;
 
 typedef enum e_dir
 {
@@ -111,6 +121,7 @@ typedef struct s_param
 	t_bool			flag_back;
 
 	t_bool			key_picked;
+	t_bool			flag_first_ray;
 	
 	unsigned int	square_length;
 	int player_size; // optimisation possible en le calculant au debut

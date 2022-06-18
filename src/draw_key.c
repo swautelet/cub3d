@@ -6,21 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:19:38 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/18 11:08:13 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:34:27 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-typedef struct s_key{
-	int				x;
-	int				y;
-	int				key_size;
-	int				mid;
-	double			x_texture;
-	double			y_texture;
-	unsigned int	color;
-}	t_key;
 
 static void	key_loop(t_param *world, t_key *f, double dist)
 {
@@ -56,7 +46,7 @@ void	draw_key(t_param *world, double offset, double dist)
 	if (f.key_size > SCREEN_HEIGHT)
 		f.y_texture = ((f.key_size * 2) - SCREEN_HEIGHT)
 			* (world->texture[world->flag_wall].y_size)
-			/ ((f.key_size * 2)) / 2;
+			/ (f.key_size);
 	while (f.y <= SCREEN_HEIGHT && f.x_texture <= world->texture[KE].x_size)
 		key_loop(world, &f, dist);
 	world->x_wallkey -= (double)0.5 / (double)f.key_size;
