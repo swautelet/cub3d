@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:12:26 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 10:49:42 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:06:57 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	set_textures(t_param *world)
 	world->img->addr = mlx_get_data_addr(world->img->img,
 			&world->img->bits_per_pixel, &world->img->line_length,
 			&world->img->endian);
+	world->calque->addr = mlx_get_data_addr(world->calque->img,
+			&world->calque->bits_per_pixel, &world->calque->line_length,
+			&world->calque->endian);
 	world->texture[NO].addr = mlx_get_data_addr(world->texture[NO].img,
 			&world->texture[NO].bits_per_pixel, &world->texture[NO].line_length,
 			&world->texture[NO].endian);
@@ -72,6 +75,12 @@ void	init_mlx(t_param *world)
 			SCREEN_HEIGHT, "Cub3D");
 	world->img->img = mlx_new_image(world->instance, world->nb_ray,
 			SCREEN_HEIGHT);
+	world->calque->img = mlx_new_image(world->instance, world->nb_ray,
+			SCREEN_HEIGHT);
+	world->calque->x_size = world->nb_ray;
+	world->calque->y_size = SCREEN_HEIGHT;
+	world->img->x_size = world->nb_ray;
+	world->img->y_size = SCREEN_HEIGHT;
 	init_textures(world);
 }
 
@@ -83,12 +92,10 @@ void	init_world(t_param *world)
 	world->map_y_pos = 0;
 	world->orient = 0;
 	world->limit = MOVE * 2;
-
 	world->map = NULL;
 	world->map_height = 0;
 	world->map_width = 0;
 	world->map_start = 0;
-
 	world->path = NULL;
 	world->no = NULL;
 	world->so = NULL;
@@ -96,14 +103,25 @@ void	init_world(t_param *world)
 	world->ea = NULL;
 	world->floor_color = 0;
 	world->ceiling_color = 0;
-
+	world->amount_key = 0;
 	world->counter = NULL;
-
 	world->instance = NULL;
 	world->window = NULL;
 	world->img = NULL;
 	world->texture = NULL;
 	world->calque = NULL;
-
 	world->nb_ray = ANGLEVISION / ECAR;
+	world->mid = ANGLEVISION / 2;
+	world->x_wallkey = 0;
+	world->dist_key = -1;
+	world->keyfound = FALSE;
+	world->flag_wall = 0;
+	world->half_screen = SCREEN_HEIGHT / 2;
+	world->flag_back = FALSE;
+	world->flag_front = FALSE;
+	world->flag_left = FALSE;
+	world->flag_right = FALSE;
+	world->flag_rotateleft = FALSE;
+	world->flag_rotateright = FALSE;
+	world->key_picked = FALSE;
 }

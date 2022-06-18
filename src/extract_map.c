@@ -6,11 +6,32 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:29:57 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:40:33 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	get_amount_key(t_param *world)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (world->map[y])
+	{
+		x = 0;
+		while (world->map[y][x])
+		{
+			if (world->map[y][x] == 'K')
+				world->amount_key++;
+			x++;
+		}
+		y++;
+	}
+	if (world->amount_key > 1)
+		error_exit("Too many keys in the map", world, NULL, -1);
+}
 
 void	fill_spaces(t_param *world)
 {
@@ -38,7 +59,8 @@ void	process_map(t_param *world, int *fd, char **holder)
 
 	end_line = NULL;
 	i = 0;
-	while ((*holder = get_next_line(*fd)))
+	*holder = get_next_line(*fd);
+	while (*holder)
 	{
 		end_line = space_string(world->map_width - ft_strlen(*holder), world);
 		if (valid_map_line(*holder) && ft_strlen(*holder) > 1)
@@ -47,7 +69,9 @@ void	process_map(t_param *world, int *fd, char **holder)
 			error_exit("Not a valid map line", world, end_line, -1);
 		free(end_line);
 		free(*holder);
+		*holder = get_next_line(*fd);
 	}
+	free(*holder);
 	world->map[i] = NULL;
 }
 
@@ -67,5 +91,6 @@ void	extract_map(t_param *world)
 	process_map(world, &fd, &holder);
 	fill_spaces(world);
 	last_map_check(world);
+	get_amount_key(world);
 	get_player_position(world);
 }

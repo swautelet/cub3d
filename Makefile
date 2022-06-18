@@ -6,7 +6,7 @@
 #    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/18 10:47:27 by swautele         ###   ########.fr        #
+#    Updated: 2022/06/18 11:55:50 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC_FILES = main.c errors.c init.c free.c cub_file.c extract_file.c map_check.c 
 			move.c get_texture.c check_walls.c distance.c \
 			draw_col.c draw_key.c draw_view.c \
 			graphic_utils.c hor_dist.c keyboard.c \
-			vert_dist.c bresenham.c
+			vert_dist.c bresenham.c init2.c
 
 HEADER = ./include/cub3D.h
 			 

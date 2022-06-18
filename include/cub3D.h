@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 11:36:42 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:08:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@
 # include <unistd.h>
 
 # define ANGLEVISION 60
-# define ECAR 0.05
-# define SCREEN_HEIGHT 600
+# define ECAR 0.025
+# define SCREEN_HEIGHT 1200
 # define MOVE 0.1
-# define ROTATE 1
+# define ROTATE 5
+
 typedef enum e_dir
 {
 	NO = 0,
@@ -111,6 +112,7 @@ typedef struct s_param
 
 	t_bool			key_picked;
 	
+	unsigned int	square_length;
 	int player_size; // optimisation possible en le calculant au debut
 
 	char **map; // Malloc OK
@@ -125,13 +127,14 @@ typedef struct s_param
 	char *ea;   // Malloc  OK
 	int				floor_color;
 	int				ceiling_color;
+	unsigned int	amount_key;
 
 	int *counter; // Malloc OK
 
 	void			*instance;
 	void			*window;
 	t_img *img;     // Malloc OK
-	t_img *texture; // Malloc 
+	t_img *texture; // Malloc OK
 	t_img *calque;  // Malloc OK
 
 	int				nb_ray;
@@ -164,7 +167,8 @@ void	draw_col(t_param *world, double dist, double offset, double x_wall);
 double	calcul_dist_till_wall(t_param *world, double orientation, double *x_wall);
 void	colorise(t_img *img, int x, int y);
 void	draw_minimap(t_param *world);
-
+void	paint_square_map(unsigned int x, unsigned int y, t_param *world);
+void	draw_player_nose(t_param *world);
 // check wall -- 
 int	check_left_wall(double y, double x, t_param *world);
 int	check_right_wall(double y, double x, t_param *world);
@@ -181,8 +185,10 @@ void	move_right(t_param *world);
 void	move_back(t_param *world);
 
 // -- Extract Map --
-void				extract_map(t_param *world);
-void				process_map(t_param *world, int *fd, char **holder);
+void	extract_map(t_param *world);
+void	process_map(t_param *world, int *fd, char **holder);
+void	fill_spaces(t_param *world);
+void	get_amount_key(t_param *world);
 
 // -- Extract File --
 void				extract_file(t_param *world, int fd);
@@ -203,16 +209,17 @@ void				init_world(t_param *world);
 void				init_mlx(t_param *world);
 void				init_textures(t_param *world);
 void				set_textures(t_param *world);
+void	init_second_part(t_param *world);
 
 // -- Free --
 void				free_world(t_param *world);
 void				free_split(char **split);
 
 // -- Errors --
-void				error_exit(char *message, t_param *world, char *str_tr_free,
-						int fd_to_close);
-int					succes_exit(t_param *world);
-void				clean_close_mlx(t_param *world);
+void	error_exit(char *message, t_param *world, char *str_tr_free,
+	int fd_to_close);
+int		succes_exit(t_param *world);
+void	clean_close_mlx(t_param *world);
 
 // -- Utils --
 size_t				len_array_2d(char **split);
