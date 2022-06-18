@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 12:35:33 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:37:30 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <unistd.h>
 
 # define ANGLEVISION 60
-# define ECAR 0.025
-# define SCREEN_HEIGHT 1200
+# define ECAR 0.035
+# define SCREEN_HEIGHT 600
 # define MOVE 0.1
 # define ROTATE 5
 
