@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:35:02 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/02 12:04:30 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 00:10:21 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-
-# define BUFFER_SIZE 32
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -86,9 +85,10 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // Added functions
-int		get_next_line(int fd, char **line);
-char	*ft_clean(char *str);
-char	*ft_clean_save(char *str);
+char	*get_next_line(int fd);
+char	*ft_initialize(char *buffer);
+int		ft_end_of_line(char *str);
+char	*ft_straddback(char *result, char *buffer, ssize_t size);
 
 int		ft_strsame(const char *str1, const char *str2);
 

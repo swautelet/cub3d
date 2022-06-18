@@ -6,7 +6,7 @@
 #    By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/17 01:12:38 by npinheir         ###   ########.fr        #
+#    Updated: 2022/06/18 02:23:36 by npinheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = ./libft/
 MINLBX_DIR = ./minilibx_opengl/
 
 # Source files and object files
-SRC_FILES = main.c errors.c free.c init.c cub_file.c extract_file.c map_check.c \
+SRC_FILES = main.c errors.c init.c free.c cub_file.c extract_file.c map_check.c \
 			utils.c extract_map.c utils2.c player.c lets_cub.c
 
 HEADER = ./include/cub3D.h

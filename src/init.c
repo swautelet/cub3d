@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 19:08:01 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 13:17:46 by swautele         ###   ########.fr       */
+/*   Created: 2022/06/18 00:12:26 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 02:20:06 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	init_mlx(t_param *world)
 	world->texture = malloc(sizeof(t_img) * 6);
 	world->calque = malloc(sizeof(t_img));
 	if (!world->img || !world->texture || !world->calque)
-		error_exit("Malloc error", world, NULL, -1);
+		error_exit("Images malloc error", world, NULL, -1);
 	world->instance = mlx_init();
 	world->window = mlx_new_window(world->instance, world->nb_ray,
 			SCREEN_HEIGHT, "Cub3D");
@@ -82,10 +82,12 @@ void	init_world(t_param *world)
 	world->map_x_pos = 0;
 	world->map_y_pos = 0;
 	world->orient = 0;
+
 	world->map = NULL;
 	world->map_height = 0;
 	world->map_width = 0;
 	world->map_start = 0;
+
 	world->path = NULL;
 	world->no = NULL;
 	world->so = NULL;
@@ -93,11 +95,14 @@ void	init_world(t_param *world)
 	world->ea = NULL;
 	world->floor_color = 0;
 	world->ceiling_color = 0;
+
 	world->counter = NULL;
+
 	world->instance = NULL;
 	world->window = NULL;
 	world->img = NULL;
 	world->texture = NULL;
 	world->calque = NULL;
+
 	world->nb_ray = ANGLEVISION / ECAR;
 }

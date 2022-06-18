@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 19:11:38 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:48:10 by npinheir         ###   ########.fr       */
+/*   Created: 2022/06/18 00:18:04 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 00:26:12 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	cub_file_check_and_fill(t_param *world, char *path)
 
 	fd = open(path, O_DIRECTORY);
 	if (fd != -1)
-		error_exit("This is a directory", world, NULL, -1);
+		error_exit("This is a directory", world, NULL, fd);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		error_exit("Failed to open the .cub file", world, NULL, -1);

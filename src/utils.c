@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 22:57:10 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:49:07 by npinheir         ###   ########.fr       */
+/*   Created: 2022/06/18 00:43:08 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 02:31:27 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	skip_non_map(t_param *world, int *fd, char **holder)
 	i = 0;
 	while (i < world->map_start - 1)
 	{
-		get_next_line(*fd, holder);
+		*holder = get_next_line(*fd);
 		free(*holder);
 		i++;
 	}
@@ -57,7 +57,7 @@ int	to_hex_int(const char *str, t_param *world)
 	split = ft_split(str, ',');
 	if (!(ft_isstrdigit(split[0]) && ft_isstrdigit(split[1])
 			&& ft_isstrdigit(split[2])))
-		error_exit("Corrupted .cub file", world, NULL, -1);
+		error_exit("Invalid Floor or ceiling color", world, NULL, -1);
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
@@ -72,6 +72,8 @@ size_t	len_array_2d(char **split)
 {
 	size_t	res;
 
+	if (!split)
+		return (0);
 	res = 0;
 	while (split[res])
 		res++;

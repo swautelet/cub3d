@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 18:58:15 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 13:17:38 by swautele         ###   ########.fr       */
+/*   Created: 2022/06/18 00:14:20 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 02:45:27 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
+	if (split)
+	{
+		while (split[i])
+			free(split[i++]);
+		free(split);
+	}
 }
 
 void	free_world(t_param *world)

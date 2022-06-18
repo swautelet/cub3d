@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 00:45:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:50:31 by npinheir         ###   ########.fr       */
+/*   Created: 2022/06/18 01:28:24 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 02:31:05 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	get_player_position(t_param *world)
 		y++;
 	}
 	if (found_pos != 1)
-		error_exit("Corrupted .cub file", world, NULL, -1);
+		error_exit("No player in map", world, NULL, -1);
 }

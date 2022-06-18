@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 18:53:05 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/17 01:49:33 by npinheir         ###   ########.fr       */
+/*   Created: 2022/06/18 00:02:55 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 02:38:04 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,14 @@ int	main(int argc, char **argv)
 	{
 		init_world(world);
 		cub_file_check_and_fill(world, argv[1]);
+
 		debug(world);
+
 		lets_cub(world);
-		system("leaks cub3D");
+
+		succes_exit(world, NULL, -1);
 	}
 	else
-		error_exit("Malloc error", world, NULL, -1);
+		error_exit("World malloc error", world, NULL, -1);
 	return (0);
 }
