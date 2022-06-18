@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 15:19:13 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:26:46 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	fill_spaces(t_param *world)
 		j = 0;
 		while (j < world->map_width)
 		{
-			if (world->map[i][j] == ' ')
+			if (world->map[i] && world->map[i][j] == ' ')
 				world->map[i][j] = '1';
 			j++;
 		}
