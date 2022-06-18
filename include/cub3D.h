@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 14:23:38 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:00:06 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void	extract_f_c(t_param *world, char **split);
 void	find_map_start(t_param *world, const char *holder);
 
 // -- Map Check --
-void	map_data_check(t_param *world, const char *holder);
+void	map_data_check(t_param *world, char *holder);
 int		valid_map_line(const char *holder);
 void	fill_spaces(t_param *world);
 void	last_map_check(t_param *world);

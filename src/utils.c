@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:43:08 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 14:28:59 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:12:36 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	skip_non_map(t_param *world, int *fd, char **holder)
 	int	i;
 
 	i = 0;
-	while (i < world->map_start - 1)
+	while (i < world->map_start)
 	{
 		*holder = get_next_line(*fd);
 		free(*holder);
@@ -56,7 +56,7 @@ int	to_hex_int(const char *str, t_param *world)
 
 	split = ft_split(str, ',');
 	if (!(ft_isstrdigit(split[0]) && ft_isstrdigit(split[1])
-			&& ft_isstrdigit(split[2])))
+			&& ft_isstrdigit(split[2])) || split[3])
 		error_exit("Invalid Floor or ceiling color", world, NULL, -1);
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);

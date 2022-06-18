@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:35:41 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 14:08:53 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:11:38 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	valid_map_line(const char *holder)
 
 	base = " 01NSEWDK";
 	i = 0;
+	if (!*holder)
+		return (0);
 	while (holder[i])
 	{
 		if (!ft_char_in_str(holder[i++], base))
@@ -84,7 +86,7 @@ int	valid_map_line(const char *holder)
 	return (1);
 }
 
-void	map_data_check(t_param *world, const char *holder)
+void	map_data_check(t_param *world, char *holder)
 {
 	if (valid_map_line(holder) && ft_strlen(holder) > 1)
 	{
