@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:12:26 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:20:06 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:49:42 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	init_world(t_param *world)
 	world->map_x_pos = 0;
 	world->map_y_pos = 0;
 	world->orient = 0;
+	world->limit = MOVE * 2;
 
 	world->map = NULL;
 	world->map_height = 0;

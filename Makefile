@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+         #
+#    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/18 02:23:36 by npinheir         ###   ########.fr        #
+#    Updated: 2022/06/18 10:47:27 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = cub3D
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -Iinclude
+FLAGS = -Wall -Wextra -Werror 
 
 # Folders
 SRC_DIR = ./src/
@@ -25,7 +25,11 @@ MINLBX_DIR = ./minilibx_opengl/
 
 # Source files and object files
 SRC_FILES = main.c errors.c init.c free.c cub_file.c extract_file.c map_check.c \
-			utils.c extract_map.c utils2.c player.c lets_cub.c
+			utils.c extract_map.c utils2.c player.c lets_cub.c minimap.c \
+			move.c get_texture.c check_walls.c distance.c \
+			draw_col.c draw_key.c draw_view.c \
+			graphic_utils.c hor_dist.c keyboard.c \
+			vert_dist.c bresenham.c
 
 HEADER = ./include/cub3D.h
 			 

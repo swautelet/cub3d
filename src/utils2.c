@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:16:02 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:31:42 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:47:39 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,22 @@ char	*space_string(size_t len, t_param *world)
 		res[i++] = 'v';
 	res[i] = '\0';
 	return (res);
+}
+
+void	pixel_to_image(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+double	degre_to_radiant(double degre)
+{
+	return (M_PI * degre / 180);
 }

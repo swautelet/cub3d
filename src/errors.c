@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:05:56 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:47:02 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:37:46 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	clean_close_mlx(t_param *world)
 		mlx_destroy_window(world->instance, world->window);
 }
 
-int	succes_exit(t_param *world, char *str_to_free, int fd_to_close)
+int	succes_exit(t_param *world)
 {
 	clean_close_mlx(world);
 	free_world(world);
-	free(str_to_free);
-	if (fd_to_close != -1)
-		close(fd_to_close);
+	// free(str_to_free);
+	// if (fd_to_close != -1)
+	// 	close(fd_to_close);
 	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:02:55 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:38:04 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:37:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 
 		lets_cub(world);
 
-		succes_exit(world, NULL, -1);
+		succes_exit(world);
 	}
 	else
 		error_exit("World malloc error", world, NULL, -1);
