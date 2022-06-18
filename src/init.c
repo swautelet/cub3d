@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:12:26 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 12:06:57 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:11:48 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,25 @@ void	init_mlx(t_param *world)
 	init_textures(world);
 }
 
+static	void	init_world2(t_param *world)
+{
+	world->calque = NULL;
+	world->nb_ray = ANGLEVISION / ECAR;
+	world->mid = ANGLEVISION / 2;
+	world->x_wallkey = 0;
+	world->dist_key = -1;
+	world->keyfound = FALSE;
+	world->flag_wall = 0;
+	world->half_screen = SCREEN_HEIGHT / 2;
+	world->flag_back = FALSE;
+	world->flag_front = FALSE;
+	world->flag_left = FALSE;
+	world->flag_right = FALSE;
+	world->flag_rotateleft = FALSE;
+	world->flag_rotateright = FALSE;
+	world->key_picked = FALSE;
+}
+
 void	init_world(t_param *world)
 {
 	world->px_x_pos = 0;
@@ -109,19 +128,5 @@ void	init_world(t_param *world)
 	world->window = NULL;
 	world->img = NULL;
 	world->texture = NULL;
-	world->calque = NULL;
-	world->nb_ray = ANGLEVISION / ECAR;
-	world->mid = ANGLEVISION / 2;
-	world->x_wallkey = 0;
-	world->dist_key = -1;
-	world->keyfound = FALSE;
-	world->flag_wall = 0;
-	world->half_screen = SCREEN_HEIGHT / 2;
-	world->flag_back = FALSE;
-	world->flag_front = FALSE;
-	world->flag_left = FALSE;
-	world->flag_right = FALSE;
-	world->flag_rotateleft = FALSE;
-	world->flag_rotateright = FALSE;
-	world->key_picked = FALSE;
+	init_world2(world);
 }

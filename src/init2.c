@@ -6,11 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 11:53:50 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/18 11:59:00 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:10:49 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include"cub3D.h"
+#include"cub3D.h"
 
 void	init_second_part(t_param *world)
 {

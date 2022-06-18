@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 11:59:12 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:10:11 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,30 @@
 // 	int	y1;
 // }t_fuck;
 
-void	paint_square_map(unsigned int x, unsigned int y, t_param *world)
+void	paint_square_map(unsigned int x, unsigned int y, t_param *w)
 {
 	unsigned int	i;
 	unsigned int	j;
 
 	i = -1;
-	while (++i < world->square_length)
+	while (++i < w->square_length)
 	{
 		j = -1;
-		while (++j < world->square_length)
+		while (++j < w->square_length)
 		{
-			if (world->map[x][y] == '1')
-				pixel_to_image(world->calque, y * world->square_length + i, x
-					* world->square_length + j, create_trgb(100, 255, 255, 255));
-			else if (world->map[x][y] == '0' || ft_char_in_str(world->map[x][y],
+			if (w->map[x][y] == '1')
+				pixel_to_image(w->calque, y * w->square_length + i, x
+					* w->square_length + j, create_trgb(100, 255, 255, 255));
+			else if (w->map[x][y] == '0' || ft_char_in_str(w->map[x][y],
 				"NSEW"))
-				pixel_to_image(world->calque, y * world->square_length + i, x
-					* world->square_length + j, create_trgb(100, 128, 128, 128));
-			else if (world->map[x][y] == 'D')
-				pixel_to_image(world->calque, y * world->square_length + i, x
-					* world->square_length + j, create_trgb(100, 139, 69, 19));
-			else if (world->map[x][y] == 'K')
-				pixel_to_image(world->calque, y * world->square_length + i, x
-					* world->square_length + j, create_trgb(100, 212, 175, 55));
+				pixel_to_image(w->calque, y * w->square_length + i, x
+					* w->square_length + j, create_trgb(100, 128, 128, 128));
+			else if (w->map[x][y] == 'D')
+				pixel_to_image(w->calque, y * w->square_length + i, x
+					* w->square_length + j, create_trgb(100, 139, 69, 19));
+			else if (w->map[x][y] == 'K')
+				pixel_to_image(w->calque, y * w->square_length + i, x
+					* w->square_length + j, create_trgb(100, 212, 175, 55));
 		}
 	}
 }
@@ -97,10 +97,6 @@ void	draw_minimap(t_param *world)
 	unsigned int	i;
 	unsigned int	j;
 
-	// if (world->map_width > world->map_height)
-	// 	square_length = (world->nb_ray / 3) / world->map_width;
-	// else
-	// 	square_length = (SCREEN_HEIGHT / 3) / world->map_height ;
 	i = 0;
 	while (i < world->map_height)
 	{

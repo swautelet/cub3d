@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:13:47 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/18 11:27:47 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:12:09 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ int	draw_view(t_param *world)
 		dist = calcul_dist_till_wall(world, world->orient
 				- offset + world->mid, &x_wall);
 		if ((int)offset == world->mid)
-		{
-			// world->flag_frontdoor = (char)world->flag_wall;
 			world->player_front = dist;
-		}
 		draw_col(world, dist, offset, x_wall);
 		if (world->keyfound == TRUE)
 			draw_key(world, offset, dist);
