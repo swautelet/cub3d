@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:14:20 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 14:32:47 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:42:32 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	if (split && split[i])
+	if (split)
 	{
-		printf("%p et %p\n", split, split[i]);
 		while (split[i])
 			free(split[i++]);
 		free(split);
