@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:43:08 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 15:12:36 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:43:14 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,15 @@ int	to_hex_int(const char *str, t_param *world)
 	long long int	g;
 	long long int	b;
 
+	if (str[ft_strlen(str) - 1] == ',')
+		return (-1);
 	split = ft_split(str, ',');
 	if (!(ft_isstrdigit(split[0]) && ft_isstrdigit(split[1])
 			&& ft_isstrdigit(split[2])) || split[3])
-		error_exit("Invalid Floor or ceiling color", world, NULL, -1);
+	{
+		free_split(split);
+		return (-1);
+	}
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);

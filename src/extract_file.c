@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:23:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 11:33:10 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:45:40 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	find_map_start(t_param *world, const char *holder)
 	i++;
 }
 
-void	extract_f_c(t_param *world, char **split)
+int	extract_f_c(t_param *world, char **split)
 {
 	if (len_array_2d(split) == 2)
 	{
@@ -43,6 +43,10 @@ void	extract_f_c(t_param *world, char **split)
 			world->counter[5] += 1;
 		}
 	}
+	if (world->floor_color == -1 || world->ceiling_color == -1)
+		return (-1);
+	else
+		return (0);
 }
 
 void	extract_sand_rose(t_param *world, char **split)
@@ -84,7 +88,11 @@ void	loop_in_file(t_param *world, int fd)
 		map_data_check(world, holder);
 		split = ft_split(holder, ' ');
 		extract_sand_rose(world, split);
-		extract_f_c(world, split);
+		if (extract_f_c(world, split) == -1)
+		{
+			free_split(split);
+			error_exit("Invalid Floor or ceiling color", world, holder, fd);
+		}
 		find_map_start(world, holder);
 		free_split(split);
 		free(holder);
