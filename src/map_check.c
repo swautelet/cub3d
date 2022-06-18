@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:35:41 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 11:30:32 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 13:23:48 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_map_end(t_param *world, size_t i)
 	int	j;
 
 	diff = 0;
-	if (i < world->map_height - 1)
+	if ((int)i < world->map_height - 1)
 	{
 		if (ft_strlen(world->map[i]) != ft_strlen(world->map[i + 1]))
 			diff = ft_strlen(world->map[i]) - ft_strlen(world->map[i + 1]);
@@ -89,7 +89,7 @@ void	map_data_check(t_param *world, const char *holder)
 	if (valid_map_line(holder) && ft_strlen(holder) > 1)
 	{
 		world->map_height++;
-		if (ft_strlen(holder) > world->map_width)
+		if ((int)ft_strlen(holder) > world->map_width)
 			world->map_width = ft_strlen(holder);
 	}
 }

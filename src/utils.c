@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:43:08 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:31:27 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 13:21:01 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	skip_non_map(t_param *world, int *fd, char **holder)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (i < world->map_start - 1)

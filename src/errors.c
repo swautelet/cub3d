@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:05:56 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 11:45:03 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 13:34:06 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void	clean_close_mlx(t_param *world)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (world->texture)
 	{
-		while (i < 6)
-			mlx_destroy_image(world->instance, world->texture[i++].img);
+		while (++i < 6)
+		{
+			if (world->texture[i].img)
+				mlx_destroy_image(world->instance, world->texture[i].img);
+		}
 	}
 	if (world->img)
 		mlx_destroy_image(world->instance, world->img->img);

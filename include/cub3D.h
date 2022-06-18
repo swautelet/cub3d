@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 12:37:30 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 13:22:06 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ typedef struct s_param
 	unsigned int	square_length;
 	int				player_size;
 	char			**map;
-	unsigned int	map_height;
-	unsigned int	map_width;
-	unsigned int	map_start;
+	int				map_height;
+	int				map_width;
+	int				map_start;
 	char			*path;
 	char			*no;
 	char			*so;
