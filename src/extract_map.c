@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:25 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 15:13:41 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:16:49 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void	process_map(t_param *world, int *fd, char **holder)
 			ft_strlcpy(world->map[i - 1], *holder, ft_strlen(*holder) + 1);
 		}
 		else if (!valid_map_line(*holder) && ft_strlen(*holder) == 0)
+		{
+			printf("wefwr\n");
 			error_exit("Not a valid map line", world, *holder, -1);
+		}
 		free(*holder);
 		*holder = get_next_line(*fd);
 	}
@@ -81,7 +84,7 @@ void	extract_map(t_param *world)
 	char	*holder;
 
 	holder = NULL;
-	world->map = malloc(sizeof(char *) * world->map_height + 1);
+	world->map = ft_calloc(sizeof(char *), world->map_height + 1);
 	if (!world->map)
 		error_exit("Map malloc error", world, NULL, -1);
 	world->map[0] = NULL;
