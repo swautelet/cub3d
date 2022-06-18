@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:23:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:29:27 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:33:10 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	loop_in_file(t_param *world, int fd)
 	char	*holder;
 	char	**split;
 
-	holder = NULL;
 	split = NULL;
-	while ((holder = get_next_line(fd)))
+	holder = get_next_line(fd);
+	while (holder)
 	{
 		map_data_check(world, holder);
 		split = ft_split(holder, ' ');
@@ -88,6 +88,7 @@ void	loop_in_file(t_param *world, int fd)
 		find_map_start(world, holder);
 		free_split(split);
 		free(holder);
+		holder = get_next_line(fd);
 	}
 	free(holder);
 	extract_map(world);
@@ -96,7 +97,6 @@ void	loop_in_file(t_param *world, int fd)
 void	extract_file( t_param *world, int fd)
 {
 	int	i;
-	(void)fd;
 
 	world->counter = malloc(sizeof(int) * 6);
 	if (!world->counter)

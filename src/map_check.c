@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:35:41 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:30:51 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:30:32 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ void	check_map_end(t_param *world, size_t i)
 	{
 		if (ft_strlen(world->map[i]) != ft_strlen(world->map[i + 1]))
 			diff = ft_strlen(world->map[i]) - ft_strlen(world->map[i + 1]);
-		if (world->map[i][ft_strlen(world->map[i]) - 1] != '1' && world->map[i][ft_strlen(world->map[i]) - 1] != 'v')
+		if (world->map[i][ft_strlen(world->map[i]) - 1] != '1'
+			&& world->map[i][ft_strlen(world->map[i]) - 1] != 'v')
 			error_exit("Map not closed", world, NULL, -1);
-		j = 0;
-		while (j < diff - 1)
+		j = -1;
+		while (++j < diff - 1)
 		{
 			if (world->map[i][ft_strlen(world->map[i + 1]) + j] != '1')
 				error_exit("Map not closed", world, NULL, -1);
-			j++;
 		}
-		j = 0;
-		while (j < (-1 * diff))
+		j = -1;
+		while (++j < (-1 * diff))
 		{
 			if (world->map[i + 1][ft_strlen(world->map[i]) + j] != '1')
 				error_exit("Map not closed", world, NULL, -1);
-			j++;
 		}
 	}
 }
@@ -63,7 +62,8 @@ void	last_map_check(t_param *world)
 	i = 0;
 	while (i < ft_strlen(world->map[world->map_height - 1]))
 	{
-		if ((world->map[world->map_height - 1][i] != '1' && world->map[world->map_height - 1][i] != 'v'))
+		if ((world->map[world->map_height - 1][i] != '1'
+			&& world->map[world->map_height - 1][i] != 'v'))
 			error_exit("Map not closed", world, NULL, -1);
 		i++;
 	}

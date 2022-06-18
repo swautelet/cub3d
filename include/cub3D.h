@@ -6,7 +6,7 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 02:41:26 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:36:06 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_param
 	char			*ea; // Malloc  OK
 	int				floor_color;
 	int				ceiling_color;
+	unsigned int	amount_key;
 
 	int				*counter; // Malloc OK
 
@@ -98,6 +99,8 @@ void	get_player_orientation(t_param *world, char tag);
 // -- Extract Map --
 void	extract_map(t_param *world);
 void	process_map(t_param *world, int *fd, char **holder);
+void	fill_spaces(t_param *world);
+void	get_amount_key(t_param *world);
 
 // -- Extract File --
 void	extract_file( t_param *world, int fd);
@@ -126,7 +129,7 @@ void	free_split(char **split);
 // -- Errors --
 void	error_exit(char *message, t_param *world, char *str_tr_free,
 	int fd_to_close);
-int		succes_exit(t_param *world, char *str_t0_free, int fd_to_close);
+int		succes_exit(t_param *world);
 void	clean_close_mlx(t_param *world);
 
 // -- Utils --
