@@ -6,7 +6,7 @@
 #    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/18 11:55:50 by swautele         ###   ########.fr        #
+#    Updated: 2022/06/18 12:39:55 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,8 @@ re: fclean all
 save:
 	git commit -am "$(MAKECMDGOALS)" 
 	git push
+
+bonus: all
 
 # phony
 .PHONY: all clean fclean re save
