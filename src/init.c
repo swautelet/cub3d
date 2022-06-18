@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:12:26 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 13:33:05 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:01:47 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_textures(t_param *world)
 	world->texture[EA].img = mlx_xpm_file_to_image(world->instance, world->ea,
 			&(world->texture[EA].x_size), &(world->texture[EA].y_size));
 	world->texture[DO].img = mlx_xpm_file_to_image(world->instance,
-			"./texture/hell.xpm", &(world->texture[DO].x_size),
+			"./texture/door.xpm", &(world->texture[DO].x_size),
 			&(world->texture[DO].y_size));
 	world->texture[KE].img = mlx_xpm_file_to_image(world->instance,
 			"./texture/keyblade.xpm", &(world->texture[KE].x_size),
