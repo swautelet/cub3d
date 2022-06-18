@@ -6,21 +6,16 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 17:15:09 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/22 14:52:20 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:20:16 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	This function copies len bytes from string
-	src to string dst.The The copy is always
-	done in a non-destructive manner.	*/
-
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	void	*res;
 
-	// Basic protection
 	if ((!dst && !src))
 		return (NULL);
 	res = dst;

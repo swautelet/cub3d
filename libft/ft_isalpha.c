@@ -6,19 +6,14 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:37:53 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/20 00:15:40 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:18:32 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	This function returns 1 if the integer input
-	corresponds to an alphabetical character.
-	Returns 0 otherwise.	*/
-
 int	ft_isalpha(int c)
 {
-	// Basic protection
 	if (!c)
 		return (0);
 	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))

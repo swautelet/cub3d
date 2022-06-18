@@ -6,17 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 16:16:25 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/21 16:27:09 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:21:17 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function appends string src to the end of dst.
-	It will append at most dstsize - strlen(dst) - 1
-	characters. It will then NUL-terminate, unless
-	dstsize is 0 or the original dst string was longer
-	than dstsize.	*/
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
@@ -27,7 +21,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	res = ft_strlen(src);
 	i = ft_strlen(dst);
 	j = 0;
-	// Basic protection
 	if (!dst || !src)
 		return (0);
 	if (dstsize <= i)

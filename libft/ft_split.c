@@ -6,16 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 08:12:19 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/16 19:43:59 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:20:38 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function allocates and returns an array
-	of strings obtained by splitting ’s’ using the
-	character ’c’ as a delimiter. The array must be
-	ended by a NULL pointer.	*/
 
 static char	**ft_malloc_error(char **res)
 {

@@ -6,15 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 18:35:37 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/14 14:08:50 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:18:08 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function converts the initial portion
-	of the string pointed to by str to int
-	representation.	*/
 
 static size_t	ft_atoi2(const char *str, int *sign)
 {

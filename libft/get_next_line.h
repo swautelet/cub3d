@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/18 12:16:33 by npinheir          #+#    #+#             */
+/*   Updated: 2022/06/18 12:24:49 by npinheir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif

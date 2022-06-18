@@ -6,16 +6,11 @@
 /*   By: npinheir <npinheir@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 08:03:12 by npinheir          #+#    #+#             */
-/*   Updated: 2021/08/23 08:10:25 by npinheir         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:22:02 by npinheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*	This function allocates and returns a copy
-	of ’s1’ with the characters specified in
-	’set’ removed from the beginning and the
-	end of the string.	*/
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
