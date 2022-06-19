@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:05:56 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 13:34:06 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:28:24 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	succes_exit(t_param *world)
 {
 	clean_close_mlx(world);
 	free_world(world);
-	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -52,6 +51,5 @@ void	error_exit(char *message, t_param *world, char *str_tr_free,
 		close(fd_to_close);
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(message, 2);
-	system("leaks cub3D");
 	exit(EXIT_FAILURE);
 }

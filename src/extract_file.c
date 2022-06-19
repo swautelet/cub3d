@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:23:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 15:45:40 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:24:17 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,22 @@ void	extract_sand_rose(t_param *world, char **split)
 {
 	if (len_array_2d(split) == 2)
 	{
-		if (ft_strsame(split[0], "NO"))
-		{
+		if (ft_strsame(split[0], "NO") && !world->no)
 			world->no = ft_strdup(split[1]);
+		if (ft_strsame(split[0], "NO"))
 			world->counter[0] += 1;
-		}
-		else if (ft_strsame(split[0], "SO"))
-		{
+		if (ft_strsame(split[0], "SO") && !world->so)
 			world->so = ft_strdup(split[1]);
+		if (ft_strsame(split[0], "SO"))
 			world->counter[1] += 1;
-		}
-		else if (ft_strsame(split[0], "WE"))
-		{
+		if (ft_strsame(split[0], "WE") && !world->we)
 			world->we = ft_strdup(split[1]);
+		if (ft_strsame(split[0], "WE"))
 			world->counter[2] += 1;
-		}
-		else if (ft_strsame(split[0], "EA"))
-		{
+		if (ft_strsame(split[0], "EA") && !world->ea)
 			world->ea = ft_strdup(split[1]);
+		if (ft_strsame(split[0], "EA"))
 			world->counter[3] += 1;
-		}
 	}
 }
 
