@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/19 13:15:45 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:16:14 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_key{
 	double			y_texture;
 	unsigned int	color;
 }	t_key;
-
 
 typedef struct s_vert{
 	double	decal;
