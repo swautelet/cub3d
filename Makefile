@@ -6,7 +6,7 @@
 #    By: swautele <swautele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 15:23:41 by npinheir          #+#    #+#              #
-#    Updated: 2022/06/18 12:39:55 by swautele         ###   ########.fr        #
+#    Updated: 2022/06/19 13:38:32 by swautele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ HEADER = ./include/cub3D.h
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Paths
-SRC	:= $(wildcard $(SRC_DIR)*.c)
+SRC	:= $($(SRC_DIR)%.c)
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 MINLBX	= $(addprefix $(MINLBX_DIR), libmlx.a)
