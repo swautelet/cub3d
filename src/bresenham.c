@@ -6,27 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 19:26:34 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/18 12:12:15 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:12:46 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3D.h"
-
-// typedef struct s_bres{
-// 	int	dx;
-// 	int	dy;
-// 	int	sx;
-// 	int	sy;
-// 	int	err;
-// 	int	e2;
-// }t_bres;
-
-// typedef struct s_fuck{
-// 	int	x0;
-// 	int	y0;
-// 	int	x1;
-// 	int	y1;
-// }t_fuck;
 
 static void	bresenham_loop(t_fuck *d, t_param *world, t_bres *f)
 {

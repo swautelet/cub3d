@@ -6,20 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:26:09 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/18 10:58:49 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:13:30 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3D.h"
-
-typedef struct s_col{
-	int		x;
-	int		y;
-	int		offset_wall;
-	int		mid;
-	int		x_texture;
-	double	y_texture;
-}t_col;
 
 void	col_loop(t_param *world, t_col *f)
 {

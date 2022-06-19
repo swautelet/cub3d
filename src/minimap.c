@@ -6,18 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:03:54 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 13:25:21 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:15:07 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// typedef struct s_fuck{
-// 	int	x0;
-// 	int	y0;
-// 	int	x1;
-// 	int	y1;
-// }t_fuck;
 
 void	paint_square_map(unsigned int x, unsigned int y, t_param *w)
 {

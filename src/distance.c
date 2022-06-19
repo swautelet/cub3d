@@ -6,22 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:54:13 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/06/17 18:43:34 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:13:10 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-typedef struct s_dist
-{
-	double	vert;
-	double	hor;
-	double	dest;
-	double	hor_x_wall;
-	double	vert_x_wall;
-	int		sub_door_vert;
-	int		sub_door_hor;
-}			t_dist;
 
 static	void	dist_till_wall(t_param *world, t_dist *f, double orientation,
 		double *x_wall)

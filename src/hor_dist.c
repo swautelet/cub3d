@@ -6,17 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:34:04 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/17 19:13:18 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:14:14 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-typedef struct s_hor{
-	double	decal;
-	double	next_hor;
-	double	cotan_orientation;
-}t_hor;
 
 static void	next_up_wall(t_param *world, t_hor *f, int *sub_door_hor)
 {

@@ -6,17 +6,11 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:34:32 by swautele          #+#    #+#             */
-/*   Updated: 2022/06/17 19:09:05 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:15:39 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-typedef struct s_vert{
-	double	decal;
-	double	next_vert;
-	double	tan_orientation;
-}t_vert;
 
 static void	next_right_wall(t_param *world, t_vert *f, int *sub_door_vert)
 {

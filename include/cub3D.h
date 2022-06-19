@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:54:35 by npinheir          #+#    #+#             */
-/*   Updated: 2022/06/18 15:45:54 by swautele         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:15:45 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,39 @@ typedef struct s_key{
 	double			y_texture;
 	unsigned int	color;
 }	t_key;
+
+
+typedef struct s_vert{
+	double	decal;
+	double	next_vert;
+	double	tan_orientation;
+}t_vert;
+
+typedef struct s_dist
+{
+	double	vert;
+	double	hor;
+	double	dest;
+	double	hor_x_wall;
+	double	vert_x_wall;
+	int		sub_door_vert;
+	int		sub_door_hor;
+}			t_dist;
+
+typedef struct s_hor{
+	double	decal;
+	double	next_hor;
+	double	cotan_orientation;
+}t_hor;
+
+typedef struct s_col{
+	int		x;
+	int		y;
+	int		offset_wall;
+	int		mid;
+	int		x_texture;
+	double	y_texture;
+}t_col;
 
 typedef enum e_dir
 {
