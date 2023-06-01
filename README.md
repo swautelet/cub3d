@@ -5,6 +5,8 @@
 ```bash
 git clone https://github.com/swautelet/cub3d.git && cd cub3d && make && ./cub3d ./maps/main_test.cub
 ```
+Once you're in the game you can use 'a''s''d''w''<-''->' to move in the game and 'e' to interact (pick the key and open the door)
+
 ## Topics -- 🗝
 - raycasting
 - graphism 
